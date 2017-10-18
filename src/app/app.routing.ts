@@ -11,5 +11,7 @@ export const RXJS_DOC_ROUTES: Routes = [
   { path: 'operators', loadChildren: './operators/operators.module#OperatorsModule' },
   { path: 'team', loadChildren: './team/team.module#TeamModule' },
   { path: 'companies', loadChildren: './companies/companies.module#CompaniesModule' },
+  { path: 'companies', loadChildren: './companies/companies.module#CompaniesModule' },
+  { path: 'getting-started-guide', loadChildren: './getting-started-guide/getting-started-guide.module#GettingStartedGuideModule' },
   { path: '**', redirectTo: '' }
 ];

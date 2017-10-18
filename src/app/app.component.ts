@@ -32,6 +32,11 @@ export class AppComponent {
       title: 'Team',
       link: '/team',
       options: { exact: false }
+    },
+    {
+      title: 'Getting Started Guide',
+      link: '/getting-started-guide',
+      options: { exact: false }
     }
   ];
 }
