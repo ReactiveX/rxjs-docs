@@ -9,7 +9,7 @@ import { RXJS_DOC_ROUTES } from './app.routing';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
