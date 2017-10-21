@@ -13,11 +13,6 @@ interface Menu {
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
   menus: Menu[] = [
     {
       title: 'Home',
@@ -41,4 +36,8 @@ export class ToolbarComponent implements OnInit {
     }
   ];
 
+  constructor() { }
+
+  ngOnInit() {
+  }
 }

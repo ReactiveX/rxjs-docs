@@ -6,7 +6,7 @@ import { MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule } from
 
 import { AppComponent } from './app.component';
 import { RXJS_DOC_ROUTES } from './app.routing';
-import { ToolbarModule } from "./toolbar/toolbar.module";
+import { ToolbarModule } from './toolbar/toolbar.module';
 
 @NgModule({
   declarations: [
