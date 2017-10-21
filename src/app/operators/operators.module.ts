@@ -1,18 +1,5 @@
 import { NgModule, InjectionToken, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { LayoutModule } from '@angular/cdk/layout';
-import {
-  MatSidenavModule,
-  MatIconModule,
-  MatListModule,
-  MatToolbarModule,
-  MatExpansionModule,
-  MatCardModule,
-  MatInputModule,
-  MatMenuModule,
-  MatButtonModule,
-  MatTooltipModule
-} from '@angular/material';
 import { ClipboardModule } from 'ngx-clipboard';
 import { ALL_OPERATORS, OperatorDoc } from '../../operator-docs';
 
@@ -29,6 +16,7 @@ import { MarbleDiagramComponent } from './components/marble-diagram/marble-diagr
 import { WalkthroughComponent } from './components/walkthrough/walkthrough.component';
 import { HighlightJsDirective } from './directives/highlight-js.directive';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
+import { SharedModule } from "../shared.module";
 
 @NgModule({
   declarations: [
@@ -46,23 +34,14 @@ import { SafeUrlPipe } from './pipes/safe-url.pipe';
     SafeUrlPipe
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     OperatorsRoutingModule,
     ClipboardModule,
     LayoutModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatToolbarModule,
-    MatCardModule,
-    MatInputModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatTooltipModule
   ],
   providers: [
     { provide: OPERATORS_TOKEN, useValue: ALL_OPERATORS }
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class OperatorsModule { }
