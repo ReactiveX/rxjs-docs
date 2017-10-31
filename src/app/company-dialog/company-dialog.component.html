@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>New Company Form</h2>
+<mat-dialog-content>
+  <form fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="15px" fxLayoutWrap [formGroup]="companyForm">
+    <mat-form-field fxFlex.lg="20" fxFlex.md="30">
+      <input matInput placeholder="Name" formControlName="Name">
+    </mat-form-field>
+    <mat-form-field fxFlex.lg="20" fxFlex.md="30">
+      <input matInput placeholder="Location" formControlName="Location">
+    </mat-form-field>
+    <mat-form-field fxFlex.lg="20" fxFlex.md="30">
+      <input matInput placeholder="Website" formControlName="Website">
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [disabled]="!companyForm.valid" [mat-dialog-close]="companyForm.value">Submit</button>
+</mat-dialog-actions>
