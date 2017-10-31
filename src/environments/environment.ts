@@ -3,6 +3,15 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
+// rxjsdemo@gmail.com //rxjsdemo1234
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyDriWFv9xGNiwH_qXxblcUWKhRXY-B7ILU",
+    authDomain: "rxjs-docs-c893e.firebaseapp.com",
+    databaseURL: "https://rxjs-docs-c893e.firebaseio.com",
+    projectId: "rxjs-docs-c893e",
+    storageBucket: "",
+    messagingSenderId: "59456895000"
+  }
 };
