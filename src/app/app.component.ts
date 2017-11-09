@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
+import { LanguageService } from './services/language.service';
 
 interface Menu {
   title: string;
@@ -7,31 +8,37 @@ interface Menu {
 }
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   menus: Menu[] = [
     {
-      title: "Home",
-      link: "/",
+      title: 'MENU.HOME',
+      link: '/',
       options: { exact: true }
     },
     {
-      title: "Operators",
-      link: "/operators",
+      title: 'MENU.OPERATORS',
+      link: '/operators',
       options: { exact: false }
     },
     {
-      title: "Companies",
-      link: "/companies",
+      title: 'MENU.COMPANIES',
+      link: '/companies',
       options: { exact: false }
     },
     {
-      title: "Team",
-      link: "/team",
+      title: 'MENU.TEAM',
+      link: '/team',
       options: { exact: false }
     }
   ];
+
+  constructor(private languageService: LanguageService) {}
+
+  ngOnInit() {
+    this.languageService.init(['en', 'ru']);
+  }
 }

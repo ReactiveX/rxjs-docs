@@ -1,5 +1,4 @@
-<mat-sidenav-container
-  class="operator-container">
+<mat-sidenav-container class="operator-container">
   <mat-sidenav
     [mode]="sidenavMode"
     [opened]="!smallScreen"
@@ -18,6 +17,7 @@
   </mat-sidenav>
   <app-operator
     *ngFor="let operator of operators"
+    [currentLang]="currentLang"
     [operator]="operator">
   </app-operator>
 </mat-sidenav-container>
