@@ -5,7 +5,7 @@
   class="operator-header">
 </app-operator-header>
 <section class="main-operator-container mat-typography">
-  <h3 class="short-description" [innerHTML]="shortDescription"></h3>
+  <h3 class="short-description" [innerHTML]="shortDescription[currentLang]"></h3>
   <app-operator-extras
     class="margin-bottom-16"
     *ngIf="shortDescriptionExtras"
@@ -18,13 +18,17 @@
     [url]="marbleUrl">
   </app-marble-diagram>
   <app-operator-examples
-    [operatorExamples]="examples" class="margin-bottom-16">
+    [operatorExamples]="examples"
+    [currentLang]="currentLang" 
+    class="margin-bottom-16">
   </app-operator-examples>
   <app-operator-parameters
-    [operatorParameters]="parameters">
+    [operatorParameters]="parameters"
+    [currentLang]="currentLang">
   </app-operator-parameters>
   <app-operator-walkthrough
     class="margin-bottom-16"
+    [currentLang]="currentLang"
     [operatorWalkthrough]="walkthrough" >
   </app-operator-walkthrough>
   <app-related-operators

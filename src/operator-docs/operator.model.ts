@@ -1,4 +1,5 @@
-export type OperatorType = 'combination'
+export type OperatorType =
+  | 'combination'
   | 'conditional'
   | 'creation'
   | 'error handling'
@@ -22,11 +23,11 @@ export interface OperatorParameters {
   name: string;
   type: string;
   attribute: string;
-  description: string;
+  description: any;
 }
 
 export interface OperatorExample {
-  name: string;
+  name: any;
   code: string;
   externalLink: ExternalLink;
 }
@@ -45,11 +46,11 @@ export interface OperatorDoc {
   readonly parameters?: OperatorParameters[];
   readonly shortDescription?: {
     description: string;
-    extras?: OperatorExtra[]
+    extras?: OperatorExtra[];
   };
   readonly walkthrough?: {
-    description: string;
-    extras?: OperatorExtra[]
+    description: any;
+    extras?: OperatorExtra[];
   };
   readonly examples?: OperatorExample[];
   readonly additionalResources?: OperatorReference[];

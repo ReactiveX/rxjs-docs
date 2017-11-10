@@ -1,11 +1,11 @@
-<h2> Parameters </h2>
+<h2> {{ 'OPERATOR.PARAMETERS.TITLE' | translate }} </h2>
 <table class="parameter-table mat-elevation-z2">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Attribute</th>
-      <th>Description</th>
+      <th>{{'OPERATOR.PARAMETERS.NAME' | translate}}</th>
+      <th>{{'OPERATOR.PARAMETERS.TYPE' | translate}}</th>
+      <th>{{'OPERATOR.PARAMETERS.ATTRIBUTE' | translate}}</th>
+      <th>{{'OPERATOR.PARAMETERS.DESCRIPTION' | translate}}</th>
     </tr>
   </thead>
   <tbody>
@@ -13,7 +13,7 @@
       <td> {{parameter.name}} </td>
       <td> {{parameter.type}} </td>
       <td> {{parameter.attribute}} </td>
-      <td> {{parameter.description}} </td>
+      <td> {{parameter.description[currentLang]}} </td>
     </tr>
   </tbody>
 </table>

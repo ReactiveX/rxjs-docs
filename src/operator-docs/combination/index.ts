@@ -12,16 +12,16 @@ import { withLatestFrom } from './withLatestFrom';
 import { zip } from './zip';
 
 export const COMBINATION_OPERATORS = [
-  combineAll,
-  combineLatest,
-  concat,
-  concatAll,
-  forkJoin,
-  merge,
-  mergeAll,
-  pairwise,
-  race,
-  startWith,
-  withLatestFrom,
-  zip
+  combineAll
+  // combineLatest,
+  // concat,
+  // concatAll,
+  // forkJoin,
+  // merge,
+  // mergeAll,
+  // pairwise,
+  // race,
+  // startWith,
+  // withLatestFrom,
+  // zip
 ];

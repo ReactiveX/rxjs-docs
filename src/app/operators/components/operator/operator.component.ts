@@ -1,4 +1,9 @@
-import { Component, Input, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { OperatorDoc } from '../../../../operator-docs/operator.model';
 
 @Component({
@@ -9,6 +14,7 @@ import { OperatorDoc } from '../../../../operator-docs/operator.model';
 })
 export class OperatorComponent {
   @Input() operator: OperatorDoc;
+  @Input() currentLang = 'en';
 
   private readonly baseSourceUrl = 'https://github.com/ReactiveX/rxjs/blob/master/src/operators/';
   private readonly baseSpecUrl = 'http://reactivex.io/rxjs/test-file/spec-js/operators';
@@ -38,7 +44,7 @@ export class OperatorComponent {
   }
 
   get walkthrough() {
-    return this.operator.walkthrough && this.operator.walkthrough.description;
+    return this.operator.walkthrough && this.operator.walkthrough.description[this.currentLang];
   }
 
   get parameters() {

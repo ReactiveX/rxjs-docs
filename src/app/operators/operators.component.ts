@@ -1,10 +1,24 @@
-import { Component, Inject, InjectionToken, OnInit, AfterViewInit, ChangeDetectionStrategy } from '@angular/core';
-import { trigger, state, style, animate, transition } from '@angular/animations';
+import {
+  Component,
+  Inject,
+  InjectionToken,
+  OnInit,
+  AfterViewInit,
+  ChangeDetectorRef
+} from '@angular/core';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from '@angular/animations';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import { OperatorDoc } from '../../operator-docs/operator.model';
+import { TranslateService } from '@ngx-translate/core';
 
 const OPERATOR_MENU_GAP_LARGE = 64;
 const OPERATOR_MENU_GAP_SMALL = 54;
@@ -21,7 +35,7 @@ interface OperatorDocMap {
   styleUrls: ['./operators.component.scss'],
   animations: [
     trigger('growInOut', [
-      state('in', style({opacity: 1})),
+      state('in', style({ opacity: 1 })),
       transition('void => *', [
         style({
           opacity: 0,
@@ -30,10 +44,13 @@ interface OperatorDocMap {
         animate(`150ms ease-in`)
       ]),
       transition('* => void', [
-        animate(`150ms ease-out`, style({
-          opacity: 0,
-          transform: 'scale3d(.3, .3, .3)'
-        }))
+        animate(
+          `150ms ease-out`,
+          style({
+            opacity: 0,
+            transform: 'scale3d(.3, .3, .3)'
+          })
+        )
       ])
     ])
   ]
@@ -41,22 +58,32 @@ interface OperatorDocMap {
 export class OperatorsComponent implements OnInit, AfterViewInit {
   public groupedOperators: OperatorDocMap;
   public categories: string[];
+  public operatorsDescription: any;
 
   private _subscription: Subscription;
+  currentLang: string;
 
   constructor(
     private _breakpointObserver: BreakpointObserver,
     private _router: Router,
     private _activatedRoute: ActivatedRoute,
+    private translate: TranslateService,
+    private changeDetectorRef: ChangeDetectorRef,
     @Inject(OPERATORS_TOKEN) public operators: OperatorDoc[]
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.groupedOperators = groupOperatorsByType(this.operators);
     this.categories = Object.keys(this.groupedOperators);
-    this._subscription = this._activatedRoute
-      .fragment
-      .subscribe(name => this.scrollToOperator(name));
+    this.currentLang = this.translate.currentLang;
+
+    this._subscription = this._activatedRoute.fragment.subscribe(name =>
+      this.scrollToOperator(name)
+    );
+
+    this.translate.onLangChange.subscribe(res => {
+      this.currentLang = res.lang;
+    })
   }
 
   ngAfterViewInit() {
@@ -70,7 +97,7 @@ export class OperatorsComponent implements OnInit, AfterViewInit {
   }
 
   updateUrl(name: string) {
-    this._router.navigate([ '/operators' ], { fragment: name });
+    this._router.navigate(['/operators'], { fragment: name });
   }
 
   scrollToOperator(name: string) {
@@ -90,20 +117,21 @@ export class OperatorsComponent implements OnInit, AfterViewInit {
   }
 
   get operatorMenuGap() {
-    return this.extraSmallScreen ? OPERATOR_MENU_GAP_SMALL : OPERATOR_MENU_GAP_LARGE;
+    return this.extraSmallScreen
+      ? OPERATOR_MENU_GAP_SMALL
+      : OPERATOR_MENU_GAP_LARGE;
   }
 
   get sidenavMode() {
     return this.smallScreen ? 'over' : 'side';
   }
-
 }
 
 export function groupOperatorsByType(operators: OperatorDoc[]): OperatorDocMap {
   return operators.reduce((acc: OperatorDocMap, curr: OperatorDoc) => {
     if (acc[curr.operatorType]) {
-      return { ...acc, [ curr.operatorType ] : [ ...acc[ curr.operatorType ], curr ] };
+      return { ...acc, [curr.operatorType]: [...acc[curr.operatorType], curr] };
     }
-    return { ...acc, [ curr.operatorType ]: [ curr ] };
+    return { ...acc, [curr.operatorType]: [curr] };
   }, {});
 }

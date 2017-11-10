@@ -8,4 +8,5 @@ import { OperatorExample } from '../../../../operator-docs';
 })
 export class WalkthroughComponent {
   @Input() operatorWalkthrough: string;
+  @Input() currentLang = 'en';
 }

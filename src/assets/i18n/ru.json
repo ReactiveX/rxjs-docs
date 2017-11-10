@@ -1,0 +1,21 @@
+{
+    "OPERATOR": {
+      "PARAMETERS": {
+        "TITLE": "Параметры",
+        "NAME": "Название",
+        "TYPE": "Тип",
+        "ATTRIBUTE": "Аттрибут",
+        "DESCRIPTION": "Описание"
+      },
+      "EXAMPLES": "Примеры",
+      "WALKTHROGH": "Пошаговое руководство",
+      "RELATED": "Связанные операторы",
+      "ADDITIONAL_RESOURCES": "Дополнительные ресурсы"
+    },
+    "MENU": {
+      "HOME": "Главная",
+      "OPERATORS": "Операторы",
+      "COMPANIES": "Компании",
+      "TEAM": "Команда"
+    }
+  }

@@ -1,0 +1,21 @@
+{
+  "OPERATOR": {
+    "PARAMETERS": {
+      "TITLE": "Paramaters",
+      "NAME": "Name",
+      "TYPE": "Type",
+      "ATTRIBUTE": "Attribute",
+      "DESCRIPTION": "Description"
+    },
+    "EXAMPLES": "Examples",
+    "WALKTHROGH": "Walkthrough",
+    "RELATED": "Related Operators",
+    "ADDITIONAL_RESOURCES": "Additional Resources"
+  },
+  "MENU": {
+    "HOME": "Home",
+    "OPERATORS": "Operators",
+    "COMPANIES": "Companies",
+    "TEAM": "Team"
+  }
+}
