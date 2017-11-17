@@ -9,7 +9,8 @@ import { SharedModule } from "../shared.module";
 import { environment } from "../../environments/environment";
 import { CompanyDialogComponent } from "../company-dialog/company-dialog.component";
 import { MatDialogRef } from "@angular/material";
-
+import { CompanyService } from "./company.service";
+import { AngularFireDatabase } from "angularfire2/database";
 @NgModule({
   imports: [
     routing,
@@ -18,6 +19,7 @@ import { MatDialogRef } from "@angular/material";
     AngularFireModule.initializeApp(environment.firebase)
   ],
   declarations: [CompaniesComponent, CompanyDialogComponent],
-  entryComponents: [CompanyDialogComponent]
+  entryComponents: [CompanyDialogComponent],
+  providers: [CompanyService, AngularFireDatabase]
 })
 export class CompaniesModule {}

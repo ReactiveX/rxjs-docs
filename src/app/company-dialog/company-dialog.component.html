@@ -1,18 +1,19 @@
 <h2 mat-dialog-title>New Company Form</h2>
 <mat-dialog-content>
-  <form fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="15px" fxLayoutWrap [formGroup]="companyForm">
-    <mat-form-field fxFlex.lg="20" fxFlex.md="30">
+  <form fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="15px" fxLayoutWrap [formGroup]="companyForm" autocomplete="false">
+    <mat-form-field fxFlex.md="40" fxFlex.lg="30" fxFlex.md="30">
       <input matInput placeholder="Name" formControlName="Name">
     </mat-form-field>
-    <mat-form-field fxFlex.lg="20" fxFlex.md="30">
+    <mat-form-field fxFlex.md="40" fxFlex.lg="30" fxFlex.md="30">
       <input matInput placeholder="Location" formControlName="Location">
     </mat-form-field>
-    <mat-form-field fxFlex.lg="20" fxFlex.md="30">
+    <mat-form-field fxFlex.md="20" fxFlex.lg="30" fxFlex.md="30">
       <input matInput placeholder="Website" formControlName="Website">
     </mat-form-field>
+    <input type="file" class="button" (change)="detectFiles($event)" multiple>
   </form>
 </mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [disabled]="!companyForm.valid" [mat-dialog-close]="companyForm.value">Submit</button>
+<mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+  <button mat-raised-button color="warn" mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" [disabled]="!companyForm.valid" [mat-dialog-close]="companyForm.value">Submit</button>
 </mat-dialog-actions>

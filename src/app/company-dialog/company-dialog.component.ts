@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { CompanyService } from "../companies/company.service";
 
 @Component({
   selector: "app-company-dialog",
@@ -8,6 +9,8 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 })
 export class CompanyDialogComponent implements OnInit {
   companyForm: FormGroup;
+  selectedFiles: FileList;
+  currentUpload: any;
 
   constructor(private formBuilder: FormBuilder) {
     this.createCompanyForm();
@@ -15,11 +18,17 @@ export class CompanyDialogComponent implements OnInit {
 
   ngOnInit() {}
 
+  detectFiles(event) {
+    const fileControl = this.companyForm.get("File");
+    fileControl.setValue(event.target.files.item(0));
+  }
+
   private createCompanyForm() {
     this.companyForm = this.formBuilder.group({
       Name: ["", Validators.required],
       Location: ["", Validators.required],
-      Website: ["", Validators.required]
+      Website: ["", Validators.required],
+      File: ""
     });
   }
 
