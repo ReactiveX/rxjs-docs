@@ -1,17 +1,18 @@
 import { TestBed, inject } from "@angular/core/testing";
 
 import { CompanyService } from "./company.service";
+import { AngularFireDatabase } from "angularfire2/database";
 
 describe("CompanyService", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [CompanyService]
+      providers: [CompanyService, AngularFireDatabase]
     });
   });
 
   it(
     "should be created",
-    inject([CompanyService], (service: CompanyService) => {
+    inject([CompanyService, AngularFireDatabase], (service: CompanyService) => {
       expect(service).toBeTruthy();
     })
   );

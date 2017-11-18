@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { AngularFireModule } from "angularfire2";
 import { AngularFirestoreModule } from "angularfire2/firestore";
-import { ReactiveFormsModule } from "@angular/forms";
 
 import { CompaniesComponent } from "./companies.component";
 import { routing } from "./companies.routing";

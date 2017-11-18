@@ -1,16 +1,23 @@
 <h2 mat-dialog-title>New Company Form</h2>
 <mat-dialog-content>
   <form fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="15px" fxLayoutWrap [formGroup]="companyForm" autocomplete="false">
-    <mat-form-field fxFlex.md="40" fxFlex.lg="30" fxFlex.md="30">
+    <mat-form-field fxFlex.xs="100" fxFlex.md="40" fxFlex.lg="25" fxFlex.xl="20">
       <input matInput placeholder="Name" formControlName="Name">
     </mat-form-field>
-    <mat-form-field fxFlex.md="40" fxFlex.lg="30" fxFlex.md="30">
+    <mat-form-field fxFlex.xs="100" fxFlex.md="40" fxFlex.lg="25" fxFlex.xl="20">
       <input matInput placeholder="Location" formControlName="Location">
     </mat-form-field>
-    <mat-form-field fxFlex.md="20" fxFlex.lg="30" fxFlex.md="30">
+    <mat-form-field fxFlex.xs="100" fxFlex.md="20" fxFlex.lg="25" fxFlex.xl="20">
       <input matInput placeholder="Website" formControlName="Website">
     </mat-form-field>
-    <input type="file" class="button" (change)="detectFiles($event)" multiple>
+    <input hidden type="file" #tempFile class="button" (change)="detectFiles($event)">
+    <mat-form-field fxFlex.xs="100" fxFlex.md="15" fxFlex>
+      <input matInput placeholder="Logo" (click)="tempFile.click()" [ngModel]="selectedFile" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <!--
+    <button mat-button (click)="tempFile.click()" fxFlex.xs="100" fxFlex.lg="15" fxFlex.xl="20">
+      Add Logo
+    </button> -->
   </form>
 </mat-dialog-content>
 <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">

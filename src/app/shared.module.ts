@@ -14,7 +14,7 @@ import {
   MatMenuModule,
   MatTooltipModule
 } from "@angular/material";
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [],
@@ -32,7 +32,8 @@ import { ReactiveFormsModule } from "@angular/forms";
     MatMenuModule,
     MatTooltipModule,
     FlexLayoutModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   entryComponents: [],
@@ -50,7 +51,8 @@ import { ReactiveFormsModule } from "@angular/forms";
     MatMenuModule,
     MatTooltipModule,
     FlexLayoutModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class SharedModule {}

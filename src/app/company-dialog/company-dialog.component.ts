@@ -7,20 +7,19 @@ import { CompanyService } from "../companies/company.service";
   templateUrl: "./company-dialog.component.html",
   styleUrls: ["./company-dialog.component.scss"]
 })
-export class CompanyDialogComponent implements OnInit {
+export class CompanyDialogComponent {
   companyForm: FormGroup;
-  selectedFiles: FileList;
-  currentUpload: any;
+  selectedFile: File;
 
   constructor(private formBuilder: FormBuilder) {
     this.createCompanyForm();
   }
 
-  ngOnInit() {}
-
   detectFiles(event) {
     const fileControl = this.companyForm.get("File");
+    this.selectedFile = event.target.files.item(0).name;
     fileControl.setValue(event.target.files.item(0));
+    console.log(fileControl.value);
   }
 
   private createCompanyForm() {

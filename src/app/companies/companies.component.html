@@ -1,11 +1,11 @@
-<div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="15px" fxLayoutWrap class="companies-container">
+<div fxLayout="row" fxLayoutAlign="space-evenly center" fxLayoutGap="10px" fxLayoutWrap class="companies-container">
   <button mat-fab color="primary" class="company-add-button" (click)="addCompany()">
     <mat-icon>add</mat-icon>
   </button>
-  <mat-card *ngFor="let company of companies | async" fxFlex.lg="20" fxFlex.md="30" fxFlex.sm="40">
+  <mat-card *ngFor="let company of companies | async" fxFlex.xs="100" fxFlex.lg="20" fxFlex.md="30" fxFlex.sm="40">
     <mat-card-header>
       <div mat-card-avatar>
-        <mat-icon>account_balance</mat-icon>
+        <img [src]="company.File" class="company-logo">
       </div>
       <mat-card-title>{{company.Name}}</mat-card-title>
       <mat-card-subtitle>

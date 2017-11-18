@@ -29,19 +29,22 @@ export class CompaniesComponent implements OnInit {
 
   ngOnInit() {}
 
-  uploadSingle(file: any, id: string) {
-    this.companyService.pushUpload(file, id);
+  uploadSingle(file: any) {
+    return this.companyService.pushUpload(file);
   }
 
   addCompany() {
     const dialogRef = this.dialog.open(CompanyDialogComponent, {});
     dialogRef.afterClosed().subscribe(company => {
       if (company) {
-        this.companiesCollection.add(company).then(result => {
-          console.log(result); // result.id has unique key to location of company added
-          const file = this.uploadSingle(company.File, result.id);
-          // let file = this.uploadSingle(company.File);
+        const file = this.uploadSingle(company.File).then((fileResult: any) => {
+          company.File = fileResult.downloadURL;
+          this.companiesCollection.add(company).then(result => {
+            console.log(result);
+          });
         });
+        //   this.companiesCollection.add(company).then(result => {
+        // });
       }
     });
   }

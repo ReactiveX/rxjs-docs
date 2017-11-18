@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { CompanyDialogComponent } from "./company-dialog.component";
 import { SharedModule } from "../shared.module";
+import { MatDialogModule } from "@angular/material";
 
 describe("CompanyDialogComponent", () => {
   let component: CompanyDialogComponent;
@@ -10,7 +11,7 @@ describe("CompanyDialogComponent", () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        imports: [SharedModule],
+        imports: [SharedModule, MatDialogModule],
         declarations: [CompanyDialogComponent]
       }).compileComponents();
     })
