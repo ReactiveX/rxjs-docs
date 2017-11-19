@@ -1,18 +1,19 @@
-import { NgModule } from "@angular/core";
-import { AngularFireModule } from "angularfire2";
-import { AngularFirestoreModule } from "angularfire2/firestore";
+import { NgModule } from '@angular/core';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { MatDialogRef } from '@angular/material';
 
-import { CompaniesComponent } from "./companies.component";
-import { routing } from "./companies.routing";
-import { SharedModule } from "../shared.module";
-import { environment } from "../../environments/environment";
-import { CompanyDialogComponent } from "../company-dialog/company-dialog.component";
-import { MatDialogRef } from "@angular/material";
-import { CompanyService } from "./company.service";
-import { AngularFireDatabase } from "angularfire2/database";
+import { CompaniesComponent } from './companies.component';
+import { SharedModule } from '../shared.module';
+import { environment } from '../../environments/environment';
+import { CompanyDialogComponent } from '../company-dialog/company-dialog.component';
+import { CompanyService } from './company.service';
+import { CompaniesRoutingModule } from './companies-routing.module';
+
 @NgModule({
   imports: [
-    routing,
+    CompaniesRoutingModule,
     SharedModule,
     AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebase)
