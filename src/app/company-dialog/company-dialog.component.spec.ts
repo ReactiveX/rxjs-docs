@@ -1,18 +1,23 @@
-import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CompanyDialogComponent } from "./company-dialog.component";
-import { SharedModule } from "../shared.module";
-import { MatDialogModule } from "@angular/material";
+import { CompanyDialogComponent } from './company-dialog.component';
+import { NgModule } from '@angular/core';
+import { MatDialogModule } from '@angular/material';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-describe("CompanyDialogComponent", () => {
+import { SharedModule } from '../shared.module';
+
+describe('CompanyDialogComponent', () => {
   let component: CompanyDialogComponent;
   let fixture: ComponentFixture<CompanyDialogComponent>;
 
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        imports: [SharedModule, MatDialogModule],
-        declarations: [CompanyDialogComponent]
+        imports: [SharedModule],
+        declarations: [CompanyDialogComponent],
+        providers: []
       }).compileComponents();
     })
   );
@@ -23,7 +28,18 @@ describe("CompanyDialogComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
+
+// @NgModule({
+//   declarations: [CompanyDialogComponent],
+//   entryComponents: [
+//     CompanyDialogComponent,
+//   ],
+//   imports: [],
+//   providers: [],
+//   exports: []
+// })
+// class TestModule { }

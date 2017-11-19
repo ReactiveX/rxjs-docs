@@ -1,20 +1,21 @@
-import { Component, OnInit } from "@angular/core";
-import { Observable } from "rxjs/Observable";
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import {
   AngularFirestore,
   AngularFirestoreCollection
-} from "angularfire2/firestore";
-import * as firebase from "firebase";
-import { MatDialog } from "@angular/material";
-import { CompanyDialogComponent } from "../company-dialog/company-dialog.component";
-import { CompanyService } from "./company.service";
+} from 'angularfire2/firestore';
+import * as firebase from 'firebase';
+import { MatDialog } from '@angular/material';
+
+import { CompanyDialogComponent } from '../company-dialog/company-dialog.component';
+import { CompanyService } from './company.service';
 
 @Component({
-  selector: "app-companies",
-  templateUrl: "./companies.component.html",
-  styleUrls: ["./companies.component.scss"]
+  selector: 'app-companies',
+  templateUrl: './companies.component.html',
+  styleUrls: ['./companies.component.scss']
 })
-export class CompaniesComponent implements OnInit {
+export class CompaniesComponent {
   companies: Observable<any[]>;
   private uploadTask: firebase.storage.UploadTask;
   private companiesCollection: AngularFirestoreCollection<any>;
@@ -23,11 +24,9 @@ export class CompaniesComponent implements OnInit {
     private dialog: MatDialog,
     private companyService: CompanyService
   ) {
-    this.companiesCollection = db.collection("companies");
+    this.companiesCollection = db.collection('companies');
     this.companies = this.companiesCollection.valueChanges();
   }
-
-  ngOnInit() {}
 
   uploadSingle(file: any) {
     return this.companyService.pushUpload(file);
@@ -43,8 +42,6 @@ export class CompaniesComponent implements OnInit {
             console.log(result);
           });
         });
-        //   this.companiesCollection.add(company).then(result => {
-        // });
       }
     });
   }
