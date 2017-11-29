@@ -25,7 +25,7 @@ export const debounceTime: OperatorDoc = {
   shortDescription: {
     description: `
     Emits a value from the source Observable only after a particular time span has passed without another source emission.
-    It's like <a class="markdown-code" href="href="/operators#delay">delay</a>
+    It's like <a class="markdown-code" href="/operators/delay">delay</a>
     , but passes only the most recent value from each burst of emissions.`,
     extras: []
   },

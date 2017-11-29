@@ -28,7 +28,15 @@ export const combineLatest: OperatorDoc = {
       Combines multiple Observables to create an Observable whose values
       are calculated from the latest values of each of its input Observables.
     `,
-    extras: []
+    extras: [
+      {
+        type: 'Tip',
+        text: `
+          Note: combineLatest will only start to emit when all sources have emitted at least once. By adding a default
+           start value to the sources with <a href="/operators#startWith">.startWith</a>, it will activate right away.
+         `
+      }
+    ]
   },
   walkthrough: {
     description: `

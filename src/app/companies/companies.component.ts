@@ -38,9 +38,7 @@ export class CompaniesComponent {
       if (company) {
         const file = this.uploadSingle(company.File).then((fileResult: any) => {
           company.File = fileResult.downloadURL;
-          this.companiesCollection.add(company).then(result => {
-            console.log(result);
-          });
+          this.companiesCollection.add(company).then(result => {});
         });
       }
     });
