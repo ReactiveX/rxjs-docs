@@ -2,7 +2,7 @@
   <button mat-fab color="primary" class="company-add-button" (click)="addCompany()">
     <mat-icon>add</mat-icon>
   </button>
-  <mat-card *ngFor="let company of companies | async" fxFlex.xs="100" fxFlex.lg="20" fxFlex.md="30" fxFlex.sm="40">
+  <mat-card *ngFor="let company of companies | async" fxFlex.xs="100" fxFlex.sm="45" fxFlex.md="30" fxFlex.lg="23">
     <mat-card-header>
       <div mat-card-avatar>
         <img [src]="company.File" class="company-logo">

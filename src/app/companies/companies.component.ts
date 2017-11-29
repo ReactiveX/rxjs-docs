@@ -45,4 +45,8 @@ export class CompaniesComponent {
       }
     });
   }
+
+  openWindow(url: string) {
+    window.open(url, '_blank');
+  }
 }
