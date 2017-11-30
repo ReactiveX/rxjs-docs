@@ -27,6 +27,7 @@ script:
   - ng test --single-run --code-coverage
   - ng build --prod
   - ng e2e
+  - npm run pre-render
 
 before_deploy:
   - rm -rf ./dist

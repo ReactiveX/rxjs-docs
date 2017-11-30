@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'rxjs-doc' }),
     BrowserAnimationsModule,
     ToolbarModule,
     MatListModule,

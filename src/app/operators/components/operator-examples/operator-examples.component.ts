@@ -8,4 +8,5 @@ import { OperatorExample } from '../../../../operator-docs';
 })
 export class OperatorExamplesComponent {
   @Input() operatorExamples: OperatorExample[];
+  @Input() inBrowser: boolean;
 }

@@ -6,7 +6,7 @@
   <div class="code-block mat-elevation-z2">
     <div class="example-header">
       <div class="header-title" [innerHTML]="example.name"></div>
-      <button
+      <button *ngIf="inBrowser"
         mat-icon-button
         ngxClipboard
         [cbContent]="example.code"
