@@ -1,8 +1,8 @@
-import { OperatorDoc } from "../operator.model";
+import { OperatorDoc } from '../operator.model';
 
 export const groupBy: OperatorDoc = {
-  name: "groupBy",
-  operatorType: "transformation",
+  name: 'groupBy',
+  operatorType: 'transformation',
   signature: `
     public groupBy(keySelector: (value: T) => K,
                    elementSelector?: ((value: T) => R) | void,
@@ -11,31 +11,31 @@ export const groupBy: OperatorDoc = {
           : Observable<any>): OperatorFunction<T, GroupedObservable<K, R>>`,
   parameters: [
     {
-      name: "keySelector",
-      type: "(value: T) => K",
-      attribute: "",
+      name: 'keySelector',
+      type: '(value: T) => K',
+      attribute: '',
       description: `A function that extracts the key used for grouping for each item.`
     },
     {
-      name: "elementSelector",
-      type: "((value: T) => R) | void",
-      attribute: "optional",
+      name: 'elementSelector',
+      type: '((value: T) => R) | void',
+      attribute: 'optional',
       description: `A function that extracts the emitted element for each item. Default is identity function.`
     },
     {
-      name: "durationSelector",
-      type: "(grouped: GroupedObservable<K, R>) => Observable<any>",
-      attribute: "optional",
+      name: 'durationSelector',
+      type: '(grouped: GroupedObservable<K, R>) => Observable<any>',
+      attribute: 'optional',
       description: `A function that returns an Observable to determine how long each group should exist.`
     },
     {
-      name: "subjectSelector",
-      type: "() => Subject<R>",
-      attribute: "optional",
+      name: 'subjectSelector',
+      type: '() => Subject<R>',
+      attribute: 'optional',
       description: ``
     }
   ],
-  marbleUrl: "http://reactivex.io/rxjs/img/groupBy.png",
+  marbleUrl: 'http://reactivex.io/rxjs/img/groupBy.png',
   shortDescription: {
     description: `
       Group, according to a specified key, elements from items emitted by an Observable,
@@ -59,7 +59,7 @@ export const groupBy: OperatorDoc = {
   },
   examples: [
     {
-      name: "Group objects by id and return as array",
+      name: 'Group objects by id and return as array',
       code: `
         interface Obj {
           id: number;
@@ -91,12 +91,12 @@ export const groupBy: OperatorDoc = {
         */
         `,
       externalLink: {
-        platform: "JSBin",
-        url: "http://jsbin.com/linekelumo/1/embed?js,console"
+        platform: 'JSBin',
+        url: 'http://jsbin.com/linekelumo/1/embed?js,console'
       }
     },
     {
-      name: "Pivot data on the id field",
+      name: 'Pivot data on the id field',
       code: `
       interface Obj {
         id: number;
@@ -124,8 +124,8 @@ export const groupBy: OperatorDoc = {
       */
         `,
       externalLink: {
-        platform: "JSBin",
-        url: "http://jsbin.com/racikizeji/embed?js,console"
+        platform: 'JSBin',
+        url: 'http://jsbin.com/racikizeji/embed?js,console'
       }
     }
   ],

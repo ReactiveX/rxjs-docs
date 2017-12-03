@@ -1,25 +1,25 @@
-import { OperatorDoc } from "../operator.model";
+import { OperatorDoc } from '../operator.model';
 
 export const mergeAll: OperatorDoc = {
-  name: "mergeAll",
-  operatorType: "combination",
-  signature: "public mergeAll(concurrent: number): Observable",
+  name: 'mergeAll',
+  operatorType: 'combination',
+  signature: 'public mergeAll(concurrent: number): Observable',
   parameters: [
     {
-      name: "concurrent",
-      type: "number",
-      attribute: "optional, default: Number.POSITIVE_INFINITY",
+      name: 'concurrent',
+      type: 'number',
+      attribute: 'optional, default: Number.POSITIVE_INFINITY',
       description: `Maximum number of input Observables being subscribed to concurrently.`
     }
   ],
-  marbleUrl: "http://reactivex.io/rxjs/img/mergeAll.png",
+  marbleUrl: 'http://reactivex.io/rxjs/img/mergeAll.png',
   shortDescription: {
     description: `Converts a higher-order Observable into a first-order Observable which concurrently
      delivers all values that are emitted on the inner Observables`,
     extras: [
       {
-        type: "Tip",
-        text: "Flattens an Observable-of-Observables."
+        type: 'Tip',
+        text: 'Flattens an Observable-of-Observables.'
       }
     ]
   },
@@ -36,7 +36,7 @@ export const mergeAll: OperatorDoc = {
   examples: [
     {
       name:
-        "Spawn a new interval Observable for each click event, and blend their outputs as one Observable",
+        'Spawn a new interval Observable for each click event, and blend their outputs as one Observable',
       code: `
         const clicks = Rx.Observable.fromEvent(document, 'click');
         const higherOrder = clicks.map((ev) => Rx.Observable.interval(1000));
@@ -44,13 +44,13 @@ export const mergeAll: OperatorDoc = {
         firstOrder.subscribe(x => console.log(x));
       `,
       externalLink: {
-        platform: "JSBin",
-        url: "http://jsbin.com/lebidefocu/1/edit?js,output"
+        platform: 'JSBin',
+        url: 'http://jsbin.com/lebidefocu/1/edit?js,output'
       }
     },
     {
       name:
-        "Count from 0 to 9 every second for each click, but only allow 2 concurrent timers",
+        'Count from 0 to 9 every second for each click, but only allow 2 concurrent timers',
       code: `
         const clicks = Rx.Observable.fromEvent(document, 'click');
         const higherOrder = clicks.map((ev) => Rx.Observable.interval(1000).take(10));
@@ -58,20 +58,20 @@ export const mergeAll: OperatorDoc = {
         firstOrder.subscribe(x => console.log(x));
       `,
       externalLink: {
-        platform: "JSBin",
-        url: "http://jsbin.com/kokezoribu/edit?js,output"
+        platform: 'JSBin',
+        url: 'http://jsbin.com/kokezoribu/edit?js,output'
       }
     }
   ],
   relatedOperators: [
-    "combineAll",
-    "concatAll",
-    "exhaust",
-    "merge",
-    "mergeMap",
-    "mergeMapTo",
-    "mergeScan",
-    "switch",
-    "zipAll"
+    'combineAll',
+    'concatAll',
+    'exhaust',
+    'merge',
+    'mergeMap',
+    'mergeMapTo',
+    'mergeScan',
+    'switch',
+    'zipAll'
   ]
 };

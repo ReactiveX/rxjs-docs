@@ -5,6 +5,7 @@ import {
   MatToolbarModule,
   MatIconModule,
   MatButtonModule,
+  MatDialogModule,
   MatListModule,
   MatSidenavModule,
   MatExpansionModule,
@@ -13,6 +14,7 @@ import {
   MatMenuModule,
   MatTooltipModule
 } from "@angular/material";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [],
@@ -21,6 +23,7 @@ import {
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
+    MatDialogModule,
     MatListModule,
     MatSidenavModule,
     MatExpansionModule,
@@ -28,7 +31,9 @@ import {
     MatInputModule,
     MatMenuModule,
     MatTooltipModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   entryComponents: [],
@@ -37,6 +42,7 @@ import {
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
+    MatDialogModule,
     MatListModule,
     MatSidenavModule,
     MatExpansionModule,
@@ -44,7 +50,9 @@ import {
     MatInputModule,
     MatMenuModule,
     MatTooltipModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class SharedModule {}
