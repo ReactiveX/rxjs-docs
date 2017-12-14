@@ -14,7 +14,10 @@ export const sample: OperatorDoc = {
     }
   ],
   shortDescription: {
-    description: `Emits the most recently emitted value from the source Observable whenever another Observable, the notifier, emits.`,
+    description: `
+      Emits the most recently emitted value from the source Observable
+      whenever another Observable, the <span class="markdown-code">notifier</span>, emits.
+    `,
     extras: [
       {
         type: 'Tip',
@@ -25,11 +28,11 @@ export const sample: OperatorDoc = {
   walkthrough: {
     description: `
     <p>
-      Whenever the notifier Observable emits a value or completes,
-      sample looks at the source Observable and emits whichever value
+      Whenever the <span class="markdown-code">notifier</span> Observable emits a value or completes,
+      <span class="markdown-code">sample</span> looks at the source Observable and emits whichever value
       it has most recently emitted since the previous sampling,
       unless the source has not emitted anything since the previous sampling.
-      The notifier is subscribed to as soon as the output Observable is subscribed.
+      The <span class="markdown-code">notifier</span> is subscribed to as soon as the output Observable is subscribed.
     </p>
     `
   },
@@ -37,10 +40,10 @@ export const sample: OperatorDoc = {
     {
       name: 'On every click, sample the most recent "seconds" timer',
       code: `
-        var seconds = Rx.Observable.interval(1000);
-        var clicks = Rx.Observable.fromEvent(document, 'click');
-        var result = seconds.sample(clicks);
-        result.subscribe(x => console.log(x));
+        const seconds = Rx.Observable.interval(1000);
+        const clicks = Rx.Observable.fromEvent(document, 'click');
+        const result = seconds.sample(clicks);
+        result.subscribe(x => console.log(x))
       `,
       externalLink: {
         platform: 'JSBin',
