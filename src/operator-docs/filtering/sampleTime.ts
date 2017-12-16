@@ -51,7 +51,7 @@ export const sampleTime: OperatorDoc = {
       `,
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/hohulon/edit?js,console,output'
+        url: 'http://jsbin.com/hohulon/embed?js,console,output'
       }
     }
   ],

@@ -47,7 +47,7 @@ export const sample: OperatorDoc = {
       `,
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/xapiviz/edit?js,console,output'
+        url: 'http://jsbin.com/xapiviz/embed?js,console,output'
       }
     }
   ],
