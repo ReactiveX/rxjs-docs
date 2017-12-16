@@ -21,7 +21,10 @@ export const sample: OperatorDoc = {
     extras: [
       {
         type: 'Tip',
-        text: `It's like sampleTime, but samples whenever the notifier Observable emits something.`
+        text: `
+          It's like <a href="#/operators/sampleTime" class="markdown-code">sampleTime</a>,
+          but samples whenever the notifier Observable emits something.
+        `
       }
     ]
   },
