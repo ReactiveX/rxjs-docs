@@ -16,16 +16,10 @@
                       [useInteractiveMarbles]="useInteractiveMarbles"
                       [url]="marbleUrl">
   </app-marble-diagram>
-<<<<<<< HEAD
-  <app-operator-examples
-    [inBrowser]="inBrowser"
-    [operatorExamples]="examples" class="margin-bottom-16">
-=======
   <app-operator-examples [inBrowser]="inBrowser"
                          [operatorExamples]="examples"
                          (copyToClipboard)="copyToClipboard($event)"
                          class="margin-bottom-16">
->>>>>>> master
   </app-operator-examples>
   <app-operator-parameters [operatorParameters]="parameters"
                            *ngIf="parameters?.length">
