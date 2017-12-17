@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
 import { OperatorExample } from '../../../../operator-docs';
 
 @Component({
@@ -9,4 +9,5 @@ import { OperatorExample } from '../../../../operator-docs';
 export class OperatorExamplesComponent {
   @Input() operatorExamples: OperatorExample[];
   @Input() inBrowser: boolean;
+  @Output() copyToClipboard = new EventEmitter<string>();
 }
