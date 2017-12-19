@@ -1,0 +1,13 @@
+<section class="main-operator-container mat-typography margin-top-32">
+  <div class="code-example"
+       *ngFor="let example of examples">
+    <h2> {{ example.name }} </h2>
+    <p> {{ example.description }} </p>
+    <div class="mat-elevation-z2">
+      <div class="frame-wrapper">
+        <iframe [src]="example.externalLink.url | safeUrl"
+                [title]="example.name"></iframe>
+      </div>
+    </div>
+  </div>
+</section>

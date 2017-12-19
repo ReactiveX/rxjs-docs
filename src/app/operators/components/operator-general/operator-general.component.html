@@ -1,0 +1,34 @@
+<section class="main-operator-container mat-typography">
+  <h3 class="short-description"
+      [innerHTML]="operator?.shortDescription?.description">
+  </h3>
+  <app-operator-extras class="margin-bottom-16"
+                       *ngIf="operator?.shortDescription"
+                       [operatorExtras]="operator?.shortDescription?.extras">
+  </app-operator-extras>
+  <app-marble-diagram class="margin-bottom-32"
+                      [operatorName]="operator?.name"
+                      [useInteractiveMarbles]="operator?.useInteractiveMarbles"
+                      [url]="operator?.marbleUrl">
+  </app-marble-diagram>
+  <app-operator-examples [operatorExamples]="operator?.examples"
+                         (copyToClipboard)="copyToClipboard($event)"
+                         class="margin-bottom-16">
+  </app-operator-examples>
+  <app-operator-parameters [operatorParameters]="operator?.parameters"
+                           *ngIf="parameters?.length">
+  </app-operator-parameters>
+  <app-operator-walkthrough class="margin-bottom-16"
+                            [operatorWalkthrough]="operator?.walkthrough?.description">
+  </app-operator-walkthrough>
+  <app-operator-extras class="margin-bottom-16"
+                       *ngIf="walkthroughExtras"
+                       [operatorExtras]="operator?.walkthrough?.extras">
+  </app-operator-extras>
+  <app-related-operators [relatedOperators]="operator?.relatedOperators">
+  </app-related-operators>
+  <app-additional-resources [additionalResources]="operator?.additionalResources"
+                            [sourceUrl]="sourceUrl"
+                            [specsUrl]="specsUrl">
+  </app-additional-resources>
+</section>
