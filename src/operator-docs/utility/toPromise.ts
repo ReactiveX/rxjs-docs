@@ -1,6 +1,6 @@
 import { OperatorDoc } from '../operator.model';
 
-export const toPromiseOperator: OperatorDoc = {
+export const toPromise: OperatorDoc = {
   name: 'toPromise',
   operatorType: 'utility',
   signature: 'public toPromise(PromiseCtor: *): Promise<T>',
@@ -42,5 +42,5 @@ export const toPromiseOperator: OperatorDoc = {
       }
     }
   ],
-  relatedOperators: ['map', 'subscribe']
+  relatedOperators: ['fromPromise']
 };
