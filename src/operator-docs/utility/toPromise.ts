@@ -14,6 +14,10 @@ export const toPromise: OperatorDoc = {
     }
   ],
   shortDescription: {
+    description:
+      'Converts an Observable sequence to a ES2015 compliant promise.'
+  },
+  walkthrough: {
     description: `An ES2015 compliant promise which contains the last value from the Observable sequence.
       If the Observable sequence is in error, then the Promise will be in the rejected stage.
       If the sequence is empty, the Promise will not resolve.`,
