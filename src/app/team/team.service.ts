@@ -37,18 +37,18 @@ export class TeamService {
           {
             name: 'OJ Kwon',
             role: 'Developer',
-            githubUrl: 'https://github.com/benlesh',
-            avatar: 'https://github.com/benlesh.png',
-            twitterUrl: 'https://twitter.com/BenLesh',
-            webpageUrl: 'https://www.linkedin.com/in/blesh/'
+            githubUrl: 'https://github.com/kwonoj',
+            avatar: 'https://avatars1.githubusercontent.com/u/1210596',
+            twitterUrl: 'https://twitter.com/_ojkwon',
+            webpageUrl: ''
           },
           {
-            name: 'Andre Staltz',
+            name: 'André Staltz',
             role: 'Developer',
-            githubUrl: 'https://github.com/benlesh',
-            avatar: 'https://github.com/benlesh.png',
-            twitterUrl: 'https://twitter.com/BenLesh',
-            webpageUrl: 'https://www.linkedin.com/in/blesh/'
+            githubUrl: 'https://github.com/staltz',
+            avatar: 'https://avatars0.githubusercontent.com/u/90512',
+            twitterUrl: 'https://twitter.com/andrestaltz',
+            webpageUrl: 'http://staltz.com'
           },
           {
             name: 'David Driscoll',
@@ -79,32 +79,32 @@ export class TeamService {
           {
             name: 'Ashwin Sureshkumar',
             role: 'Developer',
-            githubUrl: 'https://github.com/benlesh',
-            avatar: 'https://github.com/benlesh.png',
-            twitterUrl: 'https://twitter.com/BenLesh',
-            webpageUrl: 'https://www.linkedin.com/in/blesh/'
+            githubUrl: 'https://github.com/ashwin-sureshkumar',
+            avatar: 'https://avatars0.githubusercontent.com/u/4744080',
+            twitterUrl: 'https://twitter.com/Sureshkumar_Ash',
+            webpageUrl: 'https://t.co/XduklnxpK3'
           },
           {
             name: 'Brian Troncone',
             role: 'Developer',
-            githubUrl: 'https://github.com/benlesh',
-            avatar: 'https://github.com/benlesh.png',
-            twitterUrl: 'https://twitter.com/BenLesh',
-            webpageUrl: 'https://www.linkedin.com/in/blesh/'
+            githubUrl: 'https://github.com/btroncone',
+            avatar: 'https://avatars3.githubusercontent.com/u/5085101',
+            twitterUrl: 'http://twitter.com/btroncone',
+            webpageUrl: ''
           },
           {
             name: 'Sumit Arora',
             role: 'Developer',
-            githubUrl: 'https://github.com/benlesh',
-            avatar: 'https://github.com/benlesh.png',
-            twitterUrl: 'https://twitter.com/BenLesh',
-            webpageUrl: 'https://www.linkedin.com/in/blesh/'
+            githubUrl: 'https://github.com/sumitarora',
+            avatar: 'https://avatars3.githubusercontent.com/u/198247',
+            twitterUrl: 'https://twitter.com/arorasumit',
+            webpageUrl: 'http://www.arorasumit.com/'
           },
           {
             name: 'Jen Luker',
             role: 'Developer, A11y',
             githubUrl: 'https://github.com/knittingcodemonkey',
-            avatar: 'https://github.com/benlesh.png',
+            avatar: 'https://avatars0.githubusercontent.com/u/1584489',
             twitterUrl: 'https://twitter.com/knitcodemonkey',
             webpageUrl: 'http://jenluker.com'
           }
