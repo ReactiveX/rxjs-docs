@@ -20,6 +20,7 @@ const {
 } = require('./dist/server/main.bundle');
 
 const BROWSER_FOLDER = join(process.cwd(), 'browser');
+const PRERENDER_FOLDER = join(process.cwd(), 'prerender');
 
 // Load the index.html file containing referances to your application bundle.
 // This index.html will be erased by a generated one for /
@@ -29,7 +30,7 @@ let previousRender = Promise.resolve();
 
 // Iterate each route path
 ROUTES.forEach(route => {
-  const fullPath = join(BROWSER_FOLDER, route);
+  const fullPath = join(PRERENDER_FOLDER, route);
 
   // Make sure the directory structure is there
   if (!existsSync(fullPath)) {

@@ -22,6 +22,7 @@
     "build-prod:server": "npm run build-prod && ng build --prod --app server --output-hashing=false",
     "build:pre-render": "npm run build-prod:server && webpack --config webpack.server.config.js",
     "pre-render": "npm run build:pre-render && (cd dist && node prerender.js)",
+    "pre-deploy:pre-render": "npm run pre-render && (cd dist && rm -rf deploy && mkdir deploy && cp -R browser/* deploy/ && cp -R prerender/* deploy/)",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
