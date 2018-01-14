@@ -4,8 +4,10 @@ import {
   OnInit,
   ChangeDetectionStrategy,
   Inject,
-  InjectionToken
+  InjectionToken,
+  PLATFORM_ID
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { pluck } from 'rxjs/operators';
@@ -23,6 +25,7 @@ export const OPERATOR_TOKEN = new InjectionToken<string>('operators');
 export class OperatorComponent implements OnInit {
   public operator: OperatorDoc;
   public operatorsMap = new Map<string, OperatorDoc>();
+  public inBrowser: boolean;
 
   private readonly baseSourceUrl = 'https://github.com/ReactiveX/rxjs/blob/master/src/operators/';
   private readonly baseSpecUrl = 'http://reactivex.io/rxjs/test-file/spec-js/operators';
@@ -33,8 +36,11 @@ export class OperatorComponent implements OnInit {
     private _seo: SeoService,
     private _copierService: CopierService,
     private _snackBar: MatSnackBar,
-    @Inject(OPERATOR_TOKEN) public operators: OperatorDoc[]
-  ) {}
+    @Inject(OPERATOR_TOKEN) public operators: OperatorDoc[],
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    this.inBrowser = isPlatformBrowser(this.platformId);
+  }
 
   ngOnInit() {
     this.operators.forEach((op: OperatorDoc) => {
@@ -60,6 +66,9 @@ export class OperatorComponent implements OnInit {
   }
 
   scrollToTop() {
+    if (!this.inBrowser) {
+      return;
+    }
     const content = document.querySelector('.mat-drawer-content');
 
     if (content) {

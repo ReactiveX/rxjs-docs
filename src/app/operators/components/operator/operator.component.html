@@ -16,7 +16,8 @@
                       [useInteractiveMarbles]="useInteractiveMarbles"
                       [url]="marbleUrl">
   </app-marble-diagram>
-  <app-operator-examples [operatorExamples]="examples"
+  <app-operator-examples [inBrowser]="inBrowser"
+                         [operatorExamples]="examples"
                          (copyToClipboard)="copyToClipboard($event)"
                          class="margin-bottom-16">
   </app-operator-examples>

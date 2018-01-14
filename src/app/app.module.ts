@@ -15,7 +15,7 @@ import { AppComponent } from './app.component';
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'rxjs-doc' }),
     ServiceWorkerModule.register('/ngsw-worker.js', {
       enabled: environment.production
     }),

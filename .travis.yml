@@ -27,12 +27,12 @@ script:
   - ng test --single-run --code-coverage
   - ng build --prod
   - ng e2e
+  - npm run pre-render
 
 before_deploy:
   - rm -rf ./dist
-  - ng build
-  - yes | rm *.* && rm -rf ./e2e ./node_modules ./src
-  - cp -r ./dist/* ./
+  - npm run pre-deploy:pre-render
+  - cd ./dist/deploy/
 
 deploy:
   provider: azure_web_apps
