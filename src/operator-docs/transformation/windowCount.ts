@@ -53,20 +53,6 @@ export const windowCount: OperatorDoc = {
   },
   examples: [
     {
-      name: 'Ignore every 3rd click event, starting from the first one',
-      code: `
-        const clicks = Rx.Observable.fromEvent(document, 'click');
-        const result = clicks.windowCount(3)
-          .map(win => win.skip(1)) // skip first of every 3 clicks
-          .mergeAll(); // flatten the Observable-of-Observables
-        result.subscribe(x => console.log(x));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/haruca/embed?js,console,output'
-      }
-    },
-    {
       name: 'Ignore every 3rd click event, starting from the third one',
       code: `
         const clicks = Rx.Observable.fromEvent(document, 'click');
