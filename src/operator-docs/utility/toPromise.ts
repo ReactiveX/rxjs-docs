@@ -3,13 +3,13 @@ import { OperatorDoc } from '../operator.model';
 export const toPromise: OperatorDoc = {
   name: 'toPromise',
   operatorType: 'utility',
-  signature: 'public toPromise(PromiseCtor: *): Promise<T>',
+  signature: 'public toPromise(PromiseCtor: *): Promise',
   parameters: [
     {
       name: 'PromiseCtor',
       type: '*',
       attribute: 'optional',
-      description: `promise The constructor of the promise. If not provided,
+      description: `The constructor of the promise. If not provided,
         it will look for a constructor first in Rx.config.Promise then fall back to the native Promise constructor if available.`
     }
   ],
