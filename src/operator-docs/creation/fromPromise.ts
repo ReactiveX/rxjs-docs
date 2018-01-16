@@ -17,7 +17,7 @@ export const fromPromise: OperatorDoc = {
       type: 'Scheduler',
       attribute: 'optional',
       description:
-        'An optional IScheduler to use for scheduling the delivery of the resolved value (or the rejection).s'
+        'An optional IScheduler to use for scheduling the delivery of the resolved value (or the rejection).'
     }
   ],
   shortDescription: {
