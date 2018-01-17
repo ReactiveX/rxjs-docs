@@ -43,15 +43,16 @@ export const bufferTime: OperatorDoc = {
   },
   walkthrough: {
     description: `
-    Buffers values from the source for a specific time duration <code>bufferTimeSpan</code>.
-    It emits and resets the buffer every <code>bufferTimeSpan</code> milliseconds,
-    unless the optional argument <code>bufferCreationInterval</code> is given.
-    If <code>bufferCreationInterval</code> is given,
-     this operator emits the buffered values and re-opens the buffer every <code>bufferCreationInterval</code> milliseconds
-      and closes (no further values are buffered) the buffer every <code>bufferTimeSpan</code> milliseconds.
-    When the optional argument <code>maxBufferSize</code> is specified,
-     the buffer will be closed either after <code>bufferTimeSpan</code> milliseconds
-      or when it contains <code>maxBufferSize</code> elements.`
+    Buffers values from the source for a specific time duration <span class="markdown-code">bufferTimeSpan</span>.
+    It emits and resets the buffer every <span class="markdown-code">bufferTimeSpan</span> milliseconds,
+    unless the optional argument <span class="markdown-code">bufferCreationInterval</span> is given.
+    If <span class="markdown-code">bufferCreationInterval</span> is given,
+     this operator emits the buffered values and re-opens the buffer every <span class="markdown-code">bufferCreationInterval</span>
+      milliseconds and closes (no further values are buffered) the buffer every
+      <span class="markdown-code">bufferTimeSpan</span> milliseconds.
+    When the optional argument <span class="markdown-code">maxBufferSize</span> is specified,
+     the buffer will be closed either after <span class="markdown-code">bufferTimeSpan</span> milliseconds
+      or when it contains <span class="markdown-code">maxBufferSize</span> elements.`
   },
   examples: [
     {
@@ -63,13 +64,14 @@ import { map, bufferTime } from 'rxjs/operators';
 
 const clicks = fromEvent(document, 'click');
 const buffered = clicks.pipe(
+  map(e => { return {x: e.clientX, y: e.clientY}; }),
   bufferTime(2500)
 );
 buffered.subscribe(x => console.log(x));
       `,
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/fuqewiy/1/embed?js,console,output'
+        url: 'http://jsbin.com/fuqewiy/3/embed?js,console,output'
       }
     },
     {
@@ -81,13 +83,14 @@ buffered.subscribe(x => console.log(x));
 
       const clicks = fromEvent(document, 'click');
       const buffered = clicks.pipe(
+        map(e => { return {x: e.clientX, y: e.clientY}; }),
         bufferTime(2000, 5000)
       );
       buffered.subscribe(x => console.log(x));
 `,
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/xohupot/embed?js,console,output'
+        url: 'http://jsbin.com/xohupot/1/embed?js,console,output'
       }
     }
   ],
