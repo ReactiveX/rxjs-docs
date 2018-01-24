@@ -76,7 +76,7 @@ buffered.subscribe(x => console.log(x));
     },
     {
       name:
-        'Every five seconds, emit the click events from the next two seconds',
+        'Every five seconds, emit the click events from a window of the next two seconds',
       code: `
       import { fromEvent } from 'rxjs/observable/fromEvent';
       import { map, bufferTime } from 'rxjs/operators';
@@ -90,7 +90,7 @@ buffered.subscribe(x => console.log(x));
 `,
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/xohupot/1/embed?js,console,output'
+        url: 'http://jsbin.com/xohupot/2/embed?js,console,output'
       }
     }
   ],
