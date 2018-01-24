@@ -31,8 +31,11 @@ export const last: OperatorDoc = {
     {
       name: 'Get the last number that is divisible by 3',
       code: `
-      const range = Rx.Observable.range(1, 10);
-      const last = range.last(x => x % 3 === 0);
+      import { last } from 'rxjs/operators';
+      import { range } from 'rxjs/observable/range';
+
+      const range = range(1, 10);
+      const last = range.pipe(last(x => x % 3 === 0));
       last.subscribe(x => console.log(x));
       // Logs below values
       // 9
