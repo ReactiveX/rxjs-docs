@@ -72,6 +72,6 @@ export const bufferWhen: OperatorDoc = {
     'bufferCount',
     'bufferTime',
     'bufferToggle',
-    'windowTime'
+    'windowWhen'
   ]
 };
