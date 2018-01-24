@@ -39,6 +39,8 @@ export const from: OperatorDoc = {
     {
       name: 'Converts an array to an Observable',
       code: `
+      import { from } from 'rxjs/observable/from';
+
       const array = [10, 20, 30];
       const result = Rx.Observable.from(array);
       result.subscribe(x => console.log(x));
@@ -53,6 +55,9 @@ export const from: OperatorDoc = {
     {
       name: 'Convert an infinite iterable (from a generator) to an Observable',
       code: `
+      import { take } from 'rxjs/operators';
+      import { from } from 'rxjs/observable/from';
+
       function* generateDoubles(seed) {
         let i = seed;
         while (true) {
@@ -61,7 +66,7 @@ export const from: OperatorDoc = {
         }
       }
       const iterator = generateDoubles(3);
-      const result = Rx.Observable.from(iterator).take(10);
+      const result = from(iterator).pipe(take(10));
       result.subscribe(x => console.log(x));
       // Results in the following:
       // 3 6 12 24 48 96 192 384 768 1536`,
@@ -74,9 +79,12 @@ export const from: OperatorDoc = {
       name:
         'Using <span class="markdown-code">from</span> with async scheduler',
       code: `
+      import { from } from 'rxjs/observable/from';
+      import { async } from 'rxjs/scheduler/async';
+
       console.log('start');
       const array = [10, 20, 30];
-      const result = Rx.Observable.from(array, Rx.Scheduler.async);
+      const result = from(array, async);
       result.subscribe(x => console.log(x));
       console.log('end');
       // Results in the following:

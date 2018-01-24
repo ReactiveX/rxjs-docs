@@ -51,12 +51,19 @@ export const combineAll: OperatorDoc = {
       name:
         'Map two click events to a finite interval Observable, then apply <span class="markdown-code">combineAll</span>',
       code: `
-        const clicks = Rx.Observable.fromEvent(document, 'click');
-        const higherOrder = clicks.map(ev =>
-          Rx.Observable.interval(Math.random()*2000).take(3)
-        )
-        .take(2);
-        const result = higherOrder.combineAll();
+        import { map, combineAll, take } from 'rxjs/operators';
+        import { fromEvent } from 'rxjs/observable/fromEvent';
+
+        const clicks = fromEvent(document, 'click');
+        const higherOrder = clicks.pipe(
+          map(ev =>
+            interval(Math.random()*2000).take(3)
+          ),
+          take(2)
+        );
+        const result = higherOrder.pipe(
+          combineAll()
+        );
         result.subscribe(x => console.log(x));
       `,
       externalLink: {

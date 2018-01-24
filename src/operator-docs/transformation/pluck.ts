@@ -43,8 +43,11 @@ export const pluck: OperatorDoc = {
       name:
         'Map every every click to the tagName of the clicked target element',
       code: `
-        const clicks = Rx.Observable.fromEvent(document, 'click');
-        const tagNames = clicks.pluck('target', 'tagName');
+        import { pluck } from 'rxjs/operators';
+        import { fromEvent } from 'rxjs/observable/fromEvent';
+
+        const clicks = fromEvent(document, 'click');
+        const tagNames = clicks.pipe(pluck('target', 'tagName'));
         tagNames.subscribe(x => console.log(x));
       `,
       externalLink: {

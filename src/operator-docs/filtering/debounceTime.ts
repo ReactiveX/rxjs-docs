@@ -54,14 +54,18 @@ export const debounceTime: OperatorDoc = {
       name:
         'Emit the most recent value after a burst of value changes over a defined time',
       code: `
+        import { map, debounceTime } from 'rxjs/operators';
+        import { fromEvent } from 'rxjs/observable/fromEvent';
+
         const search = document.querySelector('#search');
         const output = document.querySelector('#output');
-        const searchChange$ = Rx.Observable.fromEvent(search, 'keyup');
+        const searchChange$ = fromEvent(search, 'keyup');
 
-        searchChange$
-        .map(x => x.target.value)
-        .debounceTime(500)
-          .subscribe((search)=> output.textContent=search);
+        searchChange$.pipe(
+          map(x => x.target.value)
+          debounceTime(500)
+        )
+        .subscribe((search)=> output.textContent=search);
       `,
       externalLink: {
         platform: 'JSBin',
