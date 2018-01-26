@@ -58,7 +58,7 @@ export const throttleTime: OperatorDoc = {
         import { interval } from 'rxjs/observable/interval';
 
         const clicks = fromEvent(document, 'click');
-        const result = clicks.throttleTime(1000);
+        const result = clicks.pipe(throttleTime(1000));
         result.subscribe(x => console.log(x.clientX));
       `,
       externalLink: {
