@@ -7,7 +7,7 @@ export const bufferTime: OperatorDoc = {
     bufferTimeSpan: number,
     bufferCreationInterval: number,
     maxBufferSize: number,
-    scheduler: Scheduler): Observable<T[]>`,
+    scheduler: Scheduler): Observable`,
   parameters: [
     {
       name: 'bufferTimeSpan',
@@ -66,6 +66,8 @@ export const bufferTime: OperatorDoc = {
       const buffered = clicks.pipe(
         bufferTime(2500)
       );
+      buffered.subscribe(x => console.log(x));
+
       /*
       Example console output
 
@@ -100,13 +102,10 @@ export const bufferTime: OperatorDoc = {
 
       []
       */
-
-
-      buffered.subscribe(x => console.log(x));
       `,
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/fuqewiy/6/embed?js,console,output'
+        url: 'http://jsbin.com/fuqewiy/7/embed?js,console,output'
       }
     },
     {
@@ -120,6 +119,7 @@ export const bufferTime: OperatorDoc = {
       const buffered = clicks.pipe(
         bufferTime(2000, 5000)
       );
+      buffered.subscribe(x => console.log(x));
 
       /*
       Example console output:
@@ -158,11 +158,10 @@ export const bufferTime: OperatorDoc = {
 
       []
       */
-      buffered.subscribe(x => console.log(x));
 `,
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/xohupot/4/embed?js,console,output'
+        url: 'http://jsbin.com/xohupot/6/embed?js,console,output'
       }
     }
   ],
