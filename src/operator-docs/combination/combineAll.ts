@@ -57,7 +57,7 @@ export const combineAll: OperatorDoc = {
         const clicks = fromEvent(document, 'click');
         const higherOrder = clicks.pipe(
           map(ev =>
-            interval(Math.random()*2000).take(3)
+            interval(Math.random()*2000).pipe(take(3))
           ),
           take(2)
         );

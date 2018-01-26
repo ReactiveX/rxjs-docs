@@ -42,7 +42,7 @@ export const from: OperatorDoc = {
       import { from } from 'rxjs/observable/from';
 
       const array = [10, 20, 30];
-      const result = Rx.Observable.from(array);
+      const result = from(array);
       result.subscribe(x => console.log(x));
 
       // Results in the following:

@@ -62,7 +62,7 @@ export const debounceTime: OperatorDoc = {
         const searchChange$ = fromEvent(search, 'keyup');
 
         searchChange$.pipe(
-          map(x => x.target.value)
+          map(x => x.target.value),
           debounceTime(500)
         )
         .subscribe((search)=> output.textContent=search);
