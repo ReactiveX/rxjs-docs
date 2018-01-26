@@ -3,7 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const bufferCount: OperatorDoc = {
   name: 'bufferCount',
   operatorType: 'transformation',
-  signature: ` bufferCount(bufferSize: number, startBufferEvery: number): Observable<T[]>`,
+  signature: ` bufferCount(bufferSize: number, startBufferEvery: number): Observable`,
   parameters: [
     {
       name: 'bufferSize',
@@ -49,7 +49,7 @@ export const bufferCount: OperatorDoc = {
       const buffered = clicks.pipe(
         bufferCount(2)
       );
-
+      buffered.subscribe(x => console.log(x));
       /*
       Example console output:
 
@@ -77,11 +77,10 @@ export const bufferCount: OperatorDoc = {
         y: 82
       }]
       */
-      buffered.subscribe(x => console.log(x));
       `,
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/ceripaf/4/embed?js,console,output'
+        url: 'http://jsbin.com/ceripaf/8/embed?js,console,output'
       }
     },
     {
@@ -94,7 +93,7 @@ export const bufferCount: OperatorDoc = {
       const buffered = clicks.pipe(
         bufferCount(2, 1)
       );
-
+      buffered.subscribe(x => console.log(x));
       /*
       Example console output:
 
@@ -138,12 +137,10 @@ export const bufferCount: OperatorDoc = {
         y: 335
       }]
       */
-
-      buffered.subscribe(x => console.log(x));
 `,
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/cenuwip/4/embed?js,console,output'
+        url: 'http://jsbin.com/cenuwip/6/embed?js,console,output'
       }
     }
   ],
