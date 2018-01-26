@@ -3,7 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const bufferWhen: OperatorDoc = {
   name: 'bufferWhen',
   operatorType: 'transformation',
-  signature: `bufferWhen(closingSelector: () => Observable): Observable<T[]>`,
+  signature: `bufferWhen(closingSelector: () => Observable): Observable`,
   parameters: [
     {
       name: 'closingSelector',
@@ -38,6 +38,8 @@ export const bufferWhen: OperatorDoc = {
       const buffered = clicks.pipe(
         bufferWhen(() => interval(1000 + Math.random() * 4000))
       )
+      buffered.subscribe(x => console.log(x));
+
       /*
       Example console output:
 
@@ -84,11 +86,10 @@ export const bufferWhen: OperatorDoc = {
 
       []
       */
-      buffered.subscribe(x => console.log(x));
       `,
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/jemeron/7/embed?js,console,output'
+        url: 'http://jsbin.com/jemeron/9/embed?js,console,output'
       }
     },
     {
@@ -102,7 +103,9 @@ export const bufferWhen: OperatorDoc = {
       const clicks = fromEvent(document, 'click', e => ({x: e.clientX, y: e.clientY}));
       const buffered = clicks.pipe(
         bufferWhen(() => enterKeys)
-      )
+      );
+      buffered.subscribe(x => console.log(x));
+
       /*
       Example console output:
 
@@ -146,11 +149,10 @@ export const bufferWhen: OperatorDoc = {
 
       []
       */
-      buffered.subscribe(x => console.log(x));
 `,
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/tuvesok/4/embed?js,console,output'
+        url: 'http://jsbin.com/tuvesok/5/embed?js,console,output'
       }
     }
   ],
