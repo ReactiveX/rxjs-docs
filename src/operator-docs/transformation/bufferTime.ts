@@ -59,38 +59,110 @@ export const bufferTime: OperatorDoc = {
       name:
         'After every two and a half seconds, emit an array of the click events during that timeframe',
       code: `
-import { fromEvent } from 'rxjs/observable/fromEvent';
-import { map, bufferTime } from 'rxjs/operators';
+      import { fromEvent } from 'rxjs/observable/fromEvent';
+      import { bufferTime } from 'rxjs/operators';
 
-const clicks = fromEvent(document, 'click');
-const buffered = clicks.pipe(
-  map(e => { return {x: e.clientX, y: e.clientY}; }),
-  bufferTime(2500)
-);
-buffered.subscribe(x => console.log(x));
+      const clicks = fromEvent(document, 'click', e => ({x: e.clientX, y: e.clientY}));
+      const buffered = clicks.pipe(
+        bufferTime(2500)
+      );
+      /*
+      Example console output
+
+      []
+
+      [[object Object] {
+        x: 150,
+        y: 139
+      }, [object Object] {
+        x: 150,
+        y: 139
+      }, [object Object] {
+        x: 150,
+        y: 139
+      }, [object Object] {
+        x: 150,
+        y: 139
+      }]
+
+      [[object Object] {
+        x: 150,
+        y: 139
+      }]
+
+      [[object Object] {
+        x: 150,
+        y: 137
+      }, [object Object] {
+        x: 150,
+        y: 137
+      }]
+
+      []
+      */
+
+
+      buffered.subscribe(x => console.log(x));
       `,
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/fuqewiy/3/embed?js,console,output'
+        url: 'http://jsbin.com/fuqewiy/6/embed?js,console,output'
       }
     },
     {
       name:
-        'Every five seconds, emit the click events from a window of the next two seconds',
+        'Every five seconds, emit the click events from a window of the last two seconds',
       code: `
       import { fromEvent } from 'rxjs/observable/fromEvent';
-      import { map, bufferTime } from 'rxjs/operators';
+      import { bufferTime } from 'rxjs/operators';
 
-      const clicks = fromEvent(document, 'click');
+      const clicks = fromEvent(document, 'click', e => ({x: e.clientX, y: e.clientY}));
       const buffered = clicks.pipe(
-        map(e => { return {x: e.clientX, y: e.clientY}; }),
         bufferTime(2000, 5000)
       );
+
+      /*
+      Example console output:
+
+      []
+
+      []
+
+      [[object Object] {
+        x: 159,
+        y: 140
+      }, [object Object] {
+        x: 159,
+        y: 140
+      }]
+
+      [[object Object] {
+        x: 161,
+        y: 140
+      }, [object Object] {
+        x: 161,
+        y: 140
+      }, [object Object] {
+        x: 161,
+        y: 140
+      }, [object Object] {
+        x: 161,
+        y: 140
+      }, [object Object] {
+        x: 161,
+        y: 140
+      }, [object Object] {
+        x: 161,
+        y: 140
+      }]
+
+      []
+      */
       buffered.subscribe(x => console.log(x));
 `,
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/xohupot/2/embed?js,console,output'
+        url: 'http://jsbin.com/xohupot/4/embed?js,console,output'
       }
     }
   ],
