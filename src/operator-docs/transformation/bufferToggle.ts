@@ -46,19 +46,38 @@ export const bufferToggle: OperatorDoc = {
       import { fromEvent } from 'rxjs/observable/fromEvent';
       import { interval } from 'rxjs/observable/interval';
       import { empty } from 'rxjs/observable/empty';
-      import { map, bufferToggle } from 'rxjs/operators';
+      import { bufferToggle } from 'rxjs/operators';
 
-      const clicks$ = fromEvent(document, 'click');
-      const openings$ = interval(1000);
-      const buffered$ = clicks$.pipe(
-        map(e => {return {X: e.clientX, Y: e.clientY};}),
-        bufferToggle(openings$, i => i % 2 ? interval(500) : empty())
+      const clicks = fromEvent(document, 'click', e => ({x: e.clientX, y: e.clientY}));
+      const openings = interval(1000);
+      const buffered = clicks.pipe(
+        bufferToggle(openings, i => i % 2 ? interval(500) : empty())
       );
-      buffered$.subscribe(x => console.log(x));
+      /*
+      Expected console output:
+
+      []
+
+      [[object Object] {
+        x: 156,
+        y: 165
+      }, [object Object] {
+        x: 156,
+        y: 165
+      }, [object Object] {
+        x: 156,
+        y: 165
+      }]
+
+      []
+
+      []
+      */
+      buffered.subscribe(x => console.log(x));
       `,
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/nuriyod/1/embed?js,console,output'
+        url: 'http://jsbin.com/nuriyod/3/embed?js,console,output'
       }
     },
     {
@@ -66,21 +85,55 @@ export const bufferToggle: OperatorDoc = {
         'Start buffering all the click events when you press the "S" key and close the buffer when you press the "E" key',
       code: `
       import { fromEvent } from 'rxjs/observable/fromEvent';
-      import { filter, map, bufferToggle } from 'rxjs/operators';
+      import { filter, bufferToggle } from 'rxjs/operators';
 
-      const clicks$ = fromEvent(document, 'click');
-      const keyUp$ = fromEvent(document,'keyup');
-      const openings$ = keyUp$.pipe(filter(e => e.key === 's'));
-      const closing$ = keyUp$.pipe(filter(e => e.key === 'e'));
-      const buffered$ = clicks$.pipe(
-        map(e => {return {X: e.clientX, Y: e.clientY};}),
-        bufferToggle(openings$, _ => closing$)
+      const clicks = fromEvent(document, 'click', e => ({x: e.clientX, y: e.clientY}));
+      const keyUp = fromEvent(document,'keyup');
+      const openings = keyUp.pipe(filter(e => e.key === 's'));
+      const closing = keyUp.pipe(filter(e => e.key === 'e'));
+      const buffered = clicks.pipe(
+        bufferToggle(openings, _ => closing)
       );
-      buffered$.subscribe(x => console.log(x));
+      /*
+      Expected console output:
+
+      [[object Object] {
+        x: 147,
+        y: 135
+      }, [object Object] {
+        x: 147,
+        y: 135
+      }, [object Object] {
+        x: 144,
+        y: 135
+      }, [object Object] {
+        x: 144,
+        y: 135
+      }, [object Object] {
+        x: 144,
+        y: 135
+      }]
+
+      [[object Object] {
+        x: 144,
+        y: 135
+      }, [object Object] {
+        x: 144,
+        y: 135
+      }]
+
+      [[object Object] {
+        x: 143,
+        y: 136
+      }]
+
+      */
+
+      buffered.subscribe(x => console.log(x));
 `,
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/vurobel/8/embed?js,console,output'
+        url: 'http://jsbin.com/vurobel/11/embed?js,console,output'
       }
     }
   ],
