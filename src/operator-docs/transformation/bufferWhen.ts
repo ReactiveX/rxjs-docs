@@ -32,38 +32,125 @@ export const bufferWhen: OperatorDoc = {
       code: `
       import { fromEvent } from 'rxjs/observable/fromEvent';
       import { interval  } from 'rxjs/observable/interval';
-      import { map, bufferWhen } from 'rxjs/operators';
+      import { bufferWhen } from 'rxjs/operators';
 
-      const clicks$ = fromEvent(document, 'click');
-      const buffered$ = clicks$.pipe(
-        map(e => {return {x: e.clientX, y: e.clientY};}),
+      const clicks = fromEvent(document, 'click', e => ({x: e.clientX, y: e.clientY}));
+      const buffered = clicks.pipe(
         bufferWhen(() => interval(1000 + Math.random() * 4000))
       )
-      buffered$.subscribe(x => console.log(x));
+      /*
+      Example console output:
+
+      []
+
+      []
+
+      [[object Object] {
+        x: 87,
+        y: 222
+      }, [object Object] {
+        x: 87,
+        y: 222
+      }, [object Object] {
+        x: 100,
+        y: 228
+      }, [object Object] {
+        x: 151,
+        y: 296
+      }]
+
+      [[object Object] {
+        x: 130,
+        y: 368
+      }, [object Object] {
+        x: 132,
+        y: 368
+      }, [object Object] {
+        x: 227,
+        y: 212
+      }, [object Object] {
+        x: 189,
+        y: 321
+      }, [object Object] {
+        x: 160,
+        y: 411
+      }, [object Object] {
+        x: 160,
+        y: 411
+      }, [object Object] {
+        x: 155,
+        y: 366
+      }]
+
+      []
+      */
+      buffered.subscribe(x => console.log(x));
       `,
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/jemeron/3/embed?js,console,output'
+        url: 'http://jsbin.com/jemeron/7/embed?js,console,output'
       }
     },
     {
       name: 'Buffer all the click events until you press the Enter key',
       code: `
       import { fromEvent } from 'rxjs/observable/fromEvent';
-      import { map, filter, bufferWhen } from 'rxjs/operators';
+      import { filter, bufferWhen } from 'rxjs/operators';
 
-      const enterKeys$ = fromEvent(document,'keyup')
+      const enterKeys = fromEvent(document,'keyup')
                           .pipe(filter(e => e.key === "Enter"));
-      const clicks$ = fromEvent(document, 'click');
-      const buffered$ = clicks$.pipe(
-        map(e => {return {x: e.clientX, y: e.clientY};}),
-        bufferWhen(() => enterKeys$)
+      const clicks = fromEvent(document, 'click', e => ({x: e.clientX, y: e.clientY}));
+      const buffered = clicks.pipe(
+        bufferWhen(() => enterKeys)
       )
-      buffered$.subscribe(x => console.log(x));
+      /*
+      Example console output:
+
+      [[object Object] {
+        x: 186,
+        y: 136
+      }, [object Object] {
+        x: 188,
+        y: 136
+      }, [object Object] {
+        x: 189,
+        y: 136
+      }, [object Object] {
+        x: 189,
+        y: 136
+      }, [object Object] {
+        x: 192,
+        y: 136
+      }]
+
+      [[object Object] {
+        x: 196,
+        y: 135
+      }, [object Object] {
+        x: 196,
+        y: 135
+      }]
+
+      [[object Object] {
+        x: 198,
+        y: 125
+      }]
+
+      [[object Object] {
+        x: 196,
+        y: 135
+      }, [object Object] {
+        x: 196,
+        y: 135
+      }]
+
+      []
+      */
+      buffered.subscribe(x => console.log(x));
 `,
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/tuvesok/1/embed?js,console,output'
+        url: 'http://jsbin.com/tuvesok/4/embed?js,console,output'
       }
     }
   ],
