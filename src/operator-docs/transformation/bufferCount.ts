@@ -43,36 +43,107 @@ export const bufferCount: OperatorDoc = {
       name: 'Every two clicks, emit those two click events as an array',
       code: `
       import { fromEvent } from 'rxjs/observable/fromEvent';
-      import { map, bufferCount } from 'rxjs/operators';
+      import { bufferCount } from 'rxjs/operators';
 
-      const clicks$ = fromEvent(document, 'click');
-      const buffered$ = clicks$.pipe(
-        map(e => {return {X: e.clientX, Y: e.clientY};}),
+      const clicks = fromEvent(document, 'click', e => ({x: e.clientX, y: e.clientY}));
+      const buffered = clicks.pipe(
         bufferCount(2)
       );
-      buffered$.subscribe(x => console.log(x));
+
+      /*
+      Example console output:
+
+      [[object Object] {
+        x: 235,
+        y: 140
+      }, [object Object] {
+        x: 63,
+        y: 45
+      }]
+
+      [[object Object] {
+        x: 199,
+        y: 74
+      }, [object Object] {
+        x: 133,
+        y: 181
+      }]
+
+      [[object Object] {
+        x: 343,
+        y: 174
+      }, [object Object] {
+        x: 274,
+        y: 82
+      }]
+      */
+      buffered.subscribe(x => console.log(x));
       `,
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/ceripaf/1/embed?js,console,output'
+        url: 'http://jsbin.com/ceripaf/4/embed?js,console,output'
       }
     },
     {
       name: 'On every click, emit the last two click events as an array',
       code: `
       import { fromEvent } from 'rxjs/observable/fromEvent';
-      import { map, bufferCount } from 'rxjs/operators';
+      import { bufferCount } from 'rxjs/operators';
 
-      const clicks$ = fromEvent(document, 'click');
-      const buffered$ = clicks$.pipe(
-        map(e => {return {X: e.clientX, Y: e.clientY};}),
+      const clicks = fromEvent(document, 'click', e => ({x: e.clientX, y: e.clientY}));
+      const buffered = clicks.pipe(
         bufferCount(2, 1)
       );
-      buffered$.subscribe(x => console.log(x));
+
+      /*
+      Example console output:
+
+      [[object Object] {
+        x: 241,
+        y: 118
+      }, [object Object] {
+        x: 176,
+        y: 183
+      }]
+
+      [[object Object] {
+        x: 176,
+        y: 183
+      }, [object Object] {
+        x: 276,
+        y: 239
+      }]
+
+      [[object Object] {
+        x: 276,
+        y: 239
+      }, [object Object] {
+        x: 341,
+        y: 90
+      }]
+
+      [[object Object] {
+        x: 341,
+        y: 90
+      }, [object Object] {
+        x: 140,
+        y: 99
+      }]
+
+      [[object Object] {
+        x: 140,
+        y: 99
+      }, [object Object] {
+        x: 253,
+        y: 335
+      }]
+      */
+
+      buffered.subscribe(x => console.log(x));
 `,
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/cenuwip/1/embed?js,console,output'
+        url: 'http://jsbin.com/cenuwip/4/embed?js,console,output'
       }
     }
   ],
