@@ -29,7 +29,7 @@ import {
     MatInputModule,
     MatMenuModule,
     MatTooltipModule,
-    MatTabsModule
+    MatTabsModule,
     FlexLayoutModule,
     MatSnackBarModule
   ],
@@ -44,7 +44,7 @@ import {
     MatInputModule,
     MatMenuModule,
     MatTooltipModule,
-    MatTabsModule
+    MatTabsModule,
     FlexLayoutModule,
     MatSnackBarModule
   ]
