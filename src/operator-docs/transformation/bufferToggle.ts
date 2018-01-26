@@ -4,18 +4,18 @@ export const bufferToggle: OperatorDoc = {
   name: 'bufferToggle',
   operatorType: 'transformation',
   signature: `bufferToggle(
-    openings: SubscribableOrPromise<O>,
-    closingSelector: (value: O) => SubscribableOrPromise): Observable<T[]>`,
+    openings: SubscribableOrPromise,
+    closingSelector: (value) => SubscribableOrPromise): Observable`,
   parameters: [
     {
       name: 'openings',
-      type: 'SubscribableOrPromise<O>',
+      type: 'SubscribableOrPromise',
       attribute: '',
       description: `A Subscribable or Promise of notifications to start new buffers.`
     },
     {
       name: 'closingSelector',
-      type: '(value: O) => SubscribableOrPromise',
+      type: '(value) => SubscribableOrPromise',
       attribute: '',
       description: `A function that takes the value emitted by the openings observable
       and returns a Subscribable or Promise, which, when it emits, signals that the associated buffer should be emitted and cleared.`
@@ -53,6 +53,7 @@ export const bufferToggle: OperatorDoc = {
       const buffered = clicks.pipe(
         bufferToggle(openings, i => i % 2 ? interval(500) : empty())
       );
+      buffered.subscribe(x => console.log(x));
       /*
       Expected console output:
 
@@ -73,11 +74,10 @@ export const bufferToggle: OperatorDoc = {
 
       []
       */
-      buffered.subscribe(x => console.log(x));
       `,
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/nuriyod/3/embed?js,console,output'
+        url: 'http://jsbin.com/nuriyod/6/embed?js,console,output'
       }
     },
     {
@@ -94,6 +94,8 @@ export const bufferToggle: OperatorDoc = {
       const buffered = clicks.pipe(
         bufferToggle(openings, _ => closing)
       );
+      buffered.subscribe(x => console.log(x));
+
       /*
       Expected console output:
 
@@ -126,14 +128,11 @@ export const bufferToggle: OperatorDoc = {
         x: 143,
         y: 136
       }]
-
       */
-
-      buffered.subscribe(x => console.log(x));
 `,
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/vurobel/11/embed?js,console,output'
+        url: 'http://jsbin.com/vurobel/12/embed?js,console,output'
       }
     }
   ],
