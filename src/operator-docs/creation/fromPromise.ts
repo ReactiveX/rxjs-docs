@@ -32,7 +32,9 @@ export const fromPromise: OperatorDoc = {
     {
       name: 'Convert the Promise returned by Fetch to an Observable',
       code: `
-        const result = Rx.Observable.fromPromise(fetch('http://myserver.com/'));
+         import {fromPromise} from 'rxjs/observable/fromPromise';
+
+        const result = fromPromise(fetch('http://myserver.com/'));
         result.subscribe(x => console.log(x), e => console.error(e));`,
       externalLink: {
         platform: 'JSBin',
