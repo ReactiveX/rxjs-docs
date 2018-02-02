@@ -54,9 +54,12 @@ export const throttleTime: OperatorDoc = {
       name:
         'Emit X position of mouse clicks at a rate of at most one click per second',
       code: `
-      const clicks = Rx.Observable.fromEvent(document, 'click');
-      const result = clicks.throttleTime(1000);
-      result.subscribe(x => console.log(x.clientX));
+        import { throttleTime } from 'rxjs/operators';
+        import { interval } from 'rxjs/observable/interval';
+
+        const clicks = fromEvent(document, 'click');
+        const result = clicks.pipe(throttleTime(1000));
+        result.subscribe(x => console.log(x.clientX));
       `,
       externalLink: {
         platform: 'JSBin',

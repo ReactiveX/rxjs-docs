@@ -30,15 +30,20 @@ export const pairwise: OperatorDoc = {
       name:
         'On every click (starting from the second), emit the relative distance to the previous click',
       code: `
-      const clicks = Rx.Observable.fromEvent(document, 'click');
-      const pairs = clicks.pairwise();
-      const distance = pairs.map(pair => {
-        const x0 = pair[0].clientX;
-        const y0 = pair[0].clientY;
-        const x1 = pair[1].clientX;
-        const y1 = pair[1].clientY;
-        return Math.sqrt(Math.pow(x0 - x1, 2) + Math.pow(y0 - y1, 2));
-      });
+      import { pairwise, map } from 'rxjs/operators';
+      import { fromEvent } from 'rxjs/observable/fromEvent';
+
+      const clicks = fromEvent(document, 'click');
+      const pairs = clicks.pipe(pairwise());
+      const distance = pairs.pipe(
+        map(pair => {
+          const x0 = pair[0].clientX;
+          const y0 = pair[0].clientY;
+          const x1 = pair[1].clientX;
+          const y1 = pair[1].clientY;
+          return Math.sqrt(Math.pow(x0 - x1, 2) + Math.pow(y0 - y1, 2));
+        })
+      );
       distance.subscribe(x => console.log(x));
     `,
       externalLink: {
