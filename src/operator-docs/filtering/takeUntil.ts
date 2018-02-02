@@ -43,19 +43,23 @@ export const takeUntil: OperatorDoc = {
     {
       name: 'Tick every second until the first click happens',
       code: `
-      const interval = Rx.Observable.interval(1000);
-      const clicks = Rx.Observable.fromEvent(document, 'click');
-      const result = interval.takeUntil(clicks);
-      result.subscribe(x => console.log(x));
+        import { takeUntil } from 'rxjs/operators';
+        import { interval } from 'rxjs/observable/interval';
+        import { fromEvent } from 'rxjs/observable/fromEvent';
 
-      // Logs the number of seconds since the stream started.
-      // Stream will end as soon as a click action is performed
-      // anywhere in the document
+        const interval = interval(1000);
+        const clicks = fromEvent(document, 'click');
+        const result = interval.pipe(takeUntil(clicks));
+        result.subscribe(x => console.log(x));
 
-      // 1
-      // 2
-      // 3
-      // ...
+        // Logs the number of seconds since the stream started.
+        // Stream will end as soon as a click action is performed
+        // anywhere in the document
+
+        // 1
+        // 2
+        // 3
+        // ...
       `,
       externalLink: {
         platform: 'JSBin',

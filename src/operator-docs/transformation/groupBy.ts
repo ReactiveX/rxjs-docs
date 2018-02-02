@@ -1,8 +1,8 @@
-import { OperatorDoc } from "../operator.model";
+import { OperatorDoc } from '../operator.model';
 
 export const groupBy: OperatorDoc = {
-  name: "groupBy",
-  operatorType: "transformation",
+  name: 'groupBy',
+  operatorType: 'transformation',
   signature: `
     public groupBy(keySelector: (value: T) => K,
                    elementSelector?: ((value: T) => R) | void,
@@ -11,31 +11,31 @@ export const groupBy: OperatorDoc = {
           : Observable<any>): OperatorFunction<T, GroupedObservable<K, R>>`,
   parameters: [
     {
-      name: "keySelector",
-      type: "(value: T) => K",
-      attribute: "",
+      name: 'keySelector',
+      type: '(value: T) => K',
+      attribute: '',
       description: `A function that extracts the key used for grouping for each item.`
     },
     {
-      name: "elementSelector",
-      type: "((value: T) => R) | void",
-      attribute: "optional",
+      name: 'elementSelector',
+      type: '((value: T) => R) | void',
+      attribute: 'optional',
       description: `A function that extracts the emitted element for each item. Default is identity function.`
     },
     {
-      name: "durationSelector",
-      type: "(grouped: GroupedObservable<K, R>) => Observable<any>",
-      attribute: "optional",
+      name: 'durationSelector',
+      type: '(grouped: GroupedObservable<K, R>) => Observable<any>',
+      attribute: 'optional',
       description: `A function that returns an Observable to determine how long each group should exist.`
     },
     {
-      name: "subjectSelector",
-      type: "() => Subject<R>",
-      attribute: "optional",
+      name: 'subjectSelector',
+      type: '() => Subject<R>',
+      attribute: 'optional',
       description: ``
     }
   ],
-  marbleUrl: "http://reactivex.io/rxjs/img/groupBy.png",
+  marbleUrl: 'http://reactivex.io/rxjs/img/groupBy.png',
   shortDescription: {
     description: `
       Group, according to a specified key, elements from items emitted by an Observable,
@@ -59,13 +59,17 @@ export const groupBy: OperatorDoc = {
   },
   examples: [
     {
-      name: "Group objects by id and return as array",
+      name: 'Group objects by id and return as array',
       code: `
-        interface Obj {
-          id: number;
-          name: string;
-        }
-        Rx.Observable.of<Obj>({id: 1, name: 'aze1'},
+          import { mergeMap, groupBy } from 'rxjs/operators';
+          import { of } from 'rxjs/observable/of';
+
+          interface Obj {
+            id: number;
+            name: string;
+          }
+
+          of<Obj>({id: 1, name: 'aze1'},
                               {id: 2, name: 'sf2'},
                               {id: 2, name: 'dg2'},
                               {id: 1, name: 'erg1'},
@@ -73,8 +77,10 @@ export const groupBy: OperatorDoc = {
                               {id: 2, name: 'sfqfb2'},
                               {id: 3, name: 'qfs3'},
                               {id: 2, name: 'qsgqsfg2'})
-          .groupBy(p => p.id)
-          .flatMap( (group$) => group$.reduce((acc, cur) => [...acc, cur], []))
+          .pipe(
+            groupBy(p => p.id)
+            mergeMap( (group$) => group$.reduce((acc, cur) => [...acc, cur], []))
+          )
           .subscribe(p => console.log(p));
         /*
           Output:
@@ -91,41 +97,46 @@ export const groupBy: OperatorDoc = {
         */
         `,
       externalLink: {
-        platform: "JSBin",
-        url: "http://jsbin.com/linekelumo/1/embed?js,console"
+        platform: 'JSBin',
+        url: 'http://jsbin.com/linekelumo/1/embed?js,console'
       }
     },
     {
-      name: "Pivot data on the id field",
+      name: 'Pivot data on the id field',
       code: `
-      interface Obj {
-        id: number;
-        name: string;
-      }
-      Rx.Observable.of<Obj>({id: 1, name: 'aze1'},
-                            {id: 2, name: 'sf2'},
-                            {id: 2, name: 'dg2'},
-                            {id: 1, name: 'erg1'},
-                            {id: 1, name: 'df1'},
-                            {id: 2, name: 'sfqfb2'},
-                            {id: 3, name: 'qfs1'},
-                            {id: 2, name: 'qsgqsfg2'})
-        .groupBy(p => p.id, p => p.name)
-        .flatMap( (group$) => group$.reduce((acc, cur) => [...acc, cur], ["" + group$.key]))
-        .map(arr => ({'id': parseInt(arr[0]), 'values': arr.slice(1)}))
-        .subscribe(p => console.log(p));
-      /*
-        Output:
-        { id: 1, values: [ 'aze1', 'erg1', 'df1' ] }
+          import { mergeMap, groupBy, map } from 'rxjs/operators';
+          import { of } from 'rxjs/observable/of';
 
-        { id: 2, values: [ 'sf2', 'dg2', 'sfqfb2', 'qsgqsfg2' ] }
+          interface Obj {
+            id: number;
+            name: string;
+          }
+            of<Obj>({id: 1, name: 'aze1'},
+                                {id: 2, name: 'sf2'},
+                                {id: 2, name: 'dg2'},
+                                {id: 1, name: 'erg1'},
+                                {id: 1, name: 'df1'},
+                                {id: 2, name: 'sfqfb2'},
+                                {id: 3, name: 'qfs1'},
+                                {id: 2, name: 'qsgqsfg2'})
+            .pipe(
+              groupBy(p => p.id, p => p.name)
+              mergeMap( (group$) => group$.reduce((acc, cur) => [...acc, cur], ["" + group$.key]))
+              map(arr => ({'id': parseInt(arr[0]), 'values': arr.slice(1)}))
+            )
+            .subscribe(p => console.log(p));
+          /*
+            Output:
+            { id: 1, values: [ 'aze1', 'erg1', 'df1' ] }
 
-        { id: 3, values: [ 'qfs1' ] }
-      */
+            { id: 2, values: [ 'sf2', 'dg2', 'sfqfb2', 'qsgqsfg2' ] }
+
+            { id: 3, values: [ 'qfs1' ] }
+          */
         `,
       externalLink: {
-        platform: "JSBin",
-        url: "http://jsbin.com/racikizeji/embed?js,console"
+        platform: 'JSBin',
+        url: 'http://jsbin.com/racikizeji/embed?js,console'
       }
     }
   ],
