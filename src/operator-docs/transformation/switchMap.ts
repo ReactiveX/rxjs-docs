@@ -49,9 +49,15 @@ export const switchMap: OperatorDoc = {
     {
       name: 'Rerun an interval Observable on every click even',
       code: `
-      const clicks = Rx.Observable.fromEvent(document, 'click');
-      const result = clicks.switchMap((ev) => Rx.Observable.interval(1000));
-      result.subscribe(x => console.log(x));
+          import { switchMap } from 'rxjs/operators';
+          import { fromEvent } from 'rxjs/observable/fromEvent';
+          import { interval } from 'rxjs/observable/interval';
+
+          const clicks = fromEvent(document, 'click');
+          const result = clicks.pipe(
+            switchMap((ev) => interval(1000))
+          );
+          result.subscribe(x => console.log(x));
       `,
       externalLink: {
         platform: 'JSBin',
