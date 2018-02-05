@@ -55,18 +55,39 @@ export const windowToggle: OperatorDoc = {
     {
       name: 'Every other second, emit the click events from the next 500ms',
       code: `
+      import { fromEvent } from 'rxjs/observable/fromEvent';
+      import { empty } from 'rxjs/observable/empty';
+      import { interval } from 'rxjs/observable/interval';
       import { mergeAll, windowToggle } from 'rxjs/operators';
 
-      const clicks = Rx.Observable.fromEvent(document, 'click');
-      const openings = Rx.Observable.interval(1000);
+      const clicks = fromEvent(document, 'click');
+      const openings = interval(1000);
       const result = clicks.windowToggle(openings, i =>
-        i % 2 ? Rx.Observable.interval(500) : Rx.Observable.empty()
+        i % 2 ? interval(500) : empty()
       ).mergeAll();
       result.subscribe(x => console.log(x));
+
+      /*
+      Example console output
+      [object MouseEvent] {
+        altKey: false,
+        AT_TARGET: 2,
+        bubbles: true,
+        BUBBLING_PHASE: 3,
+        button: 0,
+        buttons: 0,
+        cancelable: true,
+        cancelBubble: false,
+        CAPTURING_PHASE: 1,
+        clientX: 80,
+        clientY: 70,
+        ....            //Entire object properties
+      }
+      */
     `,
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/yugaha/embed?js,console,output'
+        url: 'http://jsbin.com/pemosar/embed?js,console,output'
       }
     }
   ],
