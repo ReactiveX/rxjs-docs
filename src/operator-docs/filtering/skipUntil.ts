@@ -22,12 +22,16 @@ export const skipUntil: OperatorDoc = {
     {
       name: 'Emits every 1s after 5 seconds',
       code: `
-      //emit every 1s
-      const source = Rx.Observable.interval(1000);
-      //skip emitted values from source until inner observable emits (6s)
-      const example = source.skipUntil(Rx.Observable.timer(6000));
-      //output: 5...6...7...8........
-      const subscribe = example.subscribe(val => console.log(val));
+        import { skipUntil } from 'rxjs/operators';
+        import { interval } from 'rxjs/observable/interval';
+        import { timer } from 'rxjs/observable/timer';
+
+        //emit every 1s
+        const source = interval(1000);
+        //skip emitted values from source until inner observable emits (6s)
+        const example = source.pipe(skipUntil(timer(6000)));
+        //output: 5...6...7...8........
+        const subscribe = example.subscribe(val => console.log(val));
       `,
       externalLink: {
         platform: 'JSBin',

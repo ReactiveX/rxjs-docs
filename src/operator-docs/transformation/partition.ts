@@ -51,8 +51,11 @@ export const partition: OperatorDoc = {
       name:
         'Partition click events into those on DIV elements and those elsewhere',
       code: `
-        const clicks = Rx.Observable.fromEvent(document, 'click');
-        const parts = clicks.partition(ev => ev.target.tagName === 'DIV');
+        import { partition } from 'rxjs/operators';
+        import { fromEvent } from 'rxjs/observable/fromEvent';
+
+        const clicks = fromEvent(document, 'click');
+        const parts = clicks.pipe(partition(ev => ev.target.tagName === 'DIV'));
         const clicksOnDivs = parts[0];
         const clicksElsewhere = parts[1];
         clicksOnDivs.subscribe(x => console.log('DIV clicked: ', x));
