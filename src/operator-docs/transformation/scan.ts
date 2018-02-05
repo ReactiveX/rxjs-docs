@@ -47,12 +47,15 @@ export const scan: OperatorDoc = {
     {
       name: 'Count the number of click events',
       code: `
-              let clicks = Rx.Observable.fromEvent(document, 'click');
-              let ones = clicks.mapTo(1);
-              let seed = 0;
-              let count = ones.scan((acc, one) => acc + one, seed);
-              count.subscribe(x => console.log(x));
-          `,
+        import { mapTo, scan } from 'rxjs/operators';
+        import { fromEvent } from 'rxjs/observable/fromEvent';
+
+        let clicks = fromEvent(document, 'click');
+        let ones = clicks.pipe(mapTo(1));
+        let seed = 0;
+        let count = ones.pipe(scan((acc, one) => acc + one, seed));
+        count.subscribe(x => console.log(x));
+      `,
       externalLink: {
         platform: 'JSBin',
         url: 'http://jsbin.com/qemuzufofo/embed?js,console,output'

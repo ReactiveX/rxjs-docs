@@ -78,9 +78,14 @@ export const concat: OperatorDoc = {
       name:
         'Concatenate a timer counting from 0 to 3 with a synchronous sequence from 1 to 10',
       code: `
-      const timer = Rx.Observable.interval(1000).take(4);
-      const sequence = Rx.Observable.range(1, 10);
-      const result = Rx.Observable.concat(timer, sequence);
+      import { take } from 'rxjs/operators';
+      import { interval } from 'rxjs/observable/interval';
+      import { range } from 'rxjs/observable/range';
+      import { concat } from 'rxjs/observable/concat';
+
+      const timer = interval(1000).pipe(take(4));
+      const sequence = range(1, 10);
+      const result = concat(timer, sequence);
       result.subscribe(x => console.log(x));
 
       // results in:
@@ -94,10 +99,13 @@ export const concat: OperatorDoc = {
     {
       name: 'Concatenate an array of 3 Observables',
       code: `
-      const timer1 = Rx.Observable.interval(1000).take(10);
-      const timer2 = Rx.Observable.interval(2000).take(6);
-      const timer3 = Rx.Observable.interval(500).take(10);
-      const result = timer1.concat(timer2, timer3);
+      import { take, concat } from 'rxjs/operators';
+      import { interval } from 'rxjs/observable/interval';
+
+      const timer1 = interval(1000).pipe(take(10));
+      const timer2 = interval(2000).pipe(take(6));
+      const timer3 = interval(500).pipe(take(10));
+      const result = timer1.pipe(concat(timer2, timer3));
       result.subscribe(x => console.log(x));
 
       // results in the following:

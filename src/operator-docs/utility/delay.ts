@@ -45,8 +45,11 @@ export const delay: OperatorDoc = {
     {
       name: 'Delay each click by one second',
       code: `
-        const clicks = Rx.Observable.fromEvent(document, 'click').mapTo('click');;
-        const delayedClicks = clicks.delay(1000);
+        import { delay, mapTo } from 'rxjs/operators';
+        import { fromEvent } from 'rxjs/observable/fromEvent';
+
+        const clicks = fromEvent(document, 'click').pipe(mapTo('click'));
+        const delayedClicks = clicks.pipe(delay(1000));
         delayedClicks.subscribe(x => console.log(x));
       `,
       externalLink: {
@@ -57,9 +60,12 @@ export const delay: OperatorDoc = {
     {
       name: 'Delay all clicks until a future date happens',
       code: `
-        const clicks = Rx.Observable.fromEvent(document, 'click');
+        import { delay } from 'rxjs/operators';
+        import { fromEvent } from 'rxjs/observable/fromEvent';
+
+        const clicks = fromEvent(document, 'click');
         const date = new Date('March 15, 2050 12:00:00');
-        const delayedClicks = clicks.delay(date);
+        const delayedClicks = clicks.pipe(delay(date));
         delayedClicks.subscribe(x => console.log(x));
       `,
       externalLink: {
