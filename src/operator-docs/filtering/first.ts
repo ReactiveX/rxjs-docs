@@ -65,9 +65,12 @@ export const first: OperatorDoc = {
     {
       name: 'Emit only the X postition of first click that happens on the DOM',
       code: `
-       const clicks = Rx.Observable.fromEvent(document, 'click');
-       const result = clicks.first();
-       result.subscribe(x => console.log(x));
+        import { first } from 'rxjs/operators';
+        import { from } from 'rxjs/observable/fromEvent';
+
+        const clicks = fromEvent(document, 'click');
+        const result = clicks.pipe(first());
+        result.subscribe(x => console.log(x));
        `,
       externalLink: {
         platform: 'JSBin',
@@ -77,9 +80,12 @@ export const first: OperatorDoc = {
     {
       name: 'Emits only the X postition of first click that happens on a DIV',
       code: `
-       const clicks = Rx.Observable.fromEvent(document, 'click');
-       const result = clicks.first(ev => ev.target.tagName === 'DIV');
-       result.subscribe(x => console.log(x));
+        import { first } from 'rxjs/operators';
+        import { from } from 'rxjs/observable/fromEvent';
+
+        const clicks = fromEvent(document, 'click');
+        const result = clicks.pipe(first(ev => ev.target.tagName === 'DIV'));
+        result.subscribe(x => console.log(x));
        `,
       externalLink: {
         platform: 'JSBin',
