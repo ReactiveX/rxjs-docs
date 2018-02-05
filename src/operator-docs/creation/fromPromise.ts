@@ -4,11 +4,11 @@ export const fromPromise: OperatorDoc = {
   name: 'fromPromise',
   operatorType: 'creation',
   signature:
-    'public static fromPromise(promise: Promise<T>, scheduler: Scheduler): Observable<T>',
+    'public static fromPromise(promise: Promise, scheduler: Scheduler): Observable',
   parameters: [
     {
       name: 'promise',
-      type: 'Promise<T>',
+      type: 'Promise',
       attribute: '',
       description: 'The promise to be converted.'
     },
@@ -34,7 +34,7 @@ export const fromPromise: OperatorDoc = {
       code: `
          import {fromPromise} from 'rxjs/observable/fromPromise';
 
-        const result = fromPromise(fetch('http://myserver.com/'));
+        const result = fromPromise(fetch('http://github.com/'));
         result.subscribe(x => console.log(x), e => console.error(e));`,
       externalLink: {
         platform: 'JSBin',
