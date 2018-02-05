@@ -47,8 +47,11 @@ export const map: OperatorDoc = {
     {
       name: 'Map every click to the clientX position of that click',
       code: `
-        const clicks = Rx.Observable.fromEvent(document, 'click');
-        const positions = clicks.map(ev => ev.clientX);
+        import { map } from 'rxjs/operators';
+        import { of } from 'rxjs/observable/fromEvent';
+
+        const clicks = fromEvent(document, 'click');
+        const positions = clicks.pipe(map(ev => ev.clientX));
         positions.subscribe(x => console.log(x));
       `,
       externalLink: {

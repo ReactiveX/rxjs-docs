@@ -45,11 +45,19 @@ export const windowOperator: OperatorDoc = {
     {
       name: 'In every window of 1 second each, emit at most 2 click events',
       code: `
-        const clicks = Rx.Observable.fromEvent(document, 'click');
-        const interval = Rx.Observable.interval(1000);
-        const result = clicks.window(interval)
-          .map(win => win.take(2)) // each window has at most 2 emissions
-          .mergeAll(); // flatten the Observable-of-Observables
+        import { window, take, map, mergeAll } from 'rxjs/operators';
+        import { fromEvent } from 'rxjs/observable/fromEvent';
+        import { interval } from 'rxjs/observable/interval';
+
+        const clicks = fromEvent(document, 'click');
+        const interval = interval(1000);
+        const result = clicks.pipe(
+          window(interval)
+          // each window has at most 2 emissions
+          map(win => win.pipe(take(2)))
+          // flatten the Observable-of-Observables
+          mergeAll()
+        );
         result.subscribe(x => console.log(x));
       `,
       externalLink: {

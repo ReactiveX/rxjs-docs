@@ -57,8 +57,11 @@ export const distinctUntilChanged: OperatorDoc = {
     {
       name: 'A simple example with numbers',
       code: `
-      Rx.Observable.of(1, 1, 2, 2, 2, 1, 1, 2, 3, 3, 4)
-       .distinctUntilChanged()
+      import { distinctUntilChanged } from 'rxjs/operators';
+      import { of } from 'rxjs/observable/of';
+
+      of(1, 1, 2, 2, 2, 1, 1, 2, 3, 3, 4)
+       .pipe(distinctUntilChanged())
        .subscribe(x => console.log(x));
       `,
       externalLink: {
@@ -69,13 +72,16 @@ export const distinctUntilChanged: OperatorDoc = {
     {
       name: 'An example using a compare function',
       code: `
-      Rx.Observable.of(
+      import { distinctUntilChanged } from 'rxjs/operators';
+      import { of } from 'rxjs/observable/of';
+
+       of(
          { age: 4, name: 'Foo'},
          { age: 7, name: 'Bar'},
          { age: 5, name: 'Foo'},
          { age: 6, name: 'Foo'}
         )
-        .distinctUntilChanged((p, q) => p.name === q.name)
+        .pipe(distinctUntilChanged((p, q) => p.name === q.name))
         .subscribe(x => console.log(x));
       `,
       externalLink: {
