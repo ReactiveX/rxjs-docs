@@ -38,9 +38,13 @@ export const mergeAll: OperatorDoc = {
       name:
         'Spawn a new interval Observable for each click event, and blend their outputs as one Observable',
       code: `
-        const clicks = Rx.Observable.fromEvent(document, 'click');
-        const higherOrder = clicks.map((ev) => Rx.Observable.interval(1000));
-        const firstOrder = higherOrder.mergeAll();
+        import { mergeAll, map } from 'rxjs/operators';
+        import { fromEvent } from 'rxjs/observable/fromEvent';
+        import { interval } from 'rxjs/observable/interval';
+
+        const clicks = fromEvent(document, 'click');
+        const higherOrder = clicks.pipe(map((ev) => interval(1000)));
+        const firstOrder = higherOrder.pipe(mergeAll());
         firstOrder.subscribe(x => console.log(x));
       `,
       externalLink: {
@@ -52,9 +56,15 @@ export const mergeAll: OperatorDoc = {
       name:
         'Count from 0 to 9 every second for each click, but only allow 2 concurrent timers',
       code: `
-        const clicks = Rx.Observable.fromEvent(document, 'click');
-        const higherOrder = clicks.map((ev) => Rx.Observable.interval(1000).take(10));
-        const firstOrder = higherOrder.mergeAll(2);
+        import { mergeAll, map } from 'rxjs/operators';
+        import { fromEvent } from 'rxjs/observable/fromEvent';
+        import { interval } from 'rxjs/observable/interval';
+
+        const clicks = fromEvent(document, 'click');
+        const higherOrder = clicks.pipe(
+          map((ev) => interval(1000).pipe(take(10)))
+        );
+        const firstOrder = higherOrder.pipe(mergeAll(2));
         firstOrder.subscribe(x => console.log(x));
       `,
       externalLink: {

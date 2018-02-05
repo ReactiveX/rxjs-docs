@@ -56,9 +56,14 @@ export const combineLatest: OperatorDoc = {
       name:
         'Dynamically calculate the Body-Mass Index from an Observable of weight and one for height',
       code: `
-        const weight = Rx.Observable.of(70, 72, 76, 79, 75);
-        const height = Rx.Observable.of(1.76, 1.77, 1.78);
-        const bmi = weight.combineLatest(height, (w, h) => w / (h * h));
+        import { combineLatest } from 'rxjs/operators;
+        import { of } from 'rxjs/observable/of';
+
+        const weight = of(70, 72, 76, 79, 75);
+        const height = of(1.76, 1.77, 1.78);
+        const bmi = weight.pipe(
+          combineLatest(height, (w, h) => w / (h * h))
+        );
         /*
            Output:
            BMI is 24.212293388429753
