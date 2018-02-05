@@ -4,7 +4,7 @@ export const windowToggle: OperatorDoc = {
   name: 'windowToggle',
   operatorType: 'transformation',
   signature:
-    'public windowToggle(openings: Observable<O>, closingSelector: function(value: O): Observable): Observable<Observable<T>>',
+    'public windowToggle(openings: Observable, closingSelector: function(value: O): Observable): Observable',
   marbleUrl: 'http://reactivex.io/rxjs/img/windowToggle.png',
   parameters: [
     {
