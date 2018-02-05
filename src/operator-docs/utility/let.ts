@@ -29,7 +29,9 @@ export const letOperator: OperatorDoc = {
     {
       name: 'calls concat as part of a pipeline',
       code: `
-    const obs = Rx.Observable.range(1, 3);
+      import { range } from 'rxjs/observable/range';
+
+    const obs = range(1, 3);
 
     const source = obs.let((o) => o.concat(o));
 
