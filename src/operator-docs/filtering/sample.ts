@@ -39,12 +39,15 @@ export const sample: OperatorDoc = {
     {
       name: 'On every click, sample the value from source every 2 seconds',
       code: `
-      //emit value every 1s
-      const source = Rx.Observable.interval(1000);
-      //sample last emitted value from source every 2s
-      const example = source.sample(Rx.Observable.interval(2000));
-      //output: 2..4..6..8..
-      const subscribe = example.subscribe(val => console.log(val));
+        import { sample } from 'rxjs/operators';
+        import { interval } from 'rxjs/observable/interval';
+
+        //emit value every 1s
+        const source = interval(1000);
+        //sample last emitted value from source every 2s
+        const example = source.pipe(sample(interval(2000)));
+        //output: 2..4..6..8..
+        const subscribe = example.subscribe(val => console.log(val));
       `,
       externalLink: {
         platform: 'JSBin',
