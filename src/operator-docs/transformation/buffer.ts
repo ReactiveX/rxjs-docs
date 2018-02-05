@@ -35,9 +35,13 @@ export const buffer: OperatorDoc = {
     {
       name: 'On every click, emit array of most recent interval events',
       code: `
-        const clicks = Rx.Observable.fromEvent(document, 'click');
-        const interval = Rx.Observable.interval(1000);
-        const buffered = interval.buffer(clicks);
+        import { buffer } from 'rxjs/operators';
+        import { interval } from 'rxjs/observable/interval';
+        import { fromEvent } from 'rxjs/observable/fromEvent';
+
+        const clicks = fromEvent(document, 'click');
+        const interval = interval(1000);
+        const buffered = interval.pipe(buffer(clicks));
         buffered.subscribe(x => console.log(x));
       `,
       externalLink: {
