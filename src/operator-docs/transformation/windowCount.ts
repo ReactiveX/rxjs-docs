@@ -4,7 +4,7 @@ export const windowCount: OperatorDoc = {
   name: 'windowCount',
   operatorType: 'transformation',
   signature:
-    'public windowCount(windowSize: number, startWindowEvery: number): Observable<Observable<T>>',
+    'public windowCount(windowSize: number, startWindowEvery: number): Observable',
   marbleUrl: 'http://reactivex.io/rxjs/img/windowCount.png',
   parameters: [
     {
