@@ -37,15 +37,18 @@ export const take: OperatorDoc = {
       name:
         'Take the first 5 seconds of an infinite 1-second interval Observable',
       code: `
-      const interval = Rx.Observable.interval(1000);
-      const five = interval.take(5);
-      five.subscribe(x => console.log(x));
-      // Logs below values
-      // 0
-      // 1
-      // 2
-      // 3
-      // 4
+        import { take } from 'rxjs/operators';
+        import { interval } from 'rxjs/observable/interval';
+
+        const interval = interval(1000);
+        const five = interval.pipe(take(5));
+        five.subscribe(x => console.log(x));
+        // Logs below values
+        // 0
+        // 1
+        // 2
+        // 3
+        // 4
       `,
       externalLink: {
         platform: 'JSBin',

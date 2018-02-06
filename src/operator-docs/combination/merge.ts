@@ -46,9 +46,13 @@ export const merge: OperatorDoc = {
     {
       name: 'Merge together two Observables: 1s interval and clicks',
       code: `
-        const clicks = Rx.Observable.fromEvent(document, 'click');
-        const timer = Rx.Observable.interval(1000);
-        const clicksOrTimer = clicks.merge(timer);
+        import { merge } from 'rxjs/operators';
+        import { fromEvent } from 'rxjs/observable/fromEvent';
+        import { interval } from 'rxjs/observable/interval';
+
+        const clicks = fromEvent(document, 'click');
+        const timer = interval(1000);
+        const clicksOrTimer = clicks.pipe(merge(timer));
         clicksOrTimer.subscribe(x => console.log(x));
       `,
       externalLink: {
@@ -59,11 +63,15 @@ export const merge: OperatorDoc = {
     {
       name: 'Merge together 3 Observables, but only 2 run concurrently',
       code: `
-        const timer1 = Rx.Observable.interval(1000).take(10);
-        const timer2 = Rx.Observable.interval(2000).take(6);
-        const timer3 = Rx.Observable.interval(500).take(10);
+        import { take } from 'rxjs/operators';
+        import { merge } from 'rxjs/observable/merge';
+        import { interval } from 'rxjs/observable/interval';
+
+        const timer1 = interval(1000).pipe(take(10));
+        const timer2 = interval(2000).pipe(take(6));
+        const timer3 = interval(500).pipe(take(10));
         const concurrent = 2; // the argument
-        const merged = timer1.merge(timer2, timer3, concurrent);
+        const merged = timer1.pipe(merge(timer2, timer3, concurrent));
         merged.subscribe(x => console.log(x));
       `,
       externalLink: {
