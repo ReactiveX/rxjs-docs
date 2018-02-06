@@ -55,10 +55,33 @@ export const windowCount: OperatorDoc = {
     {
       name: 'Ignore every 3rd click event, starting from the third one',
       code: `
-        const clicks = Rx.Observable.fromEvent(document, 'click');
-        const result = clicks.windowCount(2, 3)
-          .mergeAll(); // flatten the Observable-of-Observables
+        import { fromEvent } from "rxjs/observable/fromEvent";
+        import { mergeAll, windowCount } from "rxjs/operators";
+
+        const clicks = fromEvent(document, "click");
+        const result = clicks.pipe(
+          windowCount(2, 3),
+          mergeAll() // flatten the Observable-of-Observables
+        );
         result.subscribe(x => console.log(x));
+
+        /*
+        Example console output
+        [object MouseEvent] {
+          altKey: false,
+          AT_TARGET: 2,
+          bubbles: true,
+          BUBBLING_PHASE: 3,
+          button: 0,
+          buttons: 0,
+          cancelable: true,
+          cancelBubble: false,
+          CAPTURING_PHASE: 1,
+          clientX: 187,
+          clientY: 80,
+          .... //Entire object properties
+          }
+      */
       `,
       externalLink: {
         platform: 'JSBin',
