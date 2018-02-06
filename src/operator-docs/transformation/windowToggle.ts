@@ -62,9 +62,10 @@ export const windowToggle: OperatorDoc = {
 
       const clicks = fromEvent(document, 'click');
       const openings = interval(1000);
-      const result = clicks.windowToggle(openings, i =>
-        i % 2 ? interval(500) : empty()
-      ).mergeAll();
+      const result = clicks.pipe(
+        windowToggle(openings, i => i % 2 ? interval(500) : empty()),
+        mergeAll()
+      )
       result.subscribe(x => console.log(x));
 
       /*
