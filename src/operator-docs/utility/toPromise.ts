@@ -33,8 +33,9 @@ export const toPromise: OperatorDoc = {
     {
       name: 'Just return the emitted value of the observable as a promise',
       code: `
-          const source = Rx.Observable
-            .of(42)
+          import {of} from 'rxjs/observable/of';
+
+          const source = of(42)
             .toPromise();
 
         source.then((value) => console.log('Value: %s', value));
