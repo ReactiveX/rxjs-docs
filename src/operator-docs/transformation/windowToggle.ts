@@ -9,7 +9,7 @@ export const windowToggle: OperatorDoc = {
   parameters: [
     {
       name: 'openings',
-      type: 'Observable<O>',
+      type: 'Observable',
       attribute: '',
       description: 'An observable of notifications to start new windows.'
     },
