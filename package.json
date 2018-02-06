@@ -40,6 +40,7 @@
     "@angular/platform-browser-dynamic": "5.2.2",
     "@angular/router": "5.2.2",
     "@angular/service-worker": "5.2.2",
+    "@stackblitz/sdk": "0.3.4",
     "@types/hammerjs": "2.0.35",
     "core-js": "2.4.1",
     "hammerjs": "2.0.8",

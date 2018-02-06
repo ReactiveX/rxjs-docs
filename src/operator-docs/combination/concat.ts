@@ -77,20 +77,21 @@ export const concat: OperatorDoc = {
     {
       name:
         'Concatenate a timer counting from 0 to 3 with a synchronous sequence from 1 to 10',
-      code: `
-      import { take } from 'rxjs/operators';
-      import { interval } from 'rxjs/observable/interval';
-      import { range } from 'rxjs/observable/range';
-      import { concat } from 'rxjs/observable/concat';
+      code: `import { take } from 'rxjs/operators';
+  import { interval } from 'rxjs/observable/interval';
+  import { range } from 'rxjs/observable/range';
+  import { concat } from 'rxjs/observable/concat';
 
-      const timer = interval(1000).pipe(take(4));
-      const sequence = range(1, 10);
-      const result = concat(timer, sequence);
-      result.subscribe(x => console.log(x));
+  const timer = interval(1000).pipe(take(4));
+  const sequence = range(1, 10);
+  const result = concat(timer, sequence);
+  result.subscribe(x => {
+    const output = \`<h3>$\{x.toString\(\)\}<h3>\`;
+    document.getElementById('output').innerHTML = output;
+  });
 
-      // results in:
-      // 0 -1000ms-> 1 -1000ms-> 2 -1000ms-> 3 -immediate-> 1 ... 10
-    `,
+  // results in:
+  // 0 -1000ms-> 1 -1000ms-> 2 -1000ms-> 3 -immediate-> 1 ... 10`,
       externalLink: {
         platform: 'JSBin',
         url: 'http://jsbin.com/doqoyimaxu/embed?js,console'
@@ -106,7 +107,10 @@ export const concat: OperatorDoc = {
       const timer2 = interval(2000).pipe(take(6));
       const timer3 = interval(500).pipe(take(10));
       const result = timer1.pipe(concat(timer2, timer3));
-      result.subscribe(x => console.log(x));
+      result.subscribe(x => {
+        const output = \`<h3>$\{x.toString\(\)\}<h3>\`;
+        document.getElementById('output').innerHTML = output;
+      });
 
       // results in the following:
       // (Prints to console sequentially)
