@@ -21,6 +21,8 @@ import { OperatorExtrasComponent } from './components/operator-extras/operator-e
 import { AdditionalResourcesComponent } from './components/additional-resources/additional-resources.component';
 import { MarbleDiagramComponent } from './components/marble-diagram/marble-diagram.component';
 import { WalkthroughComponent } from './components/walkthrough/walkthrough.component';
+import { OperatorGeneralComponent } from './components/operator-general/operator-general.component';
+import { OperatorVendorExamplesComponent } from './components/operator-vendor-examples/operator-vendor-examples.component';
 import { HighlightJsDirective } from './directives/highlight-js.directive';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import { MaterialModule } from '../material/material.module';
@@ -32,6 +34,8 @@ import { MaterialModule } from '../material/material.module';
     OperatorHeaderComponent,
     OperatorParametersComponent,
     OperatorExamplesComponent,
+    OperatorGeneralComponent,
+    OperatorVendorExamplesComponent,
     RelatedOperatorsComponent,
     OperatorExtrasComponent,
     AdditionalResourcesComponent,

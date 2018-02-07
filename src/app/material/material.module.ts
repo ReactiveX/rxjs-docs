@@ -12,7 +12,8 @@ import {
   MatInputModule,
   MatMenuModule,
   MatTooltipModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatTabsModule
 } from '@angular/material';
 
 @NgModule({
@@ -28,6 +29,7 @@ import {
     MatInputModule,
     MatMenuModule,
     MatTooltipModule,
+    MatTabsModule,
     FlexLayoutModule,
     MatSnackBarModule
   ],
@@ -42,6 +44,7 @@ import {
     MatInputModule,
     MatMenuModule,
     MatTooltipModule,
+    MatTabsModule,
     FlexLayoutModule,
     MatSnackBarModule
   ]

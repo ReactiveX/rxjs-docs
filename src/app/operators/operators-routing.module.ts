@@ -3,7 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { OperatorsComponent } from './operators.component';
 import { OperatorComponent } from './components/operator/operator.component';
+import { OperatorGeneralComponent } from './components/operator-general/operator-general.component';
 import { ALL_OPERATORS } from '../../operator-docs';
+import { OperatorVendorExamplesComponent } from './components/operator-vendor-examples/operator-vendor-examples.component';
 
 const routes: Routes = [
   {
@@ -13,7 +15,17 @@ const routes: Routes = [
     children: [
       {
         path: ':operator',
-        component: OperatorComponent
+        component: OperatorComponent,
+        children: [
+          {
+            path: '',
+            component: OperatorGeneralComponent
+          },
+          {
+            path: ':vendor',
+            component: OperatorVendorExamplesComponent
+          }
+        ]
       },
       {
         path: '',

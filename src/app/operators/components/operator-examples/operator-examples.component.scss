@@ -1,12 +1,3 @@
-.code-block {
-  position: relative;
-
-  pre {
-    margin-top: 0;
-    padding-top: 0;
-  }
-}
-
 .menu-button {
   position: absolute;
   right: 0;
@@ -35,12 +26,4 @@
 
 .code-example {
   margin-bottom: 16px;
-}
-
-.bin-wrapper {
-  iframe {
-    border: none;
-    width: 100%;
-    height: 350px;
-  }
 }

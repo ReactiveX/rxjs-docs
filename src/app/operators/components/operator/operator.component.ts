@@ -11,7 +11,7 @@ import { MatSnackBar } from '@angular/material';
 import { pluck } from 'rxjs/operators';
 import { CopierService } from '../../../core/services/copier.service';
 import { SeoService } from '../../../core/services/seo.service';
-import { OperatorDoc } from '../../../../operator-docs/operator.model';
+import { OperatorDoc, VendorExample } from '../../../../operator-docs';
 
 export const OPERATOR_TOKEN = new InjectionToken<string>('operators');
 
@@ -23,9 +23,8 @@ export const OPERATOR_TOKEN = new InjectionToken<string>('operators');
 export class OperatorComponent implements OnInit {
   public operator: OperatorDoc;
   public operatorsMap = new Map<string, OperatorDoc>();
-
-  private readonly baseSourceUrl = 'https://github.com/ReactiveX/rxjs/blob/master/src/operators/';
-  private readonly baseSpecUrl = 'http://reactivex.io/rxjs/test-file/spec-js/operators';
+  public vendorExamples: string[];
+  public isVendor: boolean;
 
   constructor(
     private _router: Router,
@@ -45,6 +44,8 @@ export class OperatorComponent implements OnInit {
       .subscribe((name: string) => {
         if (this.operatorsMap.has(name)) {
           this.operator = this.operatorsMap.get(name);
+          this.vendorExamples = this.compileVendorTabs(this.operator);
+          this.isVendor = this.isVendorRoute(this._router.url);
           this.scrollToTop();
         } else {
           this.notfound();
@@ -67,74 +68,26 @@ export class OperatorComponent implements OnInit {
     }
   }
 
-  copyToClipboard(code: string) {
-    this._copierService.copyText(code);
-    this._snackBar.open(
-      'The example has been copied to your clipboard!',
-      null,
-      { duration: 3000 }
-    );
+  compileVendorTabs(operator: OperatorDoc) {
+    return operator.vendorExamples
+      ? operator.vendorExamples.reduce((acc: string[], curr: VendorExample) => {
+          if (!acc.includes(curr.vendorName)) {
+            return [...acc, curr.vendorName];
+          }
+          return acc;
+        }, [])
+      : [];
   }
 
-  get operatorName() {
-    return this.operator.name;
+  isVendorRoute(url: string) {
+    // make this dynamic in future
+    return (
+      this._router.url.includes('Angular') || this._router.url.includes('React')
+    );
   }
 
   get signature() {
     return this.operator.signature || 'Signature Placeholder';
-  }
-
-  get marbleUrl() {
-    return this.operator.marbleUrl;
-  }
-
-  get useInteractiveMarbles() {
-    return this.operator.useInteractiveMarbles;
-  }
-
-  get shortDescription() {
-    return (
-      this.operator.shortDescription &&
-      this.operator.shortDescription.description
-    );
-  }
-
-  get shortDescriptionExtras() {
-    return (
-      this.operator.shortDescription && this.operator.shortDescription.extras
-    );
-  }
-
-  get walkthrough() {
-    return this.operator.walkthrough && this.operator.walkthrough.description;
-  }
-
-  get walkthroughExtras() {
-    return this.operator.walkthrough && this.operator.walkthrough.extras;
-  }
-
-  get parameters() {
-    return this.operator.parameters || [];
-  }
-
-  get examples() {
-    return this.operator.examples || [];
-  }
-
-  get relatedOperators() {
-    return this.operator.relatedOperators || [];
-  }
-
-  get sourceUrl() {
-    return `${this.baseSourceUrl}/${this.operatorName}.ts`;
-  }
-
-  get specsUrl() {
-    return `${this.baseSpecUrl}/${this.operatorName}-spec.js.html`;
-  }
-
-  get additionalResources() {
-    return this.operator.additionalResources || [];
   }
 
   private notfound() {
