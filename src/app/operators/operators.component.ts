@@ -15,15 +15,33 @@ import {
   animate,
   transition
 } from '@angular/animations';
-import { Router, ActivatedRoute } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material';
-import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
-import { filter, takeUntil } from 'rxjs/operators';
+import {
+  filter,
+  takeUntil,
+  withLatestFrom,
+  flatMap,
+  map,
+  merge,
+  switchAll,
+  toArray,
+  concatAll,
+  reduce,
+  concat,
+  tap,
+  mergeAll,
+  scan,
+  debounce,
+  debounceTime,
+  distinct
+} from 'rxjs/operators';
 import { OperatorDoc } from '../../operator-docs/operator.model';
 import { OperatorMenuService } from '../core/services/operator-menu.service';
+import { FormControl } from '@angular/forms';
+import { of } from 'rxjs/observable/of';
+import { from } from 'rxjs/observable/from';
 
 const OPERATOR_MENU_GAP_LARGE = 64;
 const OPERATOR_MENU_GAP_SMALL = 54;
@@ -66,6 +84,8 @@ export class OperatorsComponent implements OnInit, AfterContentInit, OnDestroy {
   public categories: string[];
   private _onDestroy = new Subject();
 
+  private searchInput: FormControl;
+
   constructor(
     private _breakpointObserver: BreakpointObserver,
     private _operatorMenuService: OperatorMenuService,
@@ -73,6 +93,7 @@ export class OperatorsComponent implements OnInit, AfterContentInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.searchInput = new FormControl();
     this.groupedOperators = groupOperatorsByType(this.operators);
     this.categories = Object.keys(this.groupedOperators);
   }

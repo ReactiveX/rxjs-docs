@@ -5,12 +5,18 @@
                [fixedInViewport]="true"
                class="operator-list-sidenav"
                #operatorSidenav>
+    <form>
+      <mat-form-field class="full-width-form">
+        <mat-label>Search</mat-label>
+        <input matInput value="" [formControl]="searchInput">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </form>
     <mat-nav-list *ngFor="let category of categories"
                   class="operator-list">
-      <h3 mat-subheader
-          class="category-subheader">{{ category }}</h3>
+      <h3 mat-subheader class="category-subheader" *ngIf="(groupedOperators[category] | filter: searchInput.value).length > 0">{{ category }}</h3>
       <a mat-list-item
-         *ngFor="let operator of groupedOperators[category]"
+         *ngFor="let operator of groupedOperators[category] | filter: searchInput.value"
          [routerLink]="['/operators', operator.name]"
          routerLinkActive="active">
         {{ operator.name }}

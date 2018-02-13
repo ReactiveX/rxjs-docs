@@ -24,6 +24,8 @@ import { WalkthroughComponent } from './components/walkthrough/walkthrough.compo
 import { HighlightJsDirective } from './directives/highlight-js.directive';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import { MaterialModule } from '../material/material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -38,9 +40,17 @@ import { MaterialModule } from '../material/material.module';
     WalkthroughComponent,
     MarbleDiagramComponent,
     HighlightJsDirective,
-    SafeUrlPipe
+    SafeUrlPipe,
+    FilterPipe
   ],
-  imports: [CommonModule, MaterialModule, OperatorsRoutingModule, LayoutModule],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    OperatorsRoutingModule,
+    LayoutModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
   providers: [
     { provide: OPERATORS_TOKEN, useValue: ALL_OPERATORS },
     { provide: OPERATOR_TOKEN, useValue: ALL_OPERATORS }

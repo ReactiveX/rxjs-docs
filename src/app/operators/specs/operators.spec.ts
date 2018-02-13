@@ -11,6 +11,7 @@ import {
 } from '../operators.component';
 import { OperatorDoc } from '../../../operator-docs';
 import { OperatorMenuService } from '../../core/services/operator-menu.service';
+import { FilterPipe } from '../pipes/filter.pipe';
 
 const mockActivatedRoute = {
   snapshot: {},
@@ -40,7 +41,7 @@ describe('Operators', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
         imports: [RouterTestingModule, LayoutModule],
-        declarations: [OperatorsComponent],
+        declarations: [OperatorsComponent, FilterPipe],
         providers: [
           OperatorMenuService,
           { provide: OPERATORS_TOKEN, useValue: mockOperators },
