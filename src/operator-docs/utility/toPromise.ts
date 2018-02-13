@@ -26,6 +26,10 @@ export const toPromise: OperatorDoc = {
         type: 'Tip',
         text:
           'This operator makes reactive programming easy to use for developers who are not used to it.'
+      },
+      {
+        type: 'Tip',
+        text: 'After calling toPromise you can make use of async/await!'
       }
     ]
   },
