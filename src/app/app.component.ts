@@ -8,6 +8,7 @@ import {
 import { filter, map, mergeMap } from 'rxjs/operators';
 import { SeoService, SeoData } from './core/services/seo.service';
 import { OperatorMenuService } from './core/services/operator-menu.service';
+import { LanguageService } from './core/services/language.service';
 
 interface Menu {
   title: string;
@@ -23,22 +24,22 @@ interface Menu {
 export class AppComponent implements OnInit {
   menus: Menu[] = [
     {
-      title: 'Home',
+      title: 'MENU.HOME',
       link: '/',
       options: { exact: true }
     },
     {
-      title: 'Operators',
+      title: 'MENU.OPERATORS',
       link: '/operators',
       options: { exact: false }
     },
     {
-      title: 'Companies',
+      title: 'MENU.COMPANIES',
       link: '/companies',
       options: { exact: false }
     },
     {
-      title: 'Team',
+      title: 'MENU.TEAM',
       link: '/team',
       options: { exact: false }
     }
@@ -48,7 +49,8 @@ export class AppComponent implements OnInit {
     private _router: Router,
     private _activatedRoute: ActivatedRoute,
     private _seo: SeoService,
-    private _operatorMenuService: OperatorMenuService
+    private _operatorMenuService: OperatorMenuService,
+    private languageService: LanguageService
   ) {}
 
   ngOnInit() {
@@ -67,11 +69,13 @@ export class AppComponent implements OnInit {
         filter((data: SeoData) => data.title !== undefined)
       )
       .subscribe((data: SeoData) => this._seo.setHeaders(data));
+
+    this.languageService.init(['en', 'ru']);
   }
 
-  shouldOpenChildMenu(title: string) {
+  shouldOpenChildMenu(title: string): void {
     // for accessibility we need to ensure child menu is open when clicked
-    if (title === 'Operators') {
+    if (title === 'MENU.OPERATORS') {
       this._operatorMenuService.openOperatorMenu();
     }
   }
