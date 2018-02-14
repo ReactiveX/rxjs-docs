@@ -84,7 +84,7 @@ export class OperatorsComponent implements OnInit, AfterContentInit, OnDestroy {
   public categories: string[];
   private _onDestroy = new Subject();
 
-  private searchInput: FormControl;
+  public searchInput: FormControl;
 
   constructor(
     private _breakpointObserver: BreakpointObserver,
