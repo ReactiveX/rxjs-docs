@@ -24,7 +24,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'rxjs-dosc' }),
+    BrowserModule.withServerTransition({ appId: 'rxjs-docs' }),
     BrowserTransferStateModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {
       enabled: environment.production
