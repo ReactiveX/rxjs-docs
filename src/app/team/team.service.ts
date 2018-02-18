@@ -107,6 +107,14 @@ export class TeamService {
             avatar: 'https://avatars0.githubusercontent.com/u/1584489',
             twitterUrl: 'https://twitter.com/knitcodemonkey',
             webpageUrl: 'http://jenluker.com'
+          },
+          {
+            name: 'Jan-Niklas Wortmann',
+            role: 'Developer',
+            githubUrl: 'https://github.com/JWO719',
+            avatar: 'https://avatars3.githubusercontent.com/u/6104311',
+            twitterUrl: 'https://twitter.com/niklas_wortmann',
+            webpageUrl: ''
           }
         ]
       }
