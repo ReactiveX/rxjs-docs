@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
+
 import {
   BrowserModule,
   BrowserTransferStateModule
 } from '@angular/platform-browser';
+
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
