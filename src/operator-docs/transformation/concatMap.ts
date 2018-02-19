@@ -40,7 +40,8 @@ export const concatMap: OperatorDoc = {
   },
   examples: [
     {
-      name: 'Making memory leaks!',
+      name:
+        'Map the first click to inner observable (it ended the Observable of clicks)',
       code: `
       import { Observable } from 'rxjs/Observable';
       import 'rxjs/add/observable/interval';
@@ -49,7 +50,7 @@ export const concatMap: OperatorDoc = {
       const $click = Observable.fromEvent(document, 'click');
       const $interval = Observable.interval(3000)
           .mapTo((iClick, IInterval) => Click(iClick), Interval(IInterval);
-
+      // the MergeMap's project function is executed just on time!
       $click.mergeMap(() => $interval,
           (fromSource, fromInterval, iSource, IInterval) => fromInterval(iSource, IInterval))
           .subscribe(console.log);
