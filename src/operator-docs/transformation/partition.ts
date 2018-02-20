@@ -60,11 +60,7 @@ export const partition: OperatorDoc = {
         const clicksElsewhere = parts[1];
         clicksOnDivs.subscribe(x => console.log('DIV clicked: ', x));
         clicksElsewhere.subscribe(x => console.log('Other clicked: ', x));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/vekisov/embed?js,console,output'
-      }
+      `
     }
   ],
   relatedOperators: ['filter'],

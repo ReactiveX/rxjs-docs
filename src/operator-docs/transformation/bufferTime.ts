@@ -102,11 +102,7 @@ export const bufferTime: OperatorDoc = {
 
       []
       */
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/fuqewiy/7/embed?js,console,output'
-      }
+      `
     },
     {
       name:
@@ -158,11 +154,7 @@ export const bufferTime: OperatorDoc = {
 
       []
       */
-`,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/xohupot/6/embed?js,console,output'
-      }
+`
     }
   ],
   relatedOperators: [

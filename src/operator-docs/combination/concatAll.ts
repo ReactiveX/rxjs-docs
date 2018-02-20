@@ -52,11 +52,7 @@ export const concatAll: OperatorDoc = {
         );
         const firstOrder = higherOrder.pipe(concatAll());
         firstOrder.subscribe(x => console.log(x));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/guhefeyahi/embed?js,console,output'
-      }
+      `
     }
   ],
   relatedOperators: [

@@ -58,11 +58,7 @@ export const takeWhile: OperatorDoc = {
       436
       214
       161
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/lasosinudi/embed?js,console,output'
-      }
+      `
     }
   ],
   relatedOperators: ['take', 'takeLast', 'takeUntil', 'skip']

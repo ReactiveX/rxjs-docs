@@ -64,11 +64,7 @@ export const filter: OperatorDoc = {
       const example = source.pipe(filter(num => num % 2 === 0));
       //output: "Even number: 2", "Even number: 4"
       const subscribe = example.subscribe(val => console.log('Even number: ' + val));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/vafogoluye/1/embed?js,console'
-      }
+      `
     }
   ],
   relatedOperators: [

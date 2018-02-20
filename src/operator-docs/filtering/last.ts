@@ -39,11 +39,7 @@ export const last: OperatorDoc = {
       last.subscribe(x => console.log(x));
       // Logs below values
       // 9
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/reqacoselu/embed?html,js,console'
-      }
+      `
     }
   ],
   relatedOperators: ['takeLast', 'first']

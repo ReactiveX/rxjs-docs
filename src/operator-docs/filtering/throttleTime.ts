@@ -60,11 +60,7 @@ export const throttleTime: OperatorDoc = {
         const clicks = fromEvent(document, 'click');
         const result = clicks.pipe(throttleTime(1000));
         result.subscribe(x => console.log(x.clientX));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/nefefeb/embed?js,console,output'
-      }
+      `
     }
   ],
   relatedOperators: [

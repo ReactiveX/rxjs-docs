@@ -66,11 +66,7 @@ export const doOperator: OperatorDoc = {
           map(ev => ev.clientX)
         )
         positions.subscribe(x => console.log(x));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/pijosapixu/embed?js,console,output'
-      }
+      `
     }
   ],
   relatedOperators: ['map', 'subscribe']

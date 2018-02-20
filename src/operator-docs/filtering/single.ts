@@ -33,11 +33,7 @@ export const single: OperatorDoc = {
       const example = source.pipe(single(val => val === 4));
       //output: 4
       const subscribe = example.subscribe(val => console.log(val));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/solecibuza/embed?js,console'
-      }
+      `
     }
   ]
 };

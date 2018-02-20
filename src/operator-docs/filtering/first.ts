@@ -71,11 +71,7 @@ export const first: OperatorDoc = {
         const clicks = fromEvent(document, 'click');
         const result = clicks.pipe(first());
         result.subscribe(x => console.log(x));
-       `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/zixuweg/1/embed?html,js,console,output'
-      }
+       `
     },
     {
       name: 'Emits only the X postition of first click that happens on a DIV',
@@ -86,11 +82,7 @@ export const first: OperatorDoc = {
         const clicks = fromEvent(document, 'click');
         const result = clicks.pipe(first(ev => ev.target.tagName === 'DIV'));
         result.subscribe(x => console.log(x));
-       `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/yuwebew/1/embed?js,console,output'
-      }
+       `
     }
   ]
 };

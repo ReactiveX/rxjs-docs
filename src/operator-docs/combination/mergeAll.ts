@@ -46,11 +46,7 @@ export const mergeAll: OperatorDoc = {
         const higherOrder = clicks.pipe(map((ev) => interval(1000)));
         const firstOrder = higherOrder.pipe(mergeAll());
         firstOrder.subscribe(x => console.log(x));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/lebidefocu/1/embed?js,output'
-      }
+      `
     },
     {
       name:
@@ -66,11 +62,7 @@ export const mergeAll: OperatorDoc = {
         );
         const firstOrder = higherOrder.pipe(mergeAll(2));
         firstOrder.subscribe(x => console.log(x));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/kokezoribu/embed?js,output'
-      }
+      `
     }
   ],
   relatedOperators: [

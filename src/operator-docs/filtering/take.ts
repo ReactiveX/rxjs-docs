@@ -49,11 +49,7 @@ export const take: OperatorDoc = {
         // 2
         // 3
         // 4
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/yujema/embed?html,js,console'
-      }
+      `
     }
   ],
   relatedOperators: ['takeLast', 'takeUntil', 'takeWhile', 'skip']

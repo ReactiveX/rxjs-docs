@@ -51,11 +51,7 @@ export const delay: OperatorDoc = {
         const clicks = fromEvent(document, 'click').pipe(mapTo('click'));
         const delayedClicks = clicks.pipe(delay(1000));
         delayedClicks.subscribe(x => console.log(x));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/howeziyoma/embed?js,console,output'
-      }
+      `
     },
     {
       name: 'Delay all clicks until a future date happens',
@@ -67,11 +63,7 @@ export const delay: OperatorDoc = {
         const date = new Date('March 15, 2050 12:00:00');
         const delayedClicks = clicks.pipe(delay(date));
         delayedClicks.subscribe(x => console.log(x));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/cozogifayu/embed?js,console,output'
-      }
+      `
     }
   ],
   relatedOperators: ['debounceTime', 'delayWhen'],

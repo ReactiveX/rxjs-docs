@@ -58,11 +58,7 @@ export const switchMap: OperatorDoc = {
             switchMap((ev) => interval(1000))
           );
           result.subscribe(x => console.log(x));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/yehawof/edit?js,console,output'
-      }
+      `
     }
   ],
   relatedOperators: [

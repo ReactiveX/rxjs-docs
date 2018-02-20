@@ -43,11 +43,7 @@ export const buffer: OperatorDoc = {
         const interval = interval(1000);
         const buffered = interval.pipe(buffer(clicks));
         buffered.subscribe(x => console.log(x));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/xetemuteho/embed?js,console,output'
-      }
+      `
     }
   ],
   relatedOperators: [

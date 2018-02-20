@@ -91,11 +91,7 @@ export const concat: OperatorDoc = {
   });
 
   // results in:
-  // 0 -1000ms-> 1 -1000ms-> 2 -1000ms-> 3 -immediate-> 1 ... 10`,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/doqoyimaxu/embed?js,console'
-      }
+  // 0 -1000ms-> 1 -1000ms-> 2 -1000ms-> 3 -immediate-> 1 ... 10`
     },
     {
       name: 'Concatenate an array of 3 Observables',
@@ -117,11 +113,7 @@ export const concat: OperatorDoc = {
       // -1000ms-> 0 -1000ms-> 1 -1000ms-> ... 9
       // -2000ms-> 0 -2000ms-> 1 -2000ms-> ... 5
       // -500ms-> 0 -500ms-> 1 -500ms-> ... 9
-    `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/decaromone/1/embed?js,console'
-      }
+    `
     }
   ],
   relatedOperators: ['concatAll', 'concatMap', 'concatMapTo']

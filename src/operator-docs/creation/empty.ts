@@ -35,11 +35,7 @@ export const empty: OperatorDoc = {
             next: () => console.log('next'), // does not log anything
             complete: () => console.log('complete'), // logs 'complete'
           });
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/hojacunecu/1/embed?js,console,output'
-      }
+      `
     },
     {
       name: 'Observable emits initial value then completes',
@@ -52,11 +48,7 @@ export const empty: OperatorDoc = {
           next: (val) => console.log(\`next: \${val}\`), // logs 'next: initial value'
           complete: () => console.log('complete'), // logs 'complete'
         });
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/tubonoradi/1/embed?js,console,output'
-      }
+      `
     },
     {
       name: `Map and flatten only odd numbers to the sequence 'ax', 'bx', 'cx'`,
@@ -76,11 +68,7 @@ export const empty: OperatorDoc = {
           next: (x) => console.log(x), // logs result values
           complete: () => console.log('complete'), // logs 'complete'
         });
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/qazabojiri/embed?js,console,output'
-      }
+      `
     }
   ],
   relatedOperators: ['create', 'of', 'throw']

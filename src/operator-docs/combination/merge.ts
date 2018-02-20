@@ -54,11 +54,7 @@ export const merge: OperatorDoc = {
         const timer = interval(1000);
         const clicksOrTimer = clicks.pipe(merge(timer));
         clicksOrTimer.subscribe(x => console.log(x));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/wihafapiva/1/embed?js,output'
-      }
+      `
     },
     {
       name: 'Merge together 3 Observables, but only 2 run concurrently',
@@ -73,11 +69,7 @@ export const merge: OperatorDoc = {
         const concurrent = 2; // the argument
         const merged = timer1.pipe(merge(timer2, timer3, concurrent));
         merged.subscribe(x => console.log(x));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/midosuqaga/1/embed?js,output'
-      }
+      `
     }
   ],
   relatedOperators: ['mergeAll', 'mergeMap', 'mergeMapTo', 'mergeScan']

@@ -77,11 +77,7 @@ export const bufferCount: OperatorDoc = {
         y: 82
       }]
       */
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/ceripaf/8/embed?js,console,output'
-      }
+      `
     },
     {
       name: 'On every click, emit the last two click events as an array',
@@ -137,11 +133,7 @@ export const bufferCount: OperatorDoc = {
         y: 335
       }]
       */
-`,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/cenuwip/6/embed?js,console,output'
-      }
+`
     }
   ],
   relatedOperators: [

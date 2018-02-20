@@ -48,11 +48,7 @@ export const sample: OperatorDoc = {
         const example = source.pipe(sample(interval(2000)));
         //output: 2..4..6..8..
         const subscribe = example.subscribe(val => console.log(val));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/gemebopifu/1/embed?js,console'
-      }
+      `
     }
   ],
   relatedOperators: ['audit', 'debounce', 'sampleTime', 'throttle']

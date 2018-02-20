@@ -60,11 +60,7 @@ export const takeUntil: OperatorDoc = {
         // 2
         // 3
         // ...
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/rujeci/embed?html,js,console,output'
-      }
+      `
     }
   ],
   relatedOperators: ['take', 'takeLast', 'takeWhile', 'skip']

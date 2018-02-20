@@ -59,11 +59,7 @@ export const windowOperator: OperatorDoc = {
           mergeAll()
         );
         result.subscribe(x => console.log(x));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/racefub/embed?js,console,output'
-      }
+      `
     }
   ],
   relatedOperators: [

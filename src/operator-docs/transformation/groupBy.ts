@@ -95,11 +95,7 @@ export const groupBy: OperatorDoc = {
 
           [ { id: 3, name: 'qfs3' } ]
         */
-        `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/linekelumo/1/embed?js,console'
-      }
+        `
     },
     {
       name: 'Pivot data on the id field',
@@ -133,11 +129,7 @@ export const groupBy: OperatorDoc = {
 
             { id: 3, values: [ 'qfs1' ] }
           */
-        `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/racikizeji/embed?js,console'
-      }
+        `
     }
   ],
   relatedOperators: [],

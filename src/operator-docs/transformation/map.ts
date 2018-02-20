@@ -53,11 +53,7 @@ export const map: OperatorDoc = {
         const clicks = fromEvent(document, 'click');
         const positions = clicks.pipe(map(ev => ev.clientX));
         positions.subscribe(x => console.log(x));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/detidogile/embed?js,console,output'
-      }
+      `
     }
   ],
   relatedOperators: ['mapTo', 'pluck'],

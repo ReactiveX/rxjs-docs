@@ -32,11 +32,7 @@ export const skipUntil: OperatorDoc = {
         const example = source.pipe(skipUntil(timer(6000)));
         //output: 5...6...7...8........
         const subscribe = example.subscribe(val => console.log(val));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/tapizososu/embed?js,console,output'
-      }
+      `
     }
   ]
 };

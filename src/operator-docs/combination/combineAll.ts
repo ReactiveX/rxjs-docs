@@ -1,5 +1,28 @@
 import { OperatorDoc } from '../operator.model';
 
+const EXAMPLE_CODE = `
+import { map, combineAll, take } from 'rxjs/operators';
+import { interval } from 'rxjs/observable/interval';
+import { fromEvent } from 'rxjs/observable/fromEvent';
+
+const clicks = fromEvent(document, 'click');
+const higherOrder = clicks.pipe(
+  map(ev =>
+    interval(Math.random()*2000).pipe(take(3))
+  ),
+  take(2)
+);
+
+const result = higherOrder.pipe(
+  combineAll()
+);
+
+result.subscribe(x => {
+  const output = \`<h3>$\{x.toString\(\)\}<h3>\`;
+  document.getElementById('output').innerHTML += output;
+});
+`;
+
 export const combineAll: OperatorDoc = {
   name: 'combineAll',
   operatorType: 'combination',
@@ -50,30 +73,7 @@ export const combineAll: OperatorDoc = {
     {
       name:
         'Map two click events to a finite interval Observable, then apply <span class="markdown-code">combineAll</span>',
-      code: `import { map, combineAll, take } from 'rxjs/operators';
-import { interval } from 'rxjs/observable/interval';
-import { fromEvent } from 'rxjs/observable/fromEvent';
-
-const clicks = fromEvent(document, 'click');
-const higherOrder = clicks.pipe(
-  map(ev =>
-    interval(Math.random()*2000).pipe(take(3))
-  ),
-  take(2)
-);
-
-const result = higherOrder.pipe(
-  combineAll()
-);
-
-result.subscribe(x => {
-  const output = \`<h3>$\{x.toString\(\)\}<h3>\`;
-  document.getElementById('output').innerHTML = output;
-});`,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/peparawuvo/1/embed?js,console,output'
-      }
+      code: EXAMPLE_CODE
     }
   ],
   relatedOperators: ['combineLatest', 'mergeAll'],

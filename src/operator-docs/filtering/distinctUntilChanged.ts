@@ -63,11 +63,7 @@ export const distinctUntilChanged: OperatorDoc = {
       of(1, 1, 2, 2, 2, 1, 1, 2, 3, 3, 4)
        .pipe(distinctUntilChanged())
        .subscribe(x => console.log(x));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/poxayavuge/embed?js,console'
-      }
+      `
     },
     {
       name: 'An example using a compare function',
@@ -83,11 +79,7 @@ export const distinctUntilChanged: OperatorDoc = {
         )
         .pipe(distinctUntilChanged((p, q) => p.name === q.name))
         .subscribe(x => console.log(x));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/duhexuhoxo/embed?js,console'
-      }
+      `
     }
   ],
   relatedOperators: [],

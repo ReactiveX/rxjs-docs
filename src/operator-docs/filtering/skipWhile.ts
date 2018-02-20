@@ -50,11 +50,7 @@ export const skipWhile: OperatorDoc = {
       18
       19
       20
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/qupucehelo/embed?js,console,output'
-      }
+      `
     }
   ]
 };

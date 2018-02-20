@@ -88,11 +88,7 @@ export const forkJoin: OperatorDoc = {
       // Logs:
       // [4, 8]
       // "This is how it ends!"
-    `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/kinilaruki/1/embed?js,console'
-      }
+    `
     },
     {
       name: 'Use forkJoin with operator emitting after some time',
@@ -113,11 +109,7 @@ export const forkJoin: OperatorDoc = {
       // Logs:
       // [2, 3] after 3 seconds
       // "This is how it ends!" immediately after
-    `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/rewivubuqi/1/embed?js,console'
-      }
+    `
     },
     {
       name: 'Use forkJoin with project function',
@@ -135,11 +127,7 @@ export const forkJoin: OperatorDoc = {
       // Logs:
       // 5 after 3 seconds
       // "This is how it ends!" immediately after
-    `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/wayomumike/1/embed?js,console'
-      }
+    `
     }
   ],
   relatedOperators: ['combineLatest', 'zip']

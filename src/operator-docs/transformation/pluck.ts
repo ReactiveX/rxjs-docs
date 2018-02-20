@@ -49,11 +49,7 @@ export const pluck: OperatorDoc = {
         const clicks = fromEvent(document, 'click');
         const tagNames = clicks.pipe(pluck('target', 'tagName'));
         tagNames.subscribe(x => console.log(x));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/vucuca/embed?js,console,output'
-      }
+      `
     }
   ],
   relatedOperators: ['map'],

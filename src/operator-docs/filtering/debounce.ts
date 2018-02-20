@@ -56,11 +56,7 @@ export const debounce: OperatorDoc = {
         const clicks = fromEvent(document, 'click');
         const result = clicks.pipe(debounce(() => interval(1000)));
         result.subscribe(x => console.log(x));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/zuyafikiqa/embed?js,console,output'
-      }
+      `
     }
   ],
   relatedOperators: ['debounceTime', 'audit', 'delayWhen', 'throttle'],

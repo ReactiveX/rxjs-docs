@@ -1,5 +1,26 @@
 import { OperatorDoc } from '../operator.model';
 
+const EXAMPLE_CODE = `
+import { combineLatest } from 'rxjs/operators/combineLatest';
+import { of } from 'rxjs/observable/of';
+
+const weight = of(70, 72, 76, 79, 75);
+const height = of(1.76, 1.77, 1.78);
+const bmi = weight.pipe(
+  combineLatest(height, (w, h) => w / (h * h))
+);
+/*
+   Output:
+   BMI is 24.212293388429753
+   BMI is 23.93948099205209
+   BMI is 23.671253629592222
+*/
+bmi.subscribe(x => {
+  const output = \`<h3>BMI is $\{x.toString\(\)\}<h3>\`;
+  document.getElementById('output').innerHTML += output;
+});
+`;
+
 export const combineLatest: OperatorDoc = {
   name: 'combineLatest',
   operatorType: 'combination',
@@ -55,27 +76,7 @@ export const combineLatest: OperatorDoc = {
     {
       name:
         'Dynamically calculate the Body-Mass Index from an Observable of weight and one for height',
-      code: `
-        import { combineLatest } from 'rxjs/operators;
-        import { of } from 'rxjs/observable/of';
-
-        const weight = of(70, 72, 76, 79, 75);
-        const height = of(1.76, 1.77, 1.78);
-        const bmi = weight.pipe(
-          combineLatest(height, (w, h) => w / (h * h))
-        );
-        /*
-           Output:
-           BMI is 24.212293388429753
-           BMI is 23.93948099205209
-           BMI is 23.671253629592222
-        */
-        bmi.subscribe(x => console.log('BMI is ' + x));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/pivowunedu/1/embed?js,console'
-      }
+      code: EXAMPLE_CODE
     }
   ],
   relatedOperators: ['combineAll', 'merge', 'withLatestFrom'],

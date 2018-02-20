@@ -86,11 +86,7 @@ export const bufferWhen: OperatorDoc = {
 
       []
       */
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/jemeron/9/embed?js,console,output'
-      }
+      `
     },
     {
       name: 'Buffer all the click events until you press the Enter key',
@@ -149,11 +145,7 @@ export const bufferWhen: OperatorDoc = {
 
       []
       */
-`,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/tuvesok/5/embed?js,console,output'
-      }
+`
     }
   ],
   relatedOperators: [

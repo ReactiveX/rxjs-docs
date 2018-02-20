@@ -55,11 +55,7 @@ export const scan: OperatorDoc = {
         let seed = 0;
         let count = ones.pipe(scan((acc, one) => acc + one, seed));
         count.subscribe(x => console.log(x));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/qemuzufofo/embed?js,console,output'
-      }
+      `
     }
   ],
   relatedOperators: ['expand', 'mergeScan', 'reduce'],

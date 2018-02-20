@@ -66,11 +66,7 @@ export const debounceTime: OperatorDoc = {
           debounceTime(500)
         )
         .subscribe((search)=> output.textContent=search);
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/gapobakuwu/edit?js,output'
-      }
+      `
     }
   ],
   relatedOperators: [

@@ -41,11 +41,7 @@ export const withLatestFrom: OperatorDoc = {
         );
         const firstOrder = higherOrder.pipe(concatAll());
         firstOrder.subscribe(x => console.log(x));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/wojoqenitu/1/embed?js,console,output'
-      }
+      `
     }
   ],
   relatedOperators: ['combineLatest']

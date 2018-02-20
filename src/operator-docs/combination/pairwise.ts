@@ -45,11 +45,7 @@ export const pairwise: OperatorDoc = {
         })
       );
       distance.subscribe(x => console.log(x));
-    `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/wenazagegu/embed?js,console,output'
-      }
+    `
     }
   ],
   relatedOperators: ['buffer', 'bufferCount']

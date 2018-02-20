@@ -1,4 +1,5 @@
-export type OperatorType = 'combination'
+export type OperatorType =
+  | 'combination'
   | 'conditional'
   | 'creation'
   | 'error handling'
@@ -13,11 +14,6 @@ export interface OperatorReference {
   author?: string;
 }
 
-export interface ExternalLink {
-  platform: 'JSBin' | 'JSFiddle';
-  url: string;
-}
-
 export interface OperatorParameters {
   name: string;
   type: string;
@@ -28,7 +24,6 @@ export interface OperatorParameters {
 export interface OperatorExample {
   name: string;
   code: string;
-  externalLink: ExternalLink;
 }
 
 export interface OperatorExtra {
@@ -45,11 +40,11 @@ export interface OperatorDoc {
   readonly parameters?: OperatorParameters[];
   readonly shortDescription?: {
     description: string;
-    extras?: OperatorExtra[]
+    extras?: OperatorExtra[];
   };
   readonly walkthrough?: {
     description: string;
-    extras?: OperatorExtra[]
+    extras?: OperatorExtra[];
   };
   readonly examples?: OperatorExample[];
   readonly additionalResources?: OperatorReference[];

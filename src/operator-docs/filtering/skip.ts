@@ -31,11 +31,7 @@ export const skip: OperatorDoc = {
         const example = source.pipe(skip(5));
         //output: 5...6...7...8........
         const subscribe = example.subscribe(val => console.log(val));
-      `,
-      externalLink: {
-        platform: 'JSBin',
-        url: 'http://jsbin.com/hacepudabi/1/embed?js,console'
-      }
+      `
     }
   ]
 };
