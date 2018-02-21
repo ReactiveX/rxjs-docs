@@ -33,7 +33,7 @@ export const delayWhen: OperatorDoc = {
     description: `
       <p>
         delayWhen allows you to 'delay' the emitions on items based on complex criteria you can have,
-        and give you use each item as an argument yo your delayFunction.
+        and give you use each item (of the source observable) as an argument to your delayFunction.
         If the second argument is applied, subscriptionDelay (an Observable) it delays the subscription
         once it emmits any value.
       </p>

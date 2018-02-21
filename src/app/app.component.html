@@ -13,7 +13,7 @@
              [routerLinkActiveOptions]="menu.options"
              [routerLink]="menu.link"
              (click)="shouldOpenChildMenu(menu.title)">
-            {{menu.title}}
+            {{menu.title | translate}}
           </a>
         </mat-nav-list>
       </mat-sidenav>
