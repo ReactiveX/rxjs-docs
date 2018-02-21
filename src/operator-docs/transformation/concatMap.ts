@@ -35,8 +35,10 @@ export const concatMap: OperatorDoc = {
     these inner Observables using <a href="#/operators/concatAll">concatAll</a>.</span>`
   },
   walkthrough: {
-    description: `You have to be care of managing the subscriptions of inner Observables
-    because they do not complete until you unsubscribe explicitely from them`
+    description: `the source observable maps values to inner observable, subscribe and emit in order.
+     After subscribing the source observable is ended therefore the concatMap's project function
+     is only executed once. the second parameter 'resultFunction', allows you to access to the index of
+     source observable and inner observable (besides the items)`
   },
   examples: [
     {
@@ -44,15 +46,19 @@ export const concatMap: OperatorDoc = {
         'Map the first click to inner observable (it ended the Observable of clicks)',
       code: `
       import { Observable } from 'rxjs/Observable';
-      import 'rxjs/add/observable/interval';
-      import 'rxjs/add/operator/mapTo';
-      import 'rxjs/add/operator/mergeMap';
-      const $click = Observable.fromEvent(document, 'click');
-      const $interval = Observable.interval(3000)
-          .mapTo((iClick, IInterval) => Click(iClick), Interval(IInterval);
-      // the MergeMap's project function is executed just on time!
-      $click.mergeMap(() => $interval,
-          (fromSource, fromInterval, iSource, IInterval) => fromInterval(iSource, IInterval))
+      import { interval } from 'rxjs/observable/interval';
+      import { fromEvent } from 'rxjs/observable/fromEvent';
+
+      import { mapTo, concatMap } from 'rxjs/operators';
+
+      const $click = fromEvent(document, 'click');
+      const $interval = interval(3000)
+          .pipe(mapTo((iClick, iInterval) => 'Click('+iClick+')'+', '+'Interval('+iInterval+')'));
+      // the ConcatMap's project function is executed just one time!
+      // Even if you make aditional cliks the ConcatMap's project function is not longer executed
+      // output; Click(0), Interval(0) -> Click(0), Interval(1) -> Click(0), Interval(2) -> etc
+      $click.pipe(concatMap(() => $interval,
+          (fromSource, fromInterval, indexSource, indexInterval) => fromInterval(indexSource, indexInterval)))
           .subscribe(console.log);
       `,
       externalLink: {
