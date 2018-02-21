@@ -43,18 +43,17 @@ export const delayWhen: OperatorDoc = {
     {
       name: 'It delays the emission of items by 1 seconds',
       code: `
-          import { Observable } from 'rxjs/Observable';
-          import 'rxjs/add/observable/fromEvent';
-          import 'rxjs/add/observable/timer';
-          import 'rxjs/add/operator/delayWhen';
+          import { timer } from 'rxjs/observable/timer';
+          import { fromEvent } from 'rxjs/observable/fromEvent';
+          import { delayWhen } from 'rxjs/operators';
           const app = document.getElementById('app');
-          const $moving = Observable.fromEvent<MouseEvent>(document, 'mousemove');
-          const delay = () => Observable.timer(1000);
+          const $moving = fromEvent<MouseEvent>(document, 'mousemove');
+          const delay = () => timer(1000);
           $moving
-              .delayWhen(delay)
+              .pipe(delayWhen(delay))
               .subscribe(value => {
-                  app.style.right = 'value.clientX'+px;
-                  app.style.bottom = 'value.clientY'+px;
+                  app.style.right = String(value.clientX+'px');
+                  app.style.bottom = String(value.clientY+'px');
               });
       `,
       externalLink: {
@@ -66,18 +65,23 @@ export const delayWhen: OperatorDoc = {
       name:
         'It delays the emission of items by a given span time that depends on the mouse position on the x-axis',
       code: `
-          const $moving = Observable.fromEvent<MouseEvent>(document, 'mousemove');
+          import { BounceBall } from './Ball'; // check the live example
+          import { Observable } from 'rxjs/Observable';
+          import { fromEvent } from 'rxjs/observable/fromEvent';
+          import { interval } from 'rxjs/observable/interval';
+          import { delayWhen } from 'rxjs/operators';
+          const $moving = fromEvent<MouseEvent>(document, 'mousemove');
           const delay = (...args) => {
               const mouseEvent: MouseEvent = args[0];
-              return (mouseEvent.clientX <= 639) ? Observable.interval(500) : Observable.interval(2000);
+              return (mouseEvent.clientX <= 639) ? interval(500) : interval(2000);
           }
-          $moving.delayWhen(delay).subscribe(value => {
+          $moving.pipe(delayWhen(delay)).subscribe(value => {
               BounceBall({
                   color: 'deepskyblue',
                   gravity: 1,
                   position: {
-                      x: 'value.clientX'+px,
-                      y: 'value.clientY'+px
+                      x: value.clientX+'px',
+                      y: value.clientY+'px'
                   }
               });
           });
