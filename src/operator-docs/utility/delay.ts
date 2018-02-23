@@ -44,26 +44,28 @@ export const delay: OperatorDoc = {
   examples: [
     {
       name: 'Delay each click by one second',
-      code: `
-        import { delay, mapTo } from 'rxjs/operators';
-        import { fromEvent } from 'rxjs/observable/fromEvent';
+      code: `import { delay, mapTo } from 'rxjs/operators';
+import { fromEvent } from 'rxjs/observable/fromEvent';
 
-        const clicks = fromEvent(document, 'click').pipe(mapTo('click'));
-        const delayedClicks = clicks.pipe(delay(1000));
-        delayedClicks.subscribe(x => console.log(x));
-      `
+const clicks = fromEvent(document, 'click').pipe(mapTo('click'));
+const delayedClicks = clicks.pipe(delay(1000));
+delayedClicks.subscribe(x => {
+  const output = \`<p>$\{x}</p>\`;
+  document.getElementById('output').innerHTML = output;
+});`
     },
     {
       name: 'Delay all clicks until a future date happens',
-      code: `
-        import { delay } from 'rxjs/operators';
-        import { fromEvent } from 'rxjs/observable/fromEvent';
+      code: `import { delay } from 'rxjs/operators';
+import { fromEvent } from 'rxjs/observable/fromEvent';
 
-        const clicks = fromEvent(document, 'click');
-        const date = new Date('March 15, 2050 12:00:00');
-        const delayedClicks = clicks.pipe(delay(date));
-        delayedClicks.subscribe(x => console.log(x));
-      `
+const clicks = fromEvent(document, 'click');
+const date = new Date('March 15, 2050 12:00:00');
+const delayedClicks = clicks.pipe(delay(date));
+delayedClicks.subscribe(x => {
+  const output = \`<p>$\{x}</p>\`;
+  document.getElementById('output').innerHTML = output;
+});`
     }
   ],
   relatedOperators: ['debounceTime', 'delayWhen'],

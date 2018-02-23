@@ -56,17 +56,21 @@ export const doOperator: OperatorDoc = {
     {
       name:
         'Map every click to the clientX position of that click, while also logging the click event',
-      code: `
-        import { tap, map } from 'rxjs/operators';
-        import { fromEvent } from 'rxjs/observable/fromEvent';
+      code: `import { tap, map } from 'rxjs/operators';
+import { fromEvent } from 'rxjs/observable/fromEvent';
 
-        const clicks = fromEvent(document, 'click');
-        const positions = clicks.pipe(
-          tap(ev => console.log(ev.type))
-          map(ev => ev.clientX)
-        )
-        positions.subscribe(x => console.log(x));
-      `
+const clicks = fromEvent(document, 'click');
+const positions = clicks.pipe(
+  tap(ev => {
+    const output = \`<p>$\{ev.type}</p>\`;
+    document.getElementById('output').innerHTML = output;
+  }),
+  map(ev => {
+    const output = \`<p>$\{ev.clientX}</p>\`;
+    document.getElementById('output').innerHTML += output;
+  }),
+)
+positions.subscribe(x => console.log(x));`
     }
   ],
   relatedOperators: ['map', 'subscribe']
