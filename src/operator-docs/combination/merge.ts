@@ -53,7 +53,10 @@ export const merge: OperatorDoc = {
         const clicks = fromEvent(document, 'click');
         const timer = interval(1000);
         const clicksOrTimer = clicks.pipe(merge(timer));
-        clicksOrTimer.subscribe(x => console.log(x));
+        clicksOrTimer.subscribe(x => {
+          const output = \`<h3>$\{x.toString()\}<h3>\`;
+          document.getElementById('output').innerHTML = output;
+        });
       `
     },
     {
@@ -68,7 +71,10 @@ export const merge: OperatorDoc = {
         const timer3 = interval(500).pipe(take(10));
         const concurrent = 2; // the argument
         const merged = timer1.pipe(merge(timer2, timer3, concurrent));
-        merged.subscribe(x => console.log(x));
+        merged.subscribe(x => {
+          const output = \`<h3>$\{x.toString()\}<h3>\`;
+          document.getElementById('output').innerHTML = output;
+        });
       `
     }
   ],

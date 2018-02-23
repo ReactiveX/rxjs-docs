@@ -51,7 +51,10 @@ export const concatAll: OperatorDoc = {
           map(ev => interval(1000).pipe(take(4)))
         );
         const firstOrder = higherOrder.pipe(concatAll());
-        firstOrder.subscribe(x => console.log(x));
+        firstOrder.subscribe(x => {
+          const output = \`<h3>$\{x.toString()\}<h3>\`;
+          document.getElementById('output').innerHTML = output;
+        });
       `
     }
   ],

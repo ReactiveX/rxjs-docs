@@ -32,8 +32,14 @@ export const empty: OperatorDoc = {
 
           const observable = empty();
           const subscription = observable.subscribe({
-            next: () => console.log('next'), // does not log anything
-            complete: () => console.log('complete'), // logs 'complete'
+            next: () => {
+              const output = \`<h3>next<h3>\`;
+              document.getElementById('output').innerHTML = output; // does not log anything
+            },
+            complete: () => {
+              const output = \`<h3>complete<h3>\`;
+              document.getElementById('output').innerHTML = output; // logs 'complete'
+            },
           });
       `
     },
@@ -45,8 +51,14 @@ export const empty: OperatorDoc = {
 
         const observable = empty().pipe(startWith('initial value'));
         const subscription = observable.subscribe({
-          next: (val) => console.log(\`next: \${val}\`), // logs 'next: initial value'
-          complete: () => console.log('complete'), // logs 'complete'
+          next: (val) => {
+            const output = \`<h3>next: \${val}\<h3>\`;
+            document.getElementById('output').innerHTML = output;  // logs 'next: initial value'
+          },
+          complete: () => {
+            const output = \`<h3>complete<h3>\`;
+            document.getElementById('output').innerHTML = output; // logs 'complete'
+          },
         });
       `
     },
@@ -65,8 +77,14 @@ export const empty: OperatorDoc = {
           )
         );
         const subscription = result.subscribe({
-          next: (x) => console.log(x), // logs result values
-          complete: () => console.log('complete'), // logs 'complete'
+          next: (val) => {
+            const output = \`<h3>\${val}\<h3>\`;
+            document.getElementById('output').innerHTML = output; // logs result values
+          },
+          complete: () => {
+            const output = \`<h3>complete<h3>\`;
+            document.getElementById('output').innerHTML = output; // logs 'complete'
+          },
         });
       `
     }

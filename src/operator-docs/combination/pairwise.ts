@@ -44,7 +44,10 @@ export const pairwise: OperatorDoc = {
           return Math.sqrt(Math.pow(x0 - x1, 2) + Math.pow(y0 - y1, 2));
         })
       );
-      distance.subscribe(x => console.log(x));
+      distance.subscribe(x => {
+        const output = \`<h3>$\{x.toString()\}<h3>\`;
+        document.getElementById('output').innerHTML = output;
+      });
     `
     }
   ],

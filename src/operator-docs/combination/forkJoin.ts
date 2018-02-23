@@ -81,7 +81,10 @@ export const forkJoin: OperatorDoc = {
         of(5, 6, 7, 8)
       );
       observable.subscribe(
-        value => console.log(value),
+        value => {
+          const output = \`<h3>$\{value.toString()\}<h3>\`;
+          document.getElementById('output').innerHTML = output;
+        },
         err => {},
         () => console.log('This is how it ends!')
       );
@@ -102,7 +105,10 @@ export const forkJoin: OperatorDoc = {
         interval(500).pipe(take(4)) // emit 0, 1, 2, 3 every half a second and complete
       );
       observable.subscribe(
-        value => console.log(value),
+        value => {
+          const output = \`<h3>$\{value.toString()\}<h3>\`;
+          document.getElementById('output').innerHTML = output;
+        },
         err => {},
         () => console.log('This is how it ends!')
       );
@@ -114,13 +120,20 @@ export const forkJoin: OperatorDoc = {
     {
       name: 'Use forkJoin with project function',
       code: `
-      const observable = Rx.Observable.forkJoin(
-        Rx.Observable.interval(1000).take(3), // emit 0, 1, 2 every second and complete
-        Rx.Observable.interval(500).take(4), // emit 0, 1, 2, 3 every half a second and complete
+      import { take } from 'rxjs/operators';
+      import { forkJoin } from 'rxjs/observable/forkJoin';
+      import { interval } from 'rxjs/observable/interval';
+
+      const observable = forkJoin(
+        interval(1000).pipe(take(3)), // emit 0, 1, 2 every second and complete
+        interval(500).pipe(take(4)), // emit 0, 1, 2, 3 every half a second and complete
         (n, m) => n + m
       );
       observable.subscribe(
-        value => console.log(value),
+        value => {
+          const output = \`<h3>$\{value.toString()\}<h3>\`;
+          document.getElementById('output').innerHTML = output;
+        },
         err => {},
         () => console.log('This is how it ends!')
       );
