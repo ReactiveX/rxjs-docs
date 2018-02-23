@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { OperatorDoc } from '../../../operator-docs';
 import { LanguageService } from './language.service';
 import { Lang } from '../models/language.model';
+import { MenuOperator } from '../../../operator-docs/operator.model';
 
 @Injectable()
 export class OperatorsService {
@@ -40,5 +41,21 @@ export class OperatorsService {
 
   getOperators(): Observable<OperatorDoc[]> {
     return this.operators;
+  }
+
+  getOperatorsForMenu(): Promise<MenuOperator[]> {
+    return import('../../../operator-docs').then(module => {
+      return module.ALL_OPERATORS_EN.map(operator => {
+        const { name, operatorType } = operator;
+
+        return { name, operatorType };
+      });
+    });
+  }
+
+  getDefaultOperator(name: string): Promise<OperatorDoc | undefined> {
+    return import('../../../operator-docs').then(module => {
+      return module.ALL_OPERATORS_EN.find(operator => operator.name === name);
+    });
   }
 }
