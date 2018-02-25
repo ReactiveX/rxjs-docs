@@ -3,6 +3,7 @@
                [opened]="!smallScreen"
                [fixedTopGap]="operatorMenuGap"
                [fixedInViewport]="true"
+               [disableClose]="!smallScreen"
                class="operator-list-sidenav"
                #operatorSidenav>
     <mat-nav-list *ngFor="let category of categories"
