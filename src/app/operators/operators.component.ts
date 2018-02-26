@@ -21,7 +21,8 @@ import { MatSidenav } from '@angular/material';
 import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
-import { filter, takeUntil } from 'rxjs/operators';
+import { filter, takeUntil, map } from 'rxjs/operators';
+
 import { OperatorDoc } from '../../operator-docs/operator.model';
 import { OperatorMenuService } from '../core/services/operator-menu.service';
 
@@ -38,6 +39,7 @@ interface OperatorDocMap {
   selector: 'app-operators',
   templateUrl: './operators.component.html',
   styleUrls: ['./operators.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('growInOut', [
       state('in', style({ opacity: 1 })),
@@ -61,10 +63,14 @@ interface OperatorDocMap {
   ]
 })
 export class OperatorsComponent implements OnInit, AfterContentInit, OnDestroy {
-  @ViewChild(MatSidenav) _sidenav: MatSidenav;
-  public groupedOperators: OperatorDocMap;
-  public categories: string[];
   private _onDestroy = new Subject();
+
+  @ViewChild(MatSidenav) _sidenav: MatSidenav;
+  groupedOperators: OperatorDocMap;
+  categories: string[];
+  smallScreen$: Observable<boolean>;
+  operatorMenuGap$: Observable<number>;
+  sidenavMode$: Observable<'over' | 'side'>;
 
   constructor(
     private _breakpointObserver: BreakpointObserver,
@@ -73,6 +79,22 @@ export class OperatorsComponent implements OnInit, AfterContentInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.smallScreen$ = this._breakpointObserver
+      .observe('(max-width: 901px)')
+      .pipe(map(breakPointState => breakPointState.matches));
+    this.operatorMenuGap$ = this._breakpointObserver
+      .observe('(max-width: 601px)')
+      .pipe(
+        map(
+          breakPointState =>
+            breakPointState.matches
+              ? OPERATOR_MENU_GAP_SMALL
+              : OPERATOR_MENU_GAP_LARGE
+        )
+      );
+    this.sidenavMode$ = this.smallScreen$.pipe(
+      map(smallScreen => (smallScreen ? 'over' : 'side'))
+    );
     this.groupedOperators = groupOperatorsByType(this.operators);
     this.categories = Object.keys(this.groupedOperators);
   }
@@ -84,22 +106,8 @@ export class OperatorsComponent implements OnInit, AfterContentInit, OnDestroy {
       .subscribe(_ => this._sidenav.open());
   }
 
-  get extraSmallScreen() {
-    return this._breakpointObserver.isMatched('(max-width: 601px)');
-  }
-
-  get smallScreen() {
+  get smallScreen(): boolean {
     return this._breakpointObserver.isMatched('(max-width: 901px)');
-  }
-
-  get operatorMenuGap() {
-    return this.extraSmallScreen
-      ? OPERATOR_MENU_GAP_SMALL
-      : OPERATOR_MENU_GAP_LARGE;
-  }
-
-  get sidenavMode() {
-    return this.smallScreen ? 'over' : 'side';
   }
 
   ngOnDestroy() {
