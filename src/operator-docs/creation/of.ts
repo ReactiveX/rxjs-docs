@@ -45,10 +45,9 @@ export const ofOperator: OperatorDoc = {
 
     const numbers = of(10, 20, 30);
     const letters = of('a', 'b', 'c');
-    const interval = interval(1000);
+    const interval$ = interval(1000);
     const result = numbers.pipe(
-      concat(letters),
-      concat(interval));
+      concat(letters, interval$),
     result.subscribe(x => console.log(x));`,
       // 10
       // 20
@@ -62,7 +61,7 @@ export const ofOperator: OperatorDoc = {
       // ...
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/porolatazu/embed?js,output'
+        url: 'http://jsbin.com/hiquyaluqa/1/embed?js,console'
       }
     }
   ]
