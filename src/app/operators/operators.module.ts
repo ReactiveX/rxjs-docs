@@ -22,7 +22,6 @@ import { HighlightJsDirective } from './directives/highlight-js.directive';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import { MaterialModule } from '../material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -37,8 +36,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     WalkthroughComponent,
     MarbleDiagramComponent,
     HighlightJsDirective,
-    SafeUrlPipe,
-    FilterPipe
+    SafeUrlPipe
   ],
   imports: [
     CommonModule,

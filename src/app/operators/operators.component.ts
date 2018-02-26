@@ -93,9 +93,26 @@ export class OperatorsComponent implements OnInit, AfterContentInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.initOperatorList(this.operators);
     this.searchInput = new FormControl();
-    this.groupedOperators = groupOperatorsByType(this.operators);
-    this.categories = Object.keys(this.groupedOperators);
+    const search$ = this.searchInput.valueChanges;
+    const entries$ = from(this.operators);
+    const searchResult$ = search$.pipe(
+      debounceTime(300),
+      flatMap(options =>
+        entries$.pipe(
+          filter(
+            (value: OperatorDoc) =>
+              value.name.indexOf(options) !== -1 ||
+              value.operatorType.indexOf(options) !== -1
+          ),
+          toArray()
+        )
+      )
+    );
+    searchResult$.subscribe((search: OperatorDoc[]) => {
+      this.initOperatorList(search);
+    });
   }
 
   ngAfterContentInit() {
@@ -125,6 +142,11 @@ export class OperatorsComponent implements OnInit, AfterContentInit, OnDestroy {
 
   ngOnDestroy() {
     this._onDestroy.next();
+  }
+
+  private initOperatorList(operators: OperatorDoc[]) {
+    this.groupedOperators = groupOperatorsByType(operators);
+    this.categories = Object.keys(this.groupedOperators);
   }
 }
 
