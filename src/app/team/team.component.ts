@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { TeamService } from './team.service';
-import { ITeam } from './team.models';
+import { Team } from './team.models';
 
 @Component({
   selector: 'app-team',
@@ -11,7 +11,7 @@ import { ITeam } from './team.models';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TeamComponent implements OnInit {
-  team$: Observable<ITeam>;
+  team$: Observable<Team>;
 
   constructor(private service: TeamService) {}
 
