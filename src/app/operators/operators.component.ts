@@ -5,7 +5,6 @@ import {
   OnInit,
   OnDestroy,
   AfterContentInit,
-  ChangeDetectionStrategy,
   ViewChild
 } from '@angular/core';
 import {
@@ -21,26 +20,13 @@ import { Subject } from 'rxjs/Subject';
 import {
   filter,
   takeUntil,
-  withLatestFrom,
   flatMap,
-  map,
-  merge,
-  switchAll,
   toArray,
-  concatAll,
-  reduce,
-  concat,
-  tap,
-  mergeAll,
-  scan,
-  debounce,
-  debounceTime,
-  distinct
+  debounceTime
 } from 'rxjs/operators';
 import { OperatorDoc } from '../../operator-docs/operator.model';
 import { OperatorMenuService } from '../core/services/operator-menu.service';
 import { FormControl } from '@angular/forms';
-import { of } from 'rxjs/observable/of';
 import { from } from 'rxjs/observable/from';
 
 const OPERATOR_MENU_GAP_LARGE = 64;
