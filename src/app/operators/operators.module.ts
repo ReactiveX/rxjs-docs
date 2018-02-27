@@ -1,12 +1,9 @@
-import {
-  NgModule,
-  InjectionToken,
-  CUSTOM_ELEMENTS_SCHEMA
-} from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LayoutModule } from '@angular/cdk/layout';
+import { TranslateModule } from '@ngx-translate/core';
 
-import { ALL_OPERATORS, OperatorDoc } from '../../operator-docs';
+import { ALL_OPERATORS } from '../../operator-docs';
 import { OperatorsRoutingModule } from './operators-routing.module';
 import { OperatorsComponent, OPERATORS_TOKEN } from './operators.component';
 import {
@@ -42,7 +39,13 @@ import { ArgumentPipe } from './pipes/argument.pipe';
     SafeUrlPipe,
     ArgumentPipe
   ],
-  imports: [CommonModule, MaterialModule, OperatorsRoutingModule, LayoutModule],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    OperatorsRoutingModule,
+    LayoutModule,
+    TranslateModule
+  ],
   providers: [
     { provide: OPERATORS_TOKEN, useValue: ALL_OPERATORS },
     { provide: OPERATOR_TOKEN, useValue: ALL_OPERATORS }

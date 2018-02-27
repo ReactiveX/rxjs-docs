@@ -24,7 +24,7 @@ export class OperatorComponent implements OnInit {
   public operator: OperatorDoc;
   public operatorsMap = new Map<string, OperatorDoc>();
 
-  private readonly baseSourceUrl = 'https://github.com/ReactiveX/rxjs/blob/master/src/operators/';
+  private readonly baseSourceUrl = 'https://github.com/ReactiveX/rxjs/blob/master/src/internal/operators/';
   private readonly baseSpecUrl = 'http://reactivex.io/rxjs/test-file/spec-js/operators';
 
   constructor(

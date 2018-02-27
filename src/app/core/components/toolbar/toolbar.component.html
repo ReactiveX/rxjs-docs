@@ -6,9 +6,17 @@
   </button>
   <span class="title" fxFlex> RxJS Docs </span>
   <span class="title" fxFlex> WARNING: This is BETA site </span>
-  <a aria-label="GitHub Repository" class="mat-button" href="https://github.com/ReactiveX" aria-disabled="false">
+  <button mat-icon-button [matMenuTriggerFor]="appMenu">
+    <mat-icon>language</mat-icon>
+  </button>
+  <mat-menu #appMenu="matMenu" [overlapTrigger]="false" xPosition="before">
+    <button mat-menu-item *ngFor="let language of languagesList" (click)="onLangSwitch(language)">
+      {{language.nativeName}}
+    </button>
+  </mat-menu>
+  <a aria-label="GitHub Repository" target="_blank" class="mat-button" href="https://github.com/ReactiveX" aria-disabled="false">
     <span class="mat-button-wrapper">
-      <img src="../../../assets/img/GitHub-Mark-Light-64px.png" alt="ReactiveX GitHub Repository"> GitHub
+      <img src="assets/img/GitHub-Mark-Light-64px.png" alt="ReactiveX GitHub Repository"> GitHub
     </span>
   </a>
 </mat-toolbar>
