@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { OperatorParameters } from '../../../../operator-docs';
 
 @Component({
   selector: 'app-operator-header',
@@ -8,4 +9,6 @@ import { Component, Input } from '@angular/core';
 export class OperatorHeaderComponent {
   @Input() operatorName: string;
   @Input() operatorSignature: string;
+  @Input() operatorParameters: OperatorParameters[];
+  @Input() returnValue: string;
 }

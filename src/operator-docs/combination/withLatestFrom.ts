@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const withLatestFrom: OperatorDoc = {
   name: 'withLatestFrom',
   operatorType: 'combination',
+  returnValue: 'Observable',
   signature:
     'public withLatestFrom(other: ObservableInput, project: Function): Observable',
   marbleUrl: 'http://reactivex.io/rxjs/img/withLatestFrom.png',

@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const forkJoin: OperatorDoc = {
   name: 'forkJoin',
   operatorType: 'combination',
+  returnValue: 'any',
   signature: 'public static forkJoin(sources: *): any',
   parameters: [
     {

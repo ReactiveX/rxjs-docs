@@ -80,6 +80,10 @@ export class OperatorComponent implements OnInit {
     return this.operator.name;
   }
 
+  get returnValue() {
+    return this.operator.returnValue;
+  }
+
   get signature() {
     return this.operator.signature || 'Signature Placeholder';
   }

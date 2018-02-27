@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const bufferWhen: OperatorDoc = {
   name: 'bufferWhen',
   operatorType: 'transformation',
+  returnValue: 'Observable',
   signature: `bufferWhen(closingSelector: () => Observable): Observable`,
   parameters: [
     {

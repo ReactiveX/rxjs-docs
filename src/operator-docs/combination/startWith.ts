@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const startWith: OperatorDoc = {
   name: 'startWith',
   operatorType: 'combination',
+  returnValue: 'Observable',
   marbleUrl: 'http://reactivex.io/rxjs/img/startWith.png',
   signature: 'public startWith(values: ...T, scheduler: Scheduler): Observable',
   shortDescription: {

@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const combineAll: OperatorDoc = {
   name: 'combineAll',
   operatorType: 'combination',
+  returnValue: 'Observable',
   signature: 'public combineAll(project: function): Observable',
   parameters: [
     {

@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const concatAll: OperatorDoc = {
   name: 'concatAll',
   operatorType: 'combination',
+  returnValue: 'Observable',
   signature: 'public concatAll(): Observable',
   parameters: [],
   marbleUrl: 'http://reactivex.io/rxjs/img/concatAll.png',

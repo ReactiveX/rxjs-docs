@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const debounceTime: OperatorDoc = {
   name: 'debounceTime',
   operatorType: 'filtering',
+  returnValue: 'Observable',
   signature:
     'public debounceTime(dueTime: number, scheduler: IScheduler = async): Observable',
   parameters: [

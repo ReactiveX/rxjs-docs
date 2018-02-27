@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const windowOperator: OperatorDoc = {
   name: 'window',
   operatorType: 'transformation',
+  returnValue: 'Observable<Observable<T>>',
   signature:
     'public window(windowBoundaries: Observable<any>): Observable<Observable<T>>',
   parameters: [

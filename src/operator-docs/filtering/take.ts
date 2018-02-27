@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const take: OperatorDoc = {
   name: 'take',
   operatorType: 'filtering',
+  returnValue: 'Observable<T>',
   signature: 'public take(count: number): Observable<T>',
   useInteractiveMarbles: true,
   parameters: [

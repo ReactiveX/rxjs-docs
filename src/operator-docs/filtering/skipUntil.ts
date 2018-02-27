@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const skipUntil: OperatorDoc = {
   name: 'skipUntil',
   operatorType: 'filtering',
+  returnValue: 'Observable<T>',
   signature: 'public skipUntil(notifier: Observable): Observable<T>',
   parameters: [
     {

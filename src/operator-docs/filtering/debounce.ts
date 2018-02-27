@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const debounce: OperatorDoc = {
   name: 'debounce',
   operatorType: 'filtering',
+  returnValue: 'Observable',
   signature:
     'public debounce(durationSelector: function(value: T): SubscribableOrPromise): Observable',
   marbleUrl: 'http://reactivex.io/rxjs/img/debounce.png',

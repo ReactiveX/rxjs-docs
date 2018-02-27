@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const bufferTime: OperatorDoc = {
   name: 'bufferTime',
   operatorType: 'transformation',
+  returnValue: 'Observable',
   signature: `bufferTime(
     bufferTimeSpan: number,
     bufferCreationInterval: number,

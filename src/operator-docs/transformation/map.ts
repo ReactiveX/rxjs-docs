@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const map: OperatorDoc = {
   name: 'map',
   operatorType: 'transformation',
+  returnValue: 'Observable',
   signature: 'public map(project: Function, thisArg: any): Observable',
   parameters: [
     {

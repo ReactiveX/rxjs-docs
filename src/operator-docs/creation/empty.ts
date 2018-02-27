@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const empty: OperatorDoc = {
   name: 'empty',
   operatorType: 'creation',
+  returnValue: 'Observable',
   signature: 'public empty(scheduler?: IScheduler): Observable',
   parameters: [
     {

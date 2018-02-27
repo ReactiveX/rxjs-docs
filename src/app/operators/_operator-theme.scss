@@ -9,6 +9,12 @@ $link-color: #0a6fc2;
   $accent: mat-color(map-get($theme, accent));
   $operator-active-background: rgba($operator-active, 0.7);
 
+  .parameter-description{
+    font-size: .9em;
+    background-color: darken($operator-active, 20%);
+    white-space: pre-line;
+  }
+
   rx-marbles > div {
     text-align: center;
     min-width: 840px;

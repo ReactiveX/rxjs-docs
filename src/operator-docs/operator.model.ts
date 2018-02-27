@@ -1,4 +1,5 @@
-export type OperatorType = 'combination'
+export type OperatorType =
+  | 'combination'
   | 'conditional'
   | 'creation'
   | 'error handling'
@@ -38,6 +39,7 @@ export interface OperatorExtra {
 
 export interface OperatorDoc {
   readonly name?: string;
+  readonly returnValue?: string;
   readonly operatorType?: OperatorType;
   readonly signature?: string;
   readonly useInteractiveMarbles?: boolean;
@@ -45,11 +47,11 @@ export interface OperatorDoc {
   readonly parameters?: OperatorParameters[];
   readonly shortDescription?: {
     description: string;
-    extras?: OperatorExtra[]
+    extras?: OperatorExtra[];
   };
   readonly walkthrough?: {
     description: string;
-    extras?: OperatorExtra[]
+    extras?: OperatorExtra[];
   };
   readonly examples?: OperatorExample[];
   readonly additionalResources?: OperatorReference[];

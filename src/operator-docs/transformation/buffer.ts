@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const buffer: OperatorDoc = {
   name: 'buffer',
   operatorType: 'transformation',
+  returnValue: 'Observable',
   signature: 'public buffer(closingNotifier: Observable): Observable',
   useInteractiveMarbles: true,
   parameters: [

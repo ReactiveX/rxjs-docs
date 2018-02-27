@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const bufferCount: OperatorDoc = {
   name: 'bufferCount',
   operatorType: 'transformation',
+  returnValue: 'Observable',
   signature: ` bufferCount(bufferSize: number, startBufferEvery: number): Observable`,
   parameters: [
     {

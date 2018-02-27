@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const pairwise: OperatorDoc = {
   name: 'pairwise',
   operatorType: 'combination',
+  returnValue: 'Observable<Array<T>>',
   marbleUrl: 'http://reactivex.io/rxjs/img/pairwise.png',
   signature: 'public pairwise(): Observable<Array<T>>',
   shortDescription: {

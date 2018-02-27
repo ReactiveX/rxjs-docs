@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const switchMap: OperatorDoc = {
   name: 'switchMap',
   operatorType: 'transformation',
+  returnValue: 'Observable',
   signature: `switchMap(project: (value: T, index: number) => ObservableInput<I>,
   resultSelector: (outerValue: T, innerValue: I, outerIndex: number, innerIndex: number) => R): Observable`,
   parameters: [

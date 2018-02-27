@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const sample: OperatorDoc = {
   name: 'sample',
   operatorType: 'filtering',
+  returnValue: 'Observable<T>',
   signature: `public sample(notifier: Observable<any>): Observable<T>`,
   parameters: [
     {

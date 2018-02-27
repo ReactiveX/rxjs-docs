@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const bufferToggle: OperatorDoc = {
   name: 'bufferToggle',
   operatorType: 'transformation',
+  returnValue: 'Observable',
   signature: `bufferToggle(
     openings: SubscribableOrPromise,
     closingSelector: (value) => SubscribableOrPromise): Observable`,
