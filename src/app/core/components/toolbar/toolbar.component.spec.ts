@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterLinkWithHref } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { ToolbarComponent } from './toolbar.component';
@@ -29,6 +32,15 @@ describe('ToolbarComponent', () => {
     languageService = TestBed.get(LanguageService);
     fixture = TestBed.createComponent(ToolbarComponent);
     component = fixture.componentInstance;
+  });
+
+  it('should have a link to /', () => {
+    fixture.detectChanges();
+    const navDe: DebugElement = fixture.debugElement;
+    const href = navDe.query(By.directive(RouterLinkWithHref)).properties[
+      'href'
+    ];
+    expect(href).toEqual('/');
   });
 
   it('should set languagesList and currentLang on initialization', () => {
