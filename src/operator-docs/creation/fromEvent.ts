@@ -75,8 +75,8 @@ export const fromEvent: OperatorDoc = {
     </p>
 
   <p>
-  Note that, without RxJS, if the event target would normally call the registered event handler with more than one argument,
-  the second and its following arguments will not appear in the resulting stream. In order to get access to them,
+  Note that if the event target would normally (without RxJS) call the registered event handler with more than one argument,
+  the second and its following arguments will not appear in the resulting Observable stream. In order to get access to them,
   an optional <span class="markdown-code">selector</span> function can be passed to <span class="markdown-code">fromEvent</span>.
   The selector will be called with all arguments passed to the registered event handler.
   The resulting Observable will then emit the value as returned by the selector function,
@@ -129,20 +129,120 @@ export const fromEvent: OperatorDoc = {
   },
   examples: [
     {
-      name: 'On every click, emit array of most recent interval events',
+      name: 'Emit every click made on the HTML page',
       code: `
-        import { buffer } from 'rxjs/operators';
-        import { interval } from 'rxjs/observable/interval';
         import { fromEvent } from 'rxjs/observable/fromEvent';
 
         const clicks = fromEvent(document, 'click');
-        const interval = interval(1000);
-        const buffered = interval.pipe(buffer(clicks));
-        buffered.subscribe(x => console.log(x));
+        clicks.subscribe(x => console.log(x.clientX));
+
+        /*
+        Example console output
+
+        131
+        157
+        162
+        162
+        206
+        315
+        203
+        231
+        355
+
+        */
+
       `,
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/xetemuteho/embed?js,console,output'
+        url: 'http://jsbin.com/xegucig/2/embed?js,console,output'
+      }
+    },
+    {
+      name:
+        'Emit every click made on the HTML page, but select only the clientX and clientY properties.',
+      code: `
+        import { fromEvent } from 'rxjs/observable/fromEvent';
+
+        const clicks = fromEvent(document, 'click', e => ({x: e.clientX, y: e.clientY}));
+        clicks.subscribe(x => console.log(x));
+
+        /*
+        Example console output
+
+        [object Object] {
+          x: 294,
+          y: 89
+        }
+        [object Object] {
+          x: 183,
+          y: 207
+        }
+        [object Object] {
+          x: 301,
+          y: 235
+        }
+        [object Object] {
+          x: 371,
+          y: 132
+        }
+
+        */
+
+      `,
+      externalLink: {
+        platform: 'JSBin',
+        url: 'http://jsbin.com/kaxalu/1/embed?js,console,output'
+      }
+    },
+    {
+      name:
+        'Emit a click made on a div element and look at it through bubbling (bottom -> up) and capturing (top -> down).',
+      code:
+        `
+        import { fromEvent } from 'rxjs/observable/fromEvent';
+` +
+        /* tslint:disable:max-line-length */
+        `       document.body.innerHTML += '<div title="outer" style="padding: 10px; border: 1px solid black;"><div title="middle" style="padding: 10px; border: 1px solid black;"><div title="inner" style="padding: 10px; border: 1px solid black;"></div></div></div>';` +
+        /* tslint:enable:max-line-length */
+        `
+        let divs = document.querySelectorAll('div');
+
+        const clicks = fromEvent(divs, 'click',
+                            (e) => ({ bubbling: e.currentTarget.title }) );
+        clicks.subscribe(x => console.log(x));
+
+
+        const clicksCapture = fromEvent(divs, 'click', true,
+                            (e) => ({ capture: e.currentTarget.title }) );
+        clicksCapture.subscribe(x => console.log(x));
+
+        /*
+        Example console output
+
+        [object Object] {
+          capture: "outer"
+        }
+        [object Object] {
+          capture: "middle"
+        }
+        [object Object] {
+          bubbling: "inner"
+        }
+        [object Object] {
+          capture: "inner"
+        }
+        [object Object] {
+          bubbling: "middle"
+        }
+        [object Object] {
+          bubbling: "outer"
+        }
+        */
+
+      `,
+      externalLink: {
+        platform: 'JSBin',
+        url: 'http://jsbin.com/kuzajec/4/embed?js,console,output'
       }
     }
   ],
