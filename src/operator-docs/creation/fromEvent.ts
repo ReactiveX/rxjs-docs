@@ -3,8 +3,8 @@ import { OperatorDoc } from '../operator.model';
 export const fromEvent: OperatorDoc = {
   name: 'fromEvent',
   operatorType: 'creation',
-  signature: `static fromEvent(target,
-     eventName, options, selector): Observable`,
+  signature: `public static fromEvent(target: EventTargetLike,
+     eventName: string, options: EventListenerOptions, selector: SelectorMethodSignature): Observable`,
   useInteractiveMarbles: true,
   parameters: [
     {
@@ -82,7 +82,14 @@ export const fromEvent: OperatorDoc = {
   The resulting Observable will then emit the value as returned by the selector function,
   instead of the usual value.
   </p>
-
+  <p>
+  Example jQuery event handler with more than one argument:
+  <pre class="markdown-code">
+  $("#foo").on("custom", function(event, param1, param2) {
+    console.log(param1 + " " + param2);
+  });
+  $("#foo").trigger("custom", ["Custom", "Event"]);</pre>
+  </p>
   <p>
   If the API you use is more callback than event handler oriented (where the subscribed
   callback function fires only once and thus there is no need to manually
