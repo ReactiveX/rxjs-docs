@@ -5,7 +5,6 @@ import {
   OnInit,
   OnDestroy,
   AfterContentInit,
-  ChangeDetectionStrategy,
   ViewChild
 } from '@angular/core';
 import {
@@ -15,15 +14,20 @@ import {
   animate,
   transition
 } from '@angular/animations';
-import { Router, ActivatedRoute } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material';
-import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
-import { filter, takeUntil } from 'rxjs/operators';
+import {
+  filter,
+  takeUntil,
+  flatMap,
+  toArray,
+  debounceTime
+} from 'rxjs/operators';
 import { OperatorDoc } from '../../operator-docs/operator.model';
 import { OperatorMenuService } from '../core/services/operator-menu.service';
+import { FormControl } from '@angular/forms';
+import { from } from 'rxjs/observable/from';
 
 const OPERATOR_MENU_GAP_LARGE = 64;
 const OPERATOR_MENU_GAP_SMALL = 54;
@@ -66,6 +70,8 @@ export class OperatorsComponent implements OnInit, AfterContentInit, OnDestroy {
   public categories: string[];
   private _onDestroy = new Subject();
 
+  public searchInput: FormControl;
+
   constructor(
     private _breakpointObserver: BreakpointObserver,
     private _operatorMenuService: OperatorMenuService,
@@ -73,8 +79,26 @@ export class OperatorsComponent implements OnInit, AfterContentInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.groupedOperators = groupOperatorsByType(this.operators);
-    this.categories = Object.keys(this.groupedOperators);
+    this.initOperatorList(this.operators);
+    this.searchInput = new FormControl();
+    const search$ = this.searchInput.valueChanges;
+    const entries$ = from(this.operators);
+    const searchResult$ = search$.pipe(
+      debounceTime(300),
+      flatMap(options =>
+        entries$.pipe(
+          filter(
+            (value: OperatorDoc) =>
+              value.name.indexOf(options) !== -1 ||
+              value.operatorType.indexOf(options) !== -1
+          ),
+          toArray()
+        )
+      )
+    );
+    searchResult$.subscribe((search: OperatorDoc[]) => {
+      this.initOperatorList(search);
+    });
   }
 
   ngAfterContentInit() {
@@ -104,6 +128,11 @@ export class OperatorsComponent implements OnInit, AfterContentInit, OnDestroy {
 
   ngOnDestroy() {
     this._onDestroy.next();
+  }
+
+  private initOperatorList(operators: OperatorDoc[]) {
+    this.groupedOperators = groupOperatorsByType(operators);
+    this.categories = Object.keys(this.groupedOperators);
   }
 }
 
