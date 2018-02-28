@@ -9,9 +9,16 @@ import {
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { pluck } from 'rxjs/operators';
+
 import { CopierService } from '../../../core/services/copier.service';
 import { SeoService } from '../../../core/services/seo.service';
-import { OperatorDoc } from '../../../../operator-docs/operator.model';
+import {
+  OperatorDoc,
+  OperatorReference,
+  OperatorExample,
+  OperatorExtra
+} from '../../../../operator-docs/operator.model';
+import { OperatorParameters } from '../../../../operator-docs';
 
 export const OPERATOR_TOKEN = new InjectionToken<string>('operators');
 
@@ -76,64 +83,64 @@ export class OperatorComponent implements OnInit {
     );
   }
 
-  get operatorName() {
+  get operatorName(): string {
     return this.operator.name;
   }
 
-  get signature() {
+  get signature(): string {
     return this.operator.signature || 'Signature Placeholder';
   }
 
-  get marbleUrl() {
+  get marbleUrl(): string {
     return this.operator.marbleUrl;
   }
 
-  get useInteractiveMarbles() {
+  get useInteractiveMarbles(): boolean {
     return this.operator.useInteractiveMarbles;
   }
 
-  get shortDescription() {
+  get shortDescription(): string {
     return (
       this.operator.shortDescription &&
       this.operator.shortDescription.description
     );
   }
 
-  get shortDescriptionExtras() {
+  get shortDescriptionExtras(): OperatorExtra[] {
     return (
       this.operator.shortDescription && this.operator.shortDescription.extras
     );
   }
 
-  get walkthrough() {
+  get walkthrough(): string {
     return this.operator.walkthrough && this.operator.walkthrough.description;
   }
 
-  get walkthroughExtras() {
+  get walkthroughExtras(): OperatorExtra[] {
     return this.operator.walkthrough && this.operator.walkthrough.extras;
   }
 
-  get parameters() {
+  get parameters(): OperatorParameters[] {
     return this.operator.parameters || [];
   }
 
-  get examples() {
+  get examples(): OperatorExample[] {
     return this.operator.examples || [];
   }
 
-  get relatedOperators() {
+  get relatedOperators(): string[] {
     return this.operator.relatedOperators || [];
   }
 
-  get sourceUrl() {
+  get sourceUrl(): string {
     return `${this.baseSourceUrl}/${this.operatorName}.ts`;
   }
 
-  get specsUrl() {
+  get specsUrl(): string {
     return `${this.baseSpecUrl}/${this.operatorName}-spec.js.html`;
   }
 
-  get additionalResources() {
+  get additionalResources(): OperatorReference[] {
     return this.operator.additionalResources || [];
   }
 
