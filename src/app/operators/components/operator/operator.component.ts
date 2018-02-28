@@ -139,6 +139,5 @@ export class OperatorComponent implements OnInit {
 
   private notfound() {
     this._router.navigate(['/operators']);
-    return {};
   }
 }
