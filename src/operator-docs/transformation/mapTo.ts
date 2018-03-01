@@ -34,9 +34,13 @@ export const mapTo: OperatorDoc = {
       import { fromEvent } from 'rxjs/observable/fromEvent';
       import { mapTo } from 'rxjs/operators';
 
-      const clicks = Rx.Observable.fromEvent(document, 'click');
-      const greetings = clicks.mapTo('Hi');
+      const clicks = fromEvent(document, 'click');
+      const greetings = clicks.pipe(mapTo('Hi');
       greetings.subscribe(x => console.log(x));
+      /*
+        Example console output:
+        Hi
+      */
       `,
       externalLink: {
         platform: 'JSBin',
