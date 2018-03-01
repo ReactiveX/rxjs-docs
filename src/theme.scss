@@ -1,0 +1,16 @@
+@import '~@angular/material/theming';
+@import './app/operators/operator-theme';
+
+@include mat-core();
+
+$primary: mat-palette($mat-indigo);
+$accent: mat-palette($mat-pink, 600);
+$theme: mat-light-theme($primary, $accent);
+
+@include angular-material-theme($theme);
+@include operator-theme($theme);
+
+mat-sidenav a.active .mat-list-item-content {
+    color: mat-color($accent);
+}
+  
