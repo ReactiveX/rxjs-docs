@@ -12,5 +12,11 @@ export const COMPANIES_LIST: Company[] = [
     location: 'Seattle',
     logo: '../../assets/companies/microsoft.png',
     website: 'http://microsoft.com'
+  },
+  {
+    name: 'Social Security Administration',
+    location: 'Baltimore',
+    logo: '../../assets/companies/ssa.png',
+    website: 'https://www.ssa.gov/'
   }
 ];
