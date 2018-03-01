@@ -4,7 +4,15 @@
       menu
     </mat-icon>
   </button>
-  <span class="title" fxFlex> RxJS Docs </span>
+  <a routerLink="/" aria-label="ReactiveX" class="mat-button" aria-disabled="false">
+    <span class="mat-button-wrapper">
+        <img src="assets/img/Rx_Trnsprt_Logo-48-48.png" alt="RxJS Docs Home">
+    </span>
+  </a>
+  <span class="title" fxFlex> 
+      RxJS Docs 
+  </span>
+
   <span class="title" fxFlex> WARNING: This is BETA site </span>
   <button mat-icon-button [matMenuTriggerFor]="appMenu">
     <mat-icon>language</mat-icon>
@@ -16,7 +24,7 @@
   </mat-menu>
   <a aria-label="GitHub Repository" target="_blank" class="mat-button" href="https://github.com/ReactiveX" aria-disabled="false">
     <span class="mat-button-wrapper">
-      <img src="../../../assets/img/GitHub-Mark-Light-64px.png" alt="ReactiveX GitHub Repository"> GitHub
+      <img src="assets/img/GitHub-Mark-Light-64px.png" alt="ReactiveX GitHub Repository"> GitHub
     </span>
   </a>
 </mat-toolbar>
