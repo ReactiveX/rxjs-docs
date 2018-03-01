@@ -1,13 +1,13 @@
-export interface ITeam {
-  coreTeam: IMember[];
-  learningTeam: IMember[];
+export interface Team {
+  coreTeam: Member[];
+  learningTeam: Member[];
 }
 
-export interface IMember {
+export interface Member {
   name: string;
   role: string;
   githubUrl: string;
   avatar: string;
   twitterUrl: string;
-  webpageUrl: string;
+  webpageUrl?: string;
 }
