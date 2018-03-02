@@ -49,8 +49,12 @@ export const debounce: OperatorDoc = {
     {
       name: 'Emit the most recent click after a burst of clicks',
       code: `
-        const clicks = Rx.Observable.fromEvent(document, 'click');
-        const result = clicks.debounce(() => Rx.Observable.interval(1000));
+        import { debounce } from 'rxjs/operators';
+        import { fromEvent } from 'rxjs/observable/fromEvent';
+        import { interval } from 'rxjs/observable/interval';
+
+        const clicks = fromEvent(document, 'click');
+        const result = clicks.pipe(debounce(() => interval(1000)));
         result.subscribe(x => console.log(x));
       `,
       externalLink: {

@@ -1,15 +1,5 @@
-@import "~@angular/material/theming";
-@import './app/operators/operator-theme';
 @import './styles/code-helpers';
-
-@include mat-core();
-// Define the theme.
-$primary: mat-palette($mat-indigo);
-$accent : mat-palette($mat-pink);
-$theme: mat-light-theme($primary, $accent);
-
-@include angular-material-theme($theme);
-@include operator-theme($theme);
+@import './styles/icons';
 
 body {
   font-family: Roboto, sans-serif;
@@ -20,8 +10,4 @@ body {
   margin: 0;
   width: 100%;
   height: 100%;
-}
-
-mat-sidenav a.active .mat-list-item-content {
-  color: mat-color($accent);
 }

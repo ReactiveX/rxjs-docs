@@ -42,9 +42,15 @@ export const concatAll: OperatorDoc = {
       name:
         'For each click event, tick every second from 0 to 3, with no concurrency',
       code: `
-        const clicks = Rx.Observable.fromEvent(document, 'click');
-        const higherOrder = clicks.map(ev => Rx.Observable.interval(1000).take(4));
-        const firstOrder = higherOrder.concatAll();
+        import { map, take, concatAll } from 'rxjs/operators';
+        import { fromEvent } from 'rxjs/observable/fromEvent';
+        import { interval } from 'rxjs/observable/interval';
+
+        const clicks = fromEvent(document, 'click');
+        const higherOrder = clicks.pipe(
+          map(ev => interval(1000).pipe(take(4)))
+        );
+        const firstOrder = higherOrder.pipe(concatAll());
         firstOrder.subscribe(x => console.log(x));
       `,
       externalLink: {
