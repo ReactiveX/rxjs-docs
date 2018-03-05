@@ -3,8 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const concatMap: OperatorDoc = {
   name: 'concatMap',
   operatorType: 'transformation',
-  signature: `concatMap(project: (value: T, index: number) =>  ObservableInput<I>,
-  ?resultSelector: (outerValue: T, innerValue: I, outerIndex: number, innerIndex: number) => R): Observable`,
+  signature: `concatMap(project: Function, resultSelector?: Function): Observable`,
   parameters: [
     {
       name: 'project',
@@ -29,10 +28,9 @@ export const concatMap: OperatorDoc = {
   ],
   marbleUrl: 'http://reactivex.io/rxjs/img/concatMap.png',
   shortDescription: {
-    description: `Project each source value to an Observable which is merge in the output observable,
-    in a serialized fashion waiting for each one to complete before merging the next one
-    <span class="informal">Maps each value to an Observable, then flattens all of
-    these inner Observables using <a href="#/operators/concatAll">concatAll</a>.</span>`
+    description: `Project each source value to an Observable which is then merged with the output observable
+    in a serialized fashion. The previous subscription must complete before the next begins.
+    <span class="informal">Inner observables are flatened using <a href="#/operators/concatAll">concatAll</a>.</span>`
   },
   walkthrough: {
     description: `the source observable maps values to inner observable, subscribe and emit in order.
@@ -54,8 +52,8 @@ export const concatMap: OperatorDoc = {
       const $click = fromEvent(document, 'click');
       const $interval = interval(3000)
           .pipe(mapTo((iClick, iInterval) => 'Click('+iClick+')'+', '+'Interval('+iInterval+')'));
-      // the ConcatMap's project function is executed just one time!
-      // Even if you make aditional cliks the ConcatMap's project function is not longer executed
+      // concatMap's project function is executed just one time!
+      // Aditional cliks are not longer taking into account
       // output; Click(0), Interval(0) -> Click(0), Interval(1) -> Click(0), Interval(2) -> etc
       $click.pipe(concatMap(() => $interval,
           (fromSource, fromInterval, indexSource, indexInterval) => fromInterval(indexSource, indexInterval)))
