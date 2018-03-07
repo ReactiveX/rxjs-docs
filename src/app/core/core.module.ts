@@ -8,6 +8,8 @@ import { SeoService } from './services/seo.service';
 import { OperatorMenuService } from './services/operator-menu.service';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { MaterialModule } from '../material/material.module';
+import { OperatorsService } from './services/operators.service';
+import { LanguageService } from './services/language.service';
 
 @NgModule({
   imports: [FlexLayoutModule, RouterModule, CommonModule, MaterialModule],
@@ -18,7 +20,13 @@ export class CoreModule {
   static forRoot() {
     return {
       ngModule: CoreModule,
-      providers: [CopierService, SeoService, OperatorMenuService]
+      providers: [
+        CopierService,
+        SeoService,
+        OperatorMenuService,
+        OperatorsService,
+        LanguageService
+      ]
     };
   }
 }

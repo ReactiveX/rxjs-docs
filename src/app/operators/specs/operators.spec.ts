@@ -1,16 +1,18 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LayoutModule, BreakpointObserver } from '@angular/cdk/layout';
+
+import { TranslateModule } from '@ngx-translate/core';
 import { Observable } from 'rxjs/Observable';
-import {
-  OperatorsComponent,
-  OPERATORS_TOKEN,
-  groupOperatorsByType
-} from '../operators.component';
-import { OperatorDoc } from '../../../operator-docs';
+import 'rxjs/add/observable/of';
+
+import { OperatorsComponent } from '../operators.component';
+import { ALL_OPERATORS_EN } from '../../../operator-docs';
 import { OperatorMenuService } from '../../core/services/operator-menu.service';
+import { OperatorsService } from '../../core/services/operators.service';
+import { LanguageService } from '../../core/services/language.service';
 
 const mockActivatedRoute = {
   snapshot: {},
@@ -20,48 +22,43 @@ const mockActivatedRoute = {
   })
 };
 
-const mockOperators: OperatorDoc[] = [
-  { operatorType: 'transformation' },
-  { operatorType: 'utility' },
-  { operatorType: 'utility' }
-];
-
-const mockBreakPointObserver = {
-  isMatched: () => {}
-};
-
 describe('Operators', () => {
   describe('OperatorsComponent', () => {
     let fixture: ComponentFixture<OperatorsComponent>;
     let component: OperatorsComponent;
     let el;
     let breakpointService: BreakpointObserver;
+    let operatorsService: OperatorsService;
+    const allOperators = ALL_OPERATORS_EN;
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [RouterTestingModule, LayoutModule],
+        imports: [RouterTestingModule, LayoutModule, TranslateModule.forRoot()],
         declarations: [OperatorsComponent],
         providers: [
+          OperatorsService,
+          LanguageService,
           OperatorMenuService,
-          { provide: OPERATORS_TOKEN, useValue: mockOperators },
           { provide: ActivatedRoute, useValue: mockActivatedRoute }
         ],
         schemas: [NO_ERRORS_SCHEMA]
       });
-    });
 
-    beforeEach(() => {
       fixture = TestBed.createComponent(OperatorsComponent);
       component = fixture.componentInstance;
       el = fixture.debugElement;
-      breakpointService = el.injector.get(BreakpointObserver);
+      breakpointService = TestBed.get(BreakpointObserver);
+      operatorsService = TestBed.get(OperatorsService);
     });
 
     it('should group operators by operator type', () => {
+      spyOn(operatorsService, 'getOperators').and.returnValue(
+        Observable.of(allOperators)
+      );
+
       component.ngOnInit();
 
-      expect(component.groupedOperators['transformation'].length).toBe(1);
-      expect(component.groupedOperators['utility'].length).toBe(2);
+      expect(component.groupedOperators['utility'].length).toBeTruthy();
     });
 
     it('should have a sidenav mode of over when on a small screen', () => {

@@ -9,7 +9,7 @@ import { MULTICASTING_OPERATORS } from './multicasting';
 import { TRANSFORMATION_OPERATORS } from './transformation';
 import { UTILITY_OPERATORS } from './utility';
 
-export const ALL_OPERATORS: OperatorDoc[] = [
+export const ALL_OPERATORS_EN: OperatorDoc[] = [
   ...COMBINATION_OPERATORS,
   ...CONDITIONAL_OPERATORS,
   ...CREATION_OPERATORS,
