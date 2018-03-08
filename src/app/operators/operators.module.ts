@@ -3,13 +3,9 @@ import { CommonModule } from '@angular/common';
 import { LayoutModule } from '@angular/cdk/layout';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { ALL_OPERATORS } from '../../operator-docs';
 import { OperatorsRoutingModule } from './operators-routing.module';
-import { OperatorsComponent, OPERATORS_TOKEN } from './operators.component';
-import {
-  OperatorComponent,
-  OPERATOR_TOKEN
-} from './components/operator/operator.component';
+import { OperatorsComponent } from './operators.component';
+import { OperatorComponent } from './components/operator/operator.component';
 import { OperatorHeaderComponent } from './components/operator-header/operator-header.component';
 import { OperatorParametersComponent } from './components/operator-parameters/operator-parameters.component';
 import { OperatorExamplesComponent } from './components/operator-examples/operator-examples.component';
@@ -45,10 +41,6 @@ import { ArgumentPipe } from './pipes/argument.pipe';
     OperatorsRoutingModule,
     LayoutModule,
     TranslateModule
-  ],
-  providers: [
-    { provide: OPERATORS_TOKEN, useValue: ALL_OPERATORS },
-    { provide: OPERATOR_TOKEN, useValue: ALL_OPERATORS }
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

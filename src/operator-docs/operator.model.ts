@@ -37,6 +37,11 @@ export interface OperatorExtra {
   text: string;
 }
 
+export interface MenuOperator {
+  readonly name?: string;
+  readonly operatorType?: OperatorType;
+}
+
 export interface OperatorDoc {
   readonly name?: string;
   readonly returnValue?: string;

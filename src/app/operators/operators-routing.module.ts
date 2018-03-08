@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { OperatorsComponent } from './operators.component';
 import { OperatorComponent } from './components/operator/operator.component';
-import { ALL_OPERATORS } from '../../operator-docs';
+import { ALL_OPERATORS_EN } from '../../operator-docs';
 
 const routes: Routes = [
   {
@@ -17,7 +17,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: ALL_OPERATORS[0].name,
+        redirectTo: ALL_OPERATORS_EN[0].name,
         pathMatch: 'full'
       }
     ]
