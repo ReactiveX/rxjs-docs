@@ -44,4 +44,28 @@ describe('OperatorsService', () => {
       });
     })
   );
+
+  it('should call initOperators on changeOperatorsLang', () => {
+    spyOn(operatorsService, 'initOperators').and.stub();
+
+    operatorsService.changeOperatorsLang(lang);
+
+    expect(operatorsService.initOperators).toHaveBeenCalledWith(lang.code);
+  });
+
+  it('should return operators for menu on getOperatorsForMenu', () => {
+    spyOn(operatorsService, 'initOperators').and.stub();
+
+    operatorsService.getOperatorsForMenu().then(operators => {
+      expect(operators.length).toBeTruthy();
+    });
+  });
+
+  it('should return the exist operator on getDefaultOperator', () => {
+    spyOn(operatorsService, 'initOperators').and.stub();
+
+    operatorsService.getDefaultOperator('delay').then(operator => {
+      expect(operator.operatorType).toEqual('utility');
+    });
+  });
 });
