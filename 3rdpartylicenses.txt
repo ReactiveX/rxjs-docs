@@ -58,11 +58,11 @@ MIT
 MIT
 MIT
 
-@angular/flex-layout@2.0.0-beta.12
+@angular/flex-layout@5.0.0-beta.13
 MIT
 The MIT License
 
-Copyright (c) 2017 Google LLC.
+Copyright (c) 2018 Google LLC.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
