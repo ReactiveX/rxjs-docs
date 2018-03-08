@@ -1,11 +1,8 @@
 import {
   Component,
-  Inject,
-  InjectionToken,
   OnInit,
   OnDestroy,
   AfterContentInit,
-  ChangeDetectionStrategy,
   ViewChild
 } from '@angular/core';
 import {
@@ -15,20 +12,18 @@ import {
   animate,
   transition
 } from '@angular/animations';
-import { Router, ActivatedRoute } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material';
-import { Subscription } from 'rxjs/Subscription';
+
 import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
 import { filter, takeUntil } from 'rxjs/operators';
-import { OperatorDoc } from '../../operator-docs/operator.model';
+
+import { OperatorDoc } from '../../operator-docs';
 import { OperatorMenuService } from '../core/services/operator-menu.service';
+import { OperatorsService } from '../core/services/operators.service';
 
 const OPERATOR_MENU_GAP_LARGE = 64;
 const OPERATOR_MENU_GAP_SMALL = 54;
-
-export const OPERATORS_TOKEN = new InjectionToken<string>('operators');
 
 interface OperatorDocMap {
   [key: string]: OperatorDoc[];
@@ -64,17 +59,21 @@ export class OperatorsComponent implements OnInit, AfterContentInit, OnDestroy {
   @ViewChild(MatSidenav) _sidenav: MatSidenav;
   public groupedOperators: OperatorDocMap;
   public categories: string[];
+  public operators: OperatorDoc[];
   private _onDestroy = new Subject();
 
   constructor(
     private _breakpointObserver: BreakpointObserver,
     private _operatorMenuService: OperatorMenuService,
-    @Inject(OPERATORS_TOKEN) public operators: OperatorDoc[]
+    private _operatorsService: OperatorsService
   ) {}
 
   ngOnInit() {
-    this.groupedOperators = groupOperatorsByType(this.operators);
-    this.categories = Object.keys(this.groupedOperators);
+    this._operatorsService.getOperatorsForMenu().then(data => {
+      this.operators = data;
+      this.groupedOperators = groupOperatorsByType(this.operators);
+      this.categories = Object.keys(this.groupedOperators);
+    });
   }
 
   ngAfterContentInit() {

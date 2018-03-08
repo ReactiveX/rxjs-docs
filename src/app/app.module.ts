@@ -13,7 +13,6 @@ import { CoreModule } from '../app/core/core.module';
 import { MaterialModule } from './material/material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LanguageService } from './core/services/language.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -40,7 +39,6 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  providers: [LanguageService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
