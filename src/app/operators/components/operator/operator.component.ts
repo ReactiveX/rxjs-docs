@@ -17,6 +17,7 @@ import { Subscription } from 'rxjs/Subscription';
 })
 export class OperatorComponent implements OnInit, OnDestroy {
   operatorsSubscription: Subscription;
+  noTranslation = false;
   public operators: OperatorDoc[];
   public operator: OperatorDoc;
   public operatorsMap = new Map<string, OperatorDoc>();
@@ -37,29 +38,52 @@ export class OperatorComponent implements OnInit, OnDestroy {
     this.operatorsSubscription = this._operatorsService
       .getOperators()
       .subscribe(data => {
+        this.operatorsMap.clear();
         this.operators = data;
         this.operators.forEach((op: OperatorDoc) => {
           this.operatorsMap.set(op.name, op);
         });
 
-        this._activatedRoute.params
-          .pipe(pluck('operator'))
-          .subscribe((name: string) => {
-            if (this.operatorsMap.has(name)) {
-              this.operator = this.operatorsMap.get(name);
-              this.scrollToTop();
-            } else {
-              this.notfound();
-              return;
-            }
-            this._seo.setHeaders({
-              title: [this.operator.name, this.operator.operatorType],
-              description: this.operator.shortDescription
-                ? this.operator.shortDescription.description
-                : ''
-            });
-          });
+        this.setOperator();
       });
+  }
+
+  setOperator(): void {
+    this._activatedRoute.params
+      .pipe(pluck('operator'))
+      .subscribe((name: string) => {
+        this.noTranslation = false;
+
+        if (this.operatorsMap.has(name)) {
+          this.operator = this.operatorsMap.get(name);
+          this.scrollToTop();
+          this.setHeaders();
+        } else {
+          this.setNotFoundOperator(name);
+        }
+      });
+  }
+
+  setNotFoundOperator(name: string): void {
+    this._operatorsService.getDefaultOperator(name).then(operator => {
+      if (operator) {
+        this.noTranslation = true;
+        this.operator = operator;
+        this.scrollToTop();
+        this.setHeaders();
+        return;
+      }
+      this.notFound();
+    });
+  }
+
+  setHeaders(): void {
+    this._seo.setHeaders({
+      title: [this.operator.name, this.operator.operatorType],
+      description: this.operator.shortDescription
+        ? this.operator.shortDescription.description
+        : ''
+    });
   }
 
   scrollToTop() {
@@ -144,8 +168,7 @@ export class OperatorComponent implements OnInit, OnDestroy {
     return this.operator.additionalResources || [];
   }
 
-  private notfound() {
+  private notFound(): void {
     this._router.navigate(['/operators']);
-    return {};
   }
 }
