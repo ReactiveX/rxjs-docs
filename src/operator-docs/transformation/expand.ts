@@ -48,7 +48,8 @@ export const expand: OperatorDoc = {
       name:
         'Start emitting the powers of two on every click, at most 10 of them',
       code: `
-      import { fromEvent, of } from 'rxjs/observable/fromEvent';
+      import { fromEvent} from 'rxjs/observable/fromEvent';
+      import { of } from 'rxjs/observable/of'
       import { expand, mapTo, delay, take } from 'rxjs/operators';
 
       const clicks = fromEvent(document, 'click');
