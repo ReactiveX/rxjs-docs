@@ -76,19 +76,12 @@ export const fromEvent: OperatorDoc = {
 
   <p>
   Note that if the event target would normally (without RxJS) call the registered event handler with more than one argument,
-  the second and its following arguments will not appear in the resulting Observable stream. In order to get access to them,
-  an optional <span class="markdown-code">selector</span> function can be passed to <span class="markdown-code">fromEvent</span>.
+  the second and its following arguments will not appear in the resulting Observable stream (see below for a jQuery example).
+  In order to get access to them,
+   an optional <span class="markdown-code">selector</span> function can be passed to <span class="markdown-code">fromEvent</span>.
   The selector will be called with all arguments passed to the registered event handler.
   The resulting Observable will then emit the value as returned by the selector function,
   instead of the usual value.
-  </p>
-  <p>
-  Example jQuery event handler with more than one argument:
-  <pre class="markdown-code">
-  $("#foo").on("custom", function(event, param1, param2) {
-    console.log(param1 + " " + param2);
-  });
-  $("#foo").trigger("custom", ["Custom", "Event"]);</pre>
   </p>
   <p>
   If the API you use is more callback than event handler oriented (where the subscribed
@@ -132,6 +125,15 @@ export const fromEvent: OperatorDoc = {
   <p>
   This is a collection of HTML elements or DOM nodes, very similar to the DOM NodeList.
   Likewise, the event handler function gets registered and removed for each one of the elements.</p>
+  <h3>Example jQuery event handler with more than one argument:</h3>
+  <p>
+  <pre class="markdown-code">
+  $("#foo").on("custom", function(event, param1, param2) {
+    console.log(param1 + " " + param2);
+  });
+  $("#foo").trigger("custom", ["Custom", "Event"]);</pre>
+  </p>
+
     `
   },
   examples: [
