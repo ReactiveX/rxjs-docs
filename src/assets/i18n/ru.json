@@ -1,0 +1,32 @@
+{
+  "MENU": {
+    "HOME": "Главная",
+    "OPERATORS": "Операторы",
+    "COMPANIES": "Компании",
+    "TEAM": "Команда"
+  },
+  "OPERATOR": {
+    "PARAMETER": {
+      "TITLE": "Параметры",
+      "NAME": "Название",
+      "TYPE": "Тип",
+      "ATTRIBUTE": "Аттрибут",
+      "DESCRIPTION": "Описание"
+    },
+    "ADDITIONAL_RESOURCES": {
+      "TITLE": "Дополнительные Источники",
+      "SOURCE": "Исходный Код",
+      "SPECS": "Спецификации"
+    },
+    "EXAMPLES": {
+      "TITLE": "Примеры"
+    },
+    "RELATED_OPERATORS": {
+      "TITLE": "Смотрите также"
+    },
+    "WALKTHROUGH": {
+      "TITLE": "Описание"
+    },
+    "NO_TRANSLATION": "Перевод не завершен. Смотрите описание на английском языке"
+  }
+}

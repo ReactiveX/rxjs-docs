@@ -1,0 +1,32 @@
+{
+  "MENU": {
+    "HOME": "Home",
+    "OPERATORS": "Operators",
+    "COMPANIES": "Companies",
+    "TEAM": "Team"
+  },
+  "OPERATOR": {
+    "PARAMETER": {
+      "TITLE": "Parameters",
+      "NAME": "Name",
+      "TYPE": "Type",
+      "ATTRIBUTE": "Attribute",
+      "DESCRIPTION": "Description"
+    },
+    "ADDITIONAL_RESOURCES": {
+      "TITLE": "Additional Resources",
+      "SOURCE": "Source Code",
+      "SPECS": "Specs"
+    },
+    "EXAMPLES": {
+      "TITLE": "Examples"
+    },
+    "RELATED_OPERATORS": {
+      "TITLE": "Related Operators"
+    },
+    "WALKTHROUGH": {
+      "TITLE": "Walkthrough"
+    },
+    "NO_TRANSLATION": "Translation not completed. See the description in English"
+  }
+}
