@@ -10,12 +10,14 @@ import { MaterialModule } from '../../../material/material.module';
 import { LanguageService } from '../../services/language.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { languagesList } from '../../data/language.data';
+import { OperatorsService } from '../../services/operators.service';
 
 describe('ToolbarComponent', () => {
   const languages = languagesList;
   let component: ToolbarComponent;
   let fixture: ComponentFixture<ToolbarComponent>;
   let languageService: LanguageService;
+  let operatorsService: OperatorsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -26,10 +28,11 @@ describe('ToolbarComponent', () => {
         TranslateModule.forRoot()
       ],
       declarations: [ToolbarComponent],
-      providers: [LanguageService]
+      providers: [LanguageService, OperatorsService]
     });
 
     languageService = TestBed.get(LanguageService);
+    operatorsService = TestBed.get(OperatorsService);
     fixture = TestBed.createComponent(ToolbarComponent);
     component = fixture.componentInstance;
   });
@@ -50,15 +53,17 @@ describe('ToolbarComponent', () => {
     fixture.detectChanges();
 
     expect(component.languagesList).toEqual(languages);
-    expect(component.currentLang).toEqual(languages[1]);
   });
 
   it('should change current language on onLangSwitch', () => {
     spyOn(languageService, 'saveLang').and.stub();
+    spyOn(operatorsService, 'changeOperatorsLang').and.stub();
 
     component.onLangSwitch(languages[1]);
 
-    expect(component.currentLang).toEqual(languages[1]);
+    expect(operatorsService.changeOperatorsLang).toHaveBeenCalledWith(
+      languages[1]
+    );
     expect(languageService.saveLang).toHaveBeenCalledWith(languages[1]);
   });
 });
