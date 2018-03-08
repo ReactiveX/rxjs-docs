@@ -23,22 +23,22 @@ interface Menu {
 export class AppComponent implements OnInit {
   menus: Menu[] = [
     {
-      title: 'Home',
+      title: 'MENU.HOME',
       link: '/',
       options: { exact: true }
     },
     {
-      title: 'Operators',
+      title: 'MENU.OPERATORS',
       link: '/operators',
       options: { exact: false }
     },
     {
-      title: 'Companies',
+      title: 'MENU.COMPANIES',
       link: '/companies',
       options: { exact: false }
     },
     {
-      title: 'Team',
+      title: 'MENU.TEAM',
       link: '/team',
       options: { exact: false }
     }
@@ -69,9 +69,9 @@ export class AppComponent implements OnInit {
       .subscribe((data: SeoData) => this._seo.setHeaders(data));
   }
 
-  shouldOpenChildMenu(title: string) {
+  shouldOpenChildMenu(title: string): void {
     // for accessibility we need to ensure child menu is open when clicked
-    if (title === 'Operators') {
+    if (title === 'MENU.OPERATORS') {
       this._operatorMenuService.openOperatorMenu();
     }
   }

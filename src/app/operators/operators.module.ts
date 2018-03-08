@@ -1,18 +1,11 @@
-import {
-  NgModule,
-  InjectionToken,
-  CUSTOM_ELEMENTS_SCHEMA
-} from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LayoutModule } from '@angular/cdk/layout';
+import { TranslateModule } from '@ngx-translate/core';
 
-import { ALL_OPERATORS, OperatorDoc } from '../../operator-docs';
 import { OperatorsRoutingModule } from './operators-routing.module';
-import { OperatorsComponent, OPERATORS_TOKEN } from './operators.component';
-import {
-  OperatorComponent,
-  OPERATOR_TOKEN
-} from './components/operator/operator.component';
+import { OperatorsComponent } from './operators.component';
+import { OperatorComponent } from './components/operator/operator.component';
 import { OperatorHeaderComponent } from './components/operator-header/operator-header.component';
 import { OperatorParametersComponent } from './components/operator-parameters/operator-parameters.component';
 import { OperatorExamplesComponent } from './components/operator-examples/operator-examples.component';
@@ -40,10 +33,12 @@ import { MaterialModule } from '../material/material.module';
     HighlightJsDirective,
     SafeUrlPipe
   ],
-  imports: [CommonModule, MaterialModule, OperatorsRoutingModule, LayoutModule],
-  providers: [
-    { provide: OPERATORS_TOKEN, useValue: ALL_OPERATORS },
-    { provide: OPERATOR_TOKEN, useValue: ALL_OPERATORS }
+  imports: [
+    CommonModule,
+    MaterialModule,
+    OperatorsRoutingModule,
+    LayoutModule,
+    TranslateModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

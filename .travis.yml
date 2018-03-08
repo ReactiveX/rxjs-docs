@@ -28,16 +28,20 @@ script:
   - ng build --prod
   - ng e2e
 
-before_deploy:
-  - rm -rf ./dist
-  - ng build
-  - yes | rm *.* && rm -rf ./e2e ./node_modules ./src
-  - cp -r ./dist/* ./
-
-deploy:
-  provider: azure_web_apps
-  verbose: true
-  skip_cleanup: true
-
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+
+before_deploy:
+  - ng build --prod
+  - ls -l
+  - cd dist
+  - echo "rxjsdocs.com" >> CNAME
+
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  # Set in travis-ci.org dashboard, marked secure
+  keep-history: true
+  local-dir: dist
+  on:
+    branch: master
