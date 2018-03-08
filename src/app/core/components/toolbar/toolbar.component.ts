@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+
 import { Lang } from '../../models/language.model';
 import { LanguageService } from '../../services/language.service';
+import { OperatorsService } from '../../services/operators.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -9,14 +11,15 @@ import { LanguageService } from '../../services/language.service';
 })
 export class ToolbarComponent implements OnInit {
   @Output() navToggle = new EventEmitter<boolean>();
-  currentLang: Lang;
   languagesList: Lang[];
 
-  constructor(private languageService: LanguageService) {}
+  constructor(
+    private languageService: LanguageService,
+    private operatorsService: OperatorsService
+  ) {}
 
   ngOnInit() {
     this.languagesList = this.languageService.getLanguagesList();
-    this.currentLang = this.languageService.getCurrentLang();
   }
 
   navOpen() {
@@ -24,7 +27,7 @@ export class ToolbarComponent implements OnInit {
   }
 
   onLangSwitch(lang: Lang): void {
-    this.currentLang = lang;
     this.languageService.saveLang(lang);
+    this.operatorsService.changeOperatorsLang(lang);
   }
 }
