@@ -52,9 +52,12 @@ export const expand: OperatorDoc = {
       import { of } from 'rxjs/observable/of'
       import { expand, mapTo, delay, take } from 'rxjs/operators';
 
-      const clicks = fromEvent(document, 'click');
-      const powersOfTwo = clicks.pipe(mapTo(1)).pipe(expand(x=>of(2*x).pipe(delay(1000)))).pipe(take(10));
-      powersOfTwo.subscribe(x =>console.log(x));
+      const clicks$ = fromEvent(document, 'click');
+      const powersOfTwo$ = clicks$.pipe(
+           mapTo(1),
+           expand(x => of(2 * x)),
+           take(10)
+         ).subscribe(x =>console.log(x));
       /*
         Example console output:
         1
