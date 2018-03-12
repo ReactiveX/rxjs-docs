@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
+
 import { TranslateService } from '@ngx-translate/core';
+
 import { Lang } from '../models/language.model';
 import { languagesList } from '../data/language.data';
 
@@ -9,6 +11,7 @@ export class LanguageService {
 
   constructor(private translate: TranslateService) {
     this.fullLangList = languagesList;
+    this.init(['en', 'ru']);
   }
 
   init(languages: string[]): void {
