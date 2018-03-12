@@ -33,9 +33,9 @@ export const interval: OperatorDoc = {
     {
       name: 'Observable emits ascending numbers, one every second (1000ms)',
       code: `
-          import { interval } from 'rxjs/internal/observable/interval';
+          import { interval } from 'rxjs/observable/interval'
           import { pipe } from 'rxjs';
-          import { take } from 'rxjs/internal/operators/take';
+          import { take } from 'rxjs/operators';
           const observable = interval(1000).pipe(take(5));
           const subscription = observable.subscribe({
             next: (n) => console.log(n), // triggered every 1000ms from interval
