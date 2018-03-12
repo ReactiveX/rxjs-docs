@@ -44,7 +44,7 @@ export const interval: OperatorDoc = {
       `,
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/gaxinafovo/1/edit?html,js,console,output'
+        url: 'http://jsbin.com/gaxinafovo/1/embed?html,js,console,output'
       }
     }
   ],
