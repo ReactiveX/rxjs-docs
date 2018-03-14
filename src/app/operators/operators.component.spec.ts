@@ -1,122 +1,137 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick
+} from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, DebugElement } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { of } from 'rxjs/observable/of';
 import {
   LayoutModule,
   BreakpointObserver,
   BreakpointState
 } from '@angular/cdk/layout';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
 
-import {
-  OperatorsComponent,
-  OPERATORS_TOKEN,
-  groupOperatorsByType
-} from './operators.component';
-import { OperatorDoc } from '../../operator-docs';
+import { OperatorsComponent } from './operators.component';
+import { ALL_OPERATORS_EN } from '../../operator-docs';
 import { OperatorMenuService } from '../core/services/operator-menu.service';
+import { OperatorsService } from '../core/services/operators.service';
+import { LanguageService } from '../core/services/language.service';
 
-const mockActivatedRoute = {
+const mockActivatedRoute = jasmine.createSpyObj('ActivatedRoute', {
   snapshot: {},
-  fragment: Observable.create(observer => {
-    observer.next('merge');
-    observer.complete();
-  })
-};
-
-const mockOperators: OperatorDoc[] = [
-  { operatorType: 'transformation' },
-  { operatorType: 'utility' },
-  { operatorType: 'utility' }
-];
-
-const mockBreakPointObserver = {
-  isMatched: () => {}
-};
+  fragment: of('merge')
+});
 
 describe('Operators', () => {
   describe('OperatorsComponent', () => {
     let fixture: ComponentFixture<OperatorsComponent>;
     let component: OperatorsComponent;
-    let el;
     let breakpointService: BreakpointObserver;
+    let operatorsService: OperatorsService;
+    const allOperators = ALL_OPERATORS_EN;
 
     beforeEach(() => {
       TestBed.configureTestingModule({
-        imports: [RouterTestingModule, LayoutModule],
+        imports: [RouterTestingModule, LayoutModule, TranslateModule.forRoot()],
         declarations: [OperatorsComponent],
         providers: [
+          OperatorsService,
+          LanguageService,
           OperatorMenuService,
-          { provide: OPERATORS_TOKEN, useValue: mockOperators },
           { provide: ActivatedRoute, useValue: mockActivatedRoute }
         ],
         schemas: [NO_ERRORS_SCHEMA]
       });
-    });
 
-    beforeEach(() => {
       fixture = TestBed.createComponent(OperatorsComponent);
       component = fixture.componentInstance;
-      el = fixture.debugElement;
-      breakpointService = el.injector.get(BreakpointObserver);
+      breakpointService = TestBed.get(BreakpointObserver);
+      operatorsService = TestBed.get(OperatorsService);
     });
 
-    it('should group operators by operator type', () => {
-      component.ngOnInit();
+    it(
+      'should group operators by operator type',
+      fakeAsync(() => {
+        spyOn(operatorsService, 'getOperatorsForMenu').and.returnValue(
+          Promise.resolve([
+            { name: 'combineLatest', operatorType: 'combination' }
+          ])
+        );
 
-      expect(component.groupedOperators['transformation'].length).toBe(1);
-      expect(component.groupedOperators['utility'].length).toBe(2);
-    });
+        component.ngOnInit();
+        tick();
 
-    it('should have a sidenav mode of over when on a small screen', done => {
-      const substituteState = fakeBreakpointState(true);
-      spyOn(breakpointService, 'observe').and.returnValue(of(substituteState));
+        expect(component.groupedOperators['combination'].length).toBe(1);
+      })
+    );
 
-      component.ngOnInit();
+    it(
+      'should have a sidenav mode of over when on a small screen',
+      fakeAsync(() => {
+        const substituteState = fakeBreakpointState(true);
+        spyOn(breakpointService, 'observe').and.returnValue(
+          of(substituteState)
+        );
+        const sidenavModeSpy = jasmine.createSpy('sidenavMode');
 
-      component.sidenavMode$.subscribe(sidenavMode => {
-        expect(sidenavMode).toBe('over');
-        done();
-      });
-    });
+        component.ngOnInit();
+        component.sidenavMode$.subscribe(sidenavModeSpy);
 
-    it('should have a sidenav mode of side when on a large screen', done => {
-      const substituteState = fakeBreakpointState(false);
-      spyOn(breakpointService, 'observe').and.returnValue(of(substituteState));
+        expect(sidenavModeSpy).toHaveBeenCalledWith('over');
+      })
+    );
 
-      component.ngOnInit();
+    it(
+      'should have a sidenav mode of side when on a large screen',
+      fakeAsync(() => {
+        const substituteState = fakeBreakpointState(false);
+        spyOn(breakpointService, 'observe').and.returnValue(
+          of(substituteState)
+        );
+        const sidenavModeSpy = jasmine.createSpy('sidenavMode');
 
-      component.sidenavMode$.subscribe(sidenavMode => {
-        expect(sidenavMode).toBe('side');
-        done();
-      });
-    });
+        component.ngOnInit();
+        component.sidenavMode$.subscribe(sidenavModeSpy);
 
-    it('should have a top menu gap of 54px when on a small screen', done => {
-      const substituteState = fakeBreakpointState(true);
-      spyOn(breakpointService, 'observe').and.returnValue(of(substituteState));
+        expect(sidenavModeSpy).toHaveBeenCalledWith('side');
+      })
+    );
 
-      component.ngOnInit();
+    it(
+      'should have a top menu gap of 54px when on a small screen',
+      fakeAsync(() => {
+        const substituteState = fakeBreakpointState(true);
+        spyOn(breakpointService, 'observe').and.returnValue(
+          of(substituteState)
+        );
+        const operatorMenuGapSpy = jasmine.createSpy('operatorMenuGap');
 
-      component.operatorMenuGap$.subscribe(operatorMenuGap => {
-        expect(operatorMenuGap).toBe(54);
-        done();
-      });
-    });
+        component.ngOnInit();
+        component.operatorMenuGap$.subscribe(operatorMenuGapSpy);
 
-    it('should have a top menu gap of 64px when on a large screen', done => {
-      const substituteState = fakeBreakpointState(false);
-      spyOn(breakpointService, 'observe').and.returnValue(of(substituteState));
+        expect(operatorMenuGapSpy).toHaveBeenCalledWith(54);
+      })
+    );
 
-      component.ngOnInit();
+    it(
+      'should have a top menu gap of 64px when on a large screen',
+      fakeAsync(() => {
+        const substituteState = fakeBreakpointState(false);
+        spyOn(breakpointService, 'observe').and.returnValue(
+          of(substituteState)
+        );
+        const operatorMenuGapSpy = jasmine.createSpy('operatorMenuGap');
 
-      component.operatorMenuGap$.subscribe(operatorMenuGap => {
-        expect(operatorMenuGap).toBe(64);
-        done();
-      });
-    });
+        component.ngOnInit();
+        component.operatorMenuGap$.subscribe(operatorMenuGapSpy);
+
+        expect(operatorMenuGapSpy).toHaveBeenCalledWith(64);
+      })
+    );
   });
 });
 

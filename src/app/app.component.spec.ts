@@ -2,16 +2,17 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule, MatListModule } from '@angular/material';
+
 import { TranslateModule } from '@ngx-translate/core';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { LanguageService } from './core/services/language.service';
+import { OperatorMenuService } from './core/services/operator-menu.service';
 
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
-  let languageService: LanguageService;
+  let operatorMenuService: OperatorMenuService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -24,19 +25,28 @@ describe('AppComponent', () => {
         TranslateModule.forRoot()
       ],
       declarations: [AppComponent],
-      providers: [LanguageService]
+      providers: [OperatorMenuService]
     });
 
+    operatorMenuService = TestBed.get(OperatorMenuService);
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;
-    languageService = TestBed.get(LanguageService);
+    fixture.detectChanges();
   });
 
-  it('should init supported languages on initialization', () => {
-    spyOn(languageService, 'init').and.stub();
+  it('should call openOperatorMenu on shouldOpenChildMenu if condition is true', () => {
+    spyOn(operatorMenuService, 'openOperatorMenu').and.stub();
 
-    fixture.detectChanges();
+    component.shouldOpenChildMenu('MENU.OPERATORS');
 
-    expect(languageService.init).toHaveBeenCalledWith(['en', 'ru']);
+    expect(operatorMenuService.openOperatorMenu).toHaveBeenCalled();
+  });
+
+  it('should not call openOperatorMenu on shouldOpenChildMenu if condition is false', () => {
+    spyOn(operatorMenuService, 'openOperatorMenu').and.stub();
+
+    component.shouldOpenChildMenu('MENU.HOME');
+
+    expect(operatorMenuService.openOperatorMenu).not.toHaveBeenCalled();
   });
 });

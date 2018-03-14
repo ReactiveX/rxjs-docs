@@ -1,12 +1,10 @@
 import {
   Component,
-  Inject,
-  InjectionToken,
   OnInit,
   OnDestroy,
   AfterContentInit,
-  ChangeDetectionStrategy,
-  ViewChild
+  ViewChild,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   trigger,
@@ -15,21 +13,18 @@ import {
   animate,
   transition
 } from '@angular/animations';
-import { Router, ActivatedRoute } from '@angular/router';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material';
-import { Subscription } from 'rxjs/Subscription';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { filter, takeUntil, map } from 'rxjs/operators';
 
-import { OperatorDoc } from '../../operator-docs/operator.model';
+import { OperatorDoc } from '../../operator-docs';
 import { OperatorMenuService } from '../core/services/operator-menu.service';
+import { OperatorsService } from '../core/services/operators.service';
 
 const OPERATOR_MENU_GAP_LARGE = 64;
 const OPERATOR_MENU_GAP_SMALL = 54;
-
-export const OPERATORS_TOKEN = new InjectionToken<string>('operators');
 
 interface OperatorDocMap {
   [key: string]: OperatorDoc[];
@@ -69,12 +64,13 @@ export class OperatorsComponent implements OnInit, AfterContentInit, OnDestroy {
   public smallScreen$: Observable<boolean>;
   public operatorMenuGap$: Observable<number>;
   public sidenavMode$: Observable<'over' | 'side'>;
+  public operators: OperatorDoc[];
   private _onDestroy = new Subject();
 
   constructor(
     private _breakpointObserver: BreakpointObserver,
     private _operatorMenuService: OperatorMenuService,
-    @Inject(OPERATORS_TOKEN) public operators: OperatorDoc[]
+    private _operatorsService: OperatorsService
   ) {}
 
   ngOnInit() {
@@ -93,8 +89,11 @@ export class OperatorsComponent implements OnInit, AfterContentInit, OnDestroy {
     this.sidenavMode$ = this.smallScreen$.pipe(
       map(smallScreen => (smallScreen ? 'over' : 'side'))
     );
-    this.groupedOperators = groupOperatorsByType(this.operators);
-    this.categories = Object.keys(this.groupedOperators);
+    this._operatorsService.getOperatorsForMenu().then(data => {
+      this.operators = data;
+      this.groupedOperators = groupOperatorsByType(this.operators);
+      this.categories = Object.keys(this.groupedOperators);
+    });
   }
 
   ngAfterContentInit() {
