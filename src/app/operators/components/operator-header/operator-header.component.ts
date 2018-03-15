@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-operator-header',
   templateUrl: './operator-header.component.html',
-  styleUrls: ['./operator-header.component.scss']
+  styleUrls: ['./operator-header.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OperatorHeaderComponent {
   @Input() operatorName: string;
