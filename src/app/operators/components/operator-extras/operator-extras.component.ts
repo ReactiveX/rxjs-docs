@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { OperatorExtra } from '../../../../operator-docs';
 
 @Component({
   selector: 'app-operator-extras',
   templateUrl: './operator-extras.component.html',
-  styleUrls: ['./operator-extras.component.scss']
+  styleUrls: ['./operator-extras.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OperatorExtrasComponent {
   @Input() operatorExtras: OperatorExtra[] = [];
