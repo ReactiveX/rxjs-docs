@@ -55,7 +55,7 @@ export const ignoreElements: OperatorDoc = {
       const subscribe = error.subscribe(
         val => console.log('NEXT:',val),
         val => console.log('ERROR:',val),
-        () => console.log('SECOND COMPLETE!')
+        () => console.log('SECOND COMPLETE')
       );
      `,
       externalLink: {
