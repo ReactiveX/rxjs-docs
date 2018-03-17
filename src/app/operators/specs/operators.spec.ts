@@ -1,4 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick
+} from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -51,15 +56,21 @@ describe('Operators', () => {
       operatorsService = TestBed.get(OperatorsService);
     });
 
-    it('should group operators by operator type', () => {
-      spyOn(operatorsService, 'getOperators').and.returnValue(
-        Observable.of(allOperators)
-      );
+    it(
+      'should group operators by operator type',
+      fakeAsync(() => {
+        spyOn(operatorsService, 'getOperatorsForMenu').and.returnValue(
+          Promise.resolve([
+            { name: 'combineLatest', operatorType: 'combination' }
+          ])
+        );
+        component.ngOnInit();
 
-      component.ngOnInit();
+        tick();
 
-      expect(component.groupedOperators['utility'].length).toBeTruthy();
-    });
+        expect(component.groupedOperators['combination'].length).toBeTruthy();
+      })
+    );
 
     it('should have a sidenav mode of over when on a small screen', () => {
       spyOn(breakpointService, 'isMatched').and.returnValue(true);
