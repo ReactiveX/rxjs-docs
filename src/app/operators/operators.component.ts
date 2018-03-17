@@ -69,7 +69,7 @@ export class OperatorsComponent implements OnInit, AfterContentInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this._operatorsService.getOperators().subscribe(data => {
+    this._operatorsService.getOperatorsForMenu().then(data => {
       this.operators = data;
       this.groupedOperators = groupOperatorsByType(this.operators);
       this.categories = Object.keys(this.groupedOperators);

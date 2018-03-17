@@ -1,7 +1,9 @@
 [![Build Status](https://travis-ci.org/ReactiveX/rxjs-docs.svg?branch=master)](https://travis-ci.org/ReactiveX/rxjs-docs)
 
-# rxjs-docs
-The home for new work on the new RxJS docs (RxJS v5 and up)
+# [rxjs-docs](http://rxjsdocs.com/)
+The home for new work on the new RxJS docs (RxJS v5 and up).
+Website (currently beta) can be found [here](http://rxjsdocs.com/). 
+We highly welcome any kind of feedback or contribution.
 
 License is the same as the RxJS project: https://github.com/reactivex/rxjs
 
