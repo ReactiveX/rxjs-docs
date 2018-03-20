@@ -1,3 +1,44 @@
-<p>
-  rxjs works!
-</p>
+<div class="container">
+    <mat-card>
+        <div class="banner">
+            <div class="title accent">RxJS</div>
+            <h1 class="rxjs"> Reactive Extensions Library for JavaScript </h1>
+            <a mat-raised-button color="accent" [routerLink]="['installation']">Get started</a>
+        </div>
+    </mat-card>
+
+
+    <div class="tiles">
+        <div class="tile">
+            <h3>The ReactiveX library for JavaScript</h3>
+
+            <p>
+                RxJS is a library for reactive programming using Observables, to make it easier to compose asynchronous or callback-based
+                code. This project is a rewrite of Reactive-Extensions/RxJS with better performance, better modularity, better
+                debuggable call stacks, while staying mostly backwards compatible, with some breaking changes that reduce
+                the API surface
+            </p>
+        </div>
+        <div class="tile">
+            <h3>
+                <a class="link accent" [routerLink]="['installation']">Install it</a>
+            </h3>
+            <p>
+                Find information on how to install RxJs from different sources from
+                <i>npm</i> to
+                <i>CDN</i>
+            </p>
+
+            <h3>
+                <a class="link accent" [routerLink]="['operators']">Learn it</a>
+            </h3>
+            <p>
+                Read the full documentation on
+                <i>Observables</i>,
+                <i>Observer</i>,
+                <i>Subject</i>, etc. In addition, View live examples alongside documentation with diagrams which helps you understand
+                better in action
+            </p>
+        </div>
+    </div>
+</div>
