@@ -1,7 +1,8 @@
 {
   "MENU": {
     "HOME": "Главная",
-    "OPERATORS": "Операторы",
+    "INSTALLATION": "Монтаж",
+    "OPERATORS": "Операторы",    
     "COMPANIES": "Компании",
     "TEAM": "Команда"
   },
