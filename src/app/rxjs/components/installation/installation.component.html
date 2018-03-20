@@ -1,0 +1,84 @@
+<div class="installation">
+  <h2>{{'INSTALLATION.TITLE' | translate}}</h2>
+
+  <p>{{'INSTALLATION.INTRO' | translate}}:</p>
+
+  <h3 class="underlined">ES6 via npm</h3>
+
+  <pre><code>npm install rxjs</code></pre>
+
+  <p>{{'INSTALLATION.IMPORT' | translate}}:</p>
+
+  <pre><code>
+import Rx from 'rxjs/Rx';
+
+Rx.Observable.of(1,2,3)
+    </code></pre>
+
+  <p>{{'INSTALLATION.PATCHING' | translate}}:</p>
+
+  <pre><code>import &#10100; Observable &#10101; from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/map';
+      
+Observable.of(1,2,3).map(x => x + '!!!'); // etc</code></pre>
+
+  <p [innerHtml]="'INSTALLATION.WITHBIND' | translate"></p>
+
+  <p>{{'INSTALLATION.NOTE' | translate}}</p>
+
+  <pre><code>import &#10100; Observable &#10101; from 'rxjs/Observable';
+import &#10100; of &#10101; from 'rxjs/observable/of';
+import &#10100; map &#10101; from 'rxjs/operator/map';
+      
+Observable::of(1,2,3)::map(x => x + '!!!'); // etc</code></pre>
+
+  <h3 class="underlined">
+    CommonJS via npm
+  </h3>
+
+  <p [innerHtml]="'INSTALLATION.ERROR' | translate"></p>
+  <ol>
+    <li>
+      <p [innerHtml]="'INSTALLATION.TYPINGUSERS' | translate"></p>
+      <pre><code>typings install es6-shim --ambient</code></pre>
+    </li>
+    <li>
+      <p [innerHtml]="'INSTALLATION.NOTINTERFACE' | translate"></p>
+    </li>
+    <li>
+      <p [innerHtml]="'INSTALLATION.ADDTYPE' | translate"></p>
+    </li>
+  </ol>
+
+  <h3 class="underlined">
+    {{'INSTALLATION.ALLMODULETYPES' | translate}} (CJS/ES6/AMD/TypeScript) via npm
+  </h3>
+
+  <p>{{'INSTALLATION.VIAV3' | translate}}:</p>
+
+  <pre><code>npm install @reactivex/rxjs</code></pre>
+
+  <p>{{'INSTALLATION.VIAV2' | translate}}:</p>
+
+  <pre><code>npm install @reactivex/rxjs@5.0.0-beta.1</code></pre>
+
+  <h3 class="underlined">
+      CDN  
+  </h3>
+
+  <p>
+    {{'INSTALLATION.FORCDN.PART1' | translate}} 
+    <a target="_blank" class="accent" href="https://unpkg.com/">unpkg</a>. 
+    {{'INSTALLATION.FORCDN.PART2' | translate}}:
+  </p>
+  <p>
+    {{'INSTALLATION.FORBETA1' | translate}}: <a class="accent" target="_blank" href="https://unpkg.com/@reactivex/rxjs@version/dist/global/Rx.umd.js">https://unpkg.com/@reactivex/rxjs@version/dist/global/Rx.umd.js</a>
+  </p>
+  <p>
+    {{'INSTALLATION.FORBETA12' | translate}}: <a class="accent" target="_blank" href="https://unpkg.com/@reactivex/rxjs@version/dist/global/Rx.js">https://unpkg.com/@reactivex/rxjs@version/dist/global/Rx.js</a>
+  </p>
+
+  <h4>{{'INSTALLATION.ADDITIONALRESOURCES' | translate}}</h4>
+  <h4><a class="accent" href="#/operators"> <span>{{'INSTALLATION.OPERATORS' | translate}}</span></a></h4>
+</div>
