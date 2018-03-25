@@ -28,6 +28,11 @@ export class AppComponent implements OnInit {
       options: { exact: true }
     },
     {
+      title: 'MENU.INSTALLATION',
+      link: '/installation',
+      options: { exact: true }
+    },
+    {
       title: 'MENU.OPERATORS',
       link: '/operators',
       options: { exact: false }
