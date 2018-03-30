@@ -44,7 +44,7 @@ export const ignoreElements: OperatorDoc = {
       const source = Rx.Observable.interval(100);
       //ignore everything but error
       const error = source
-        .flatMap(val => {
+        .mergeMap(val => {
           if(val === 4){
             return Rx.Observable.throw('ERROR AT'val);
           }
@@ -60,7 +60,7 @@ export const ignoreElements: OperatorDoc = {
      `,
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/gogonawuze/1/edit?js,console'
+        url: 'http://jsbin.com/puwenenata/edit?html,js,console'
       }
     }
   ]
