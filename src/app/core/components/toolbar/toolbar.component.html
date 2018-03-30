@@ -1,30 +1,37 @@
-<mat-toolbar color="accent" class="mat-elevation-z6">
-  <button mat-icon-button (click)="navOpen()" aria-label="menu" value="menu">
-    <mat-icon>
-      menu
-    </mat-icon>
-  </button>
-  <a routerLink="/" aria-label="ReactiveX" class="mat-button" aria-disabled="false">
-    <span class="mat-button-wrapper">
+<mat-toolbar color="accent" class="mat-elevation-z6" fxLayout="row" fxLayoutAlign="space-between center">
+  <div>
+    <button mat-icon-button (click)="navOpen()" aria-label="menu" value="menu" fxFlex="10">
+      <mat-icon>
+        menu
+      </mat-icon>
+    </button>
+    <a routerLink="/" aria-label="ReactiveX" class="mat-button" aria-disabled="false" fxFlex="10">
+      <span class="mat-button-wrapper">
         <img src="assets/img/Rx_Trnsprt_Logo-48-48.png" alt="RxJS Docs Home">
-    </span>
-  </a>
-  <span class="title" fxFlex> 
-      RxJS Docs 
+      </span>
+    </a>
+  </div>
+
+  <span class="title" fxHide fxShow.gt-sm>
+    RxJS Docs
   </span>
 
-  <span class="title" fxFlex> WARNING: This is BETA site </span>
-  <button mat-icon-button [matMenuTriggerFor]="appMenu">
-    <mat-icon>language</mat-icon>
-  </button>
-  <mat-menu #appMenu="matMenu" [overlapTrigger]="false" xPosition="before">
-    <button mat-menu-item *ngFor="let language of languagesList" (click)="onLangSwitch(language)">
-      {{language.nativeName}}
+  <span class="title" fxHide fxShow.gt-sm> WARNING: This is BETA site </span>
+
+  <div>
+    <button mat-icon-button [matMenuTriggerFor]="appMenu">
+      <mat-icon>language</mat-icon>
     </button>
-  </mat-menu>
-  <a aria-label="GitHub Repository" target="_blank" class="mat-button" href="https://github.com/ReactiveX" aria-disabled="false">
-    <span class="mat-button-wrapper">
-      <img src="assets/img/GitHub-Mark-Light-64px.png" alt="ReactiveX GitHub Repository"> GitHub
-    </span>
-  </a>
+    <mat-menu #appMenu="matMenu" [overlapTrigger]="false" xPosition="before">
+      <button mat-menu-item *ngFor="let language of languagesList" (click)="onLangSwitch(language)">
+        {{language.nativeName}}
+      </button>
+    </mat-menu>
+    <a aria-label="GitHub Repository" target="_blank" class="mat-button" href="https://github.com/ReactiveX" aria-disabled="false">
+      <span class="mat-button-wrapper">
+        <img src="assets/img/GitHub-Mark-Light-64px.png" alt="ReactiveX GitHub Repository"> GitHub
+      </span>
+    </a>
+  </div>
+
 </mat-toolbar>
