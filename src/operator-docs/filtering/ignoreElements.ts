@@ -6,8 +6,8 @@ export const ignoreElements: OperatorDoc = {
   signature: 'public ignoreElements(): OperatorFunction<any, never>',
   marbleUrl: 'http://reactivex.io/rxjs/img/ignoreElements.png',
   shortDescription: {
-    description:
-      'Ignores all items emitted by the source Observable and only passes calls of `complete` or `error`'
+    description: `Ignores all items emitted by the source Observable and only passes calls of
+      <span class="markdown-code">complete</span> or <span class="markdown-code">error</span>`
   },
   walkthrough: {
     description: `<p>
