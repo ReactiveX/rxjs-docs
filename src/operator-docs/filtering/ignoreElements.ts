@@ -6,8 +6,8 @@ export const ignoreElements: OperatorDoc = {
   signature: 'public ignoreElements(): OperatorFunction<any, never>',
   marbleUrl: 'http://reactivex.io/rxjs/img/ignoreElements.png',
   shortDescription: {
-    description:
-      'Ignores all items emitted by the source Observable and only passes calls of `complete` or `error`'
+    description: `Ignores all items emitted by the source Observable and only passes calls of
+      <span class="markdown-code">complete</span> or <span class="markdown-code">error</span>`
   },
   walkthrough: {
     description: `<p>
@@ -44,7 +44,7 @@ export const ignoreElements: OperatorDoc = {
       const source = Rx.Observable.interval(100);
       //ignore everything but error
       const error = source
-        .flatMap(val => {
+        .mergeMap(val => {
           if(val === 4){
             return Rx.Observable.throw('ERROR AT'val);
           }
@@ -60,7 +60,7 @@ export const ignoreElements: OperatorDoc = {
      `,
       externalLink: {
         platform: 'JSBin',
-        url: 'http://jsbin.com/gogonawuze/1/edit?js,console'
+        url: 'http://jsbin.com/puwenenata/edit?html,js,console'
       }
     }
   ]
