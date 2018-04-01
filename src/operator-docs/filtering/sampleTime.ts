@@ -45,9 +45,26 @@ export const sampleTime: OperatorDoc = {
     {
       name: 'Every second, emit the most recent click at most once',
       code: `
-            const clicks = Rx.Observable.fromEvent(document, 'click');
-            const result = clicks.sampleTime(1000);
+            import { fromEvent } from "rxjs/observable/fromEvent";
+            import { sampleTime } from "rxjs/operators";
+
+            const clicks = fromEvent(document, "click");
+            const result = clicks.pipe(sampleTime(1000));
             result.subscribe(x => console.log(x));
+
+            /*
+            Example console output
+            [object MouseEvent] {
+              altKey: false,
+              AT_TARGET: 2,
+              bubbles: true,
+              BUBBLING_PHASE: 3,
+              button: 0,
+              buttons: 0,
+              cancelable: true,
+              ....            //Entire object properties
+            }
+            */
       `,
       externalLink: {
         platform: 'JSBin',
