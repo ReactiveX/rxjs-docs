@@ -1,3 +1,29 @@
-<p>
-  rxjs works!
-</p>
+<div class="container">
+    <mat-card>
+        <div class="banner">
+            <div class="title accent">RxJS</div>
+            <h1 class="rxjs">{{'HOME.TITLE' | translate}}</h1>
+            <a mat-raised-button color="accent" [routerLink]="['installation']">{{'HOME.GETSTARTED' | translate}}</a>
+        </div>
+    </mat-card>
+
+
+    <div class="tiles">
+        <div class="tile">
+            <h3>{{'HOME.TITLE' | translate}}</h3>
+
+            <p>{{'HOME.DESCRIPTION' | translate}}</p>
+        </div>
+        <div class="tile">
+            <h3>
+                <a class="link accent" [routerLink]="['installation']">{{'HOME.INSTALL.TITLE' | translate}}</a>
+            </h3>
+            <p [innerHTML]="'HOME.INSTALL.DESCRIPTION' | translate"></p>
+
+            <h3>
+                <a class="link accent" [routerLink]="['operators']">{{'HOME.LEARN.TITLE' | translate}}</a>
+            </h3>
+            <p [innerHTML]="'HOME.LEARN.DESCRIPTION' | translate"></p>
+        </div>
+    </div>
+</div>
