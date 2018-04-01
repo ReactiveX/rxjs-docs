@@ -1,8 +1,8 @@
 <mat-sidenav-container class="operator-container">
-  <mat-sidenav [mode]="sidenavMode"
-               [opened]="!smallScreen"
-               [fixedTopGap]="operatorMenuGap"
-               [fixedInViewport]="true"
+  <mat-sidenav [mode]="sidenavMode$ | async"
+               [opened]="!(smallScreen$ | async)"
+               [fixedTopGap]="operatorMenuGap$ | async"
+               fixedInViewport
                class="operator-list-sidenav"
                #operatorSidenav>
     <mat-nav-list *ngFor="let category of categories"
@@ -10,8 +10,9 @@
       <h3 mat-subheader
           class="category-subheader">{{ category }}</h3>
       <a mat-list-item
+         (click)="smallScreen && operatorSidenav.close()"
          *ngFor="let operator of groupedOperators[category]"
-         [routerLink]="['/operators', operator.name]"
+         [routerLink]="[operator.name]"
          routerLinkActive="active">
         {{ operator.name }}
       </a>
@@ -19,8 +20,8 @@
   </mat-sidenav>
   <router-outlet></router-outlet>
 </mat-sidenav-container>
-<button *ngIf="smallScreen"
-        mat-mini-fab
+<button *ngIf="smallScreen$ | async"
+        mat-fab
         color="primary"
         class="sidenav-toggle"
         [@growInOut]="'in'"

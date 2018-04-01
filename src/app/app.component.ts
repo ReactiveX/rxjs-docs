@@ -8,7 +8,6 @@ import {
 import { filter, map, mergeMap } from 'rxjs/operators';
 import { SeoService, SeoData } from './core/services/seo.service';
 import { OperatorMenuService } from './core/services/operator-menu.service';
-import { LanguageService } from './core/services/language.service';
 
 interface Menu {
   title: string;
@@ -26,6 +25,11 @@ export class AppComponent implements OnInit {
     {
       title: 'MENU.HOME',
       link: '/',
+      options: { exact: true }
+    },
+    {
+      title: 'MENU.INSTALLATION',
+      link: '/installation',
       options: { exact: true }
     },
     {
@@ -49,8 +53,7 @@ export class AppComponent implements OnInit {
     private _router: Router,
     private _activatedRoute: ActivatedRoute,
     private _seo: SeoService,
-    private _operatorMenuService: OperatorMenuService,
-    private languageService: LanguageService
+    private _operatorMenuService: OperatorMenuService
   ) {}
 
   ngOnInit() {
@@ -69,8 +72,6 @@ export class AppComponent implements OnInit {
         filter((data: SeoData) => data.title !== undefined)
       )
       .subscribe((data: SeoData) => this._seo.setHeaders(data));
-
-    this.languageService.init(['en', 'ru']);
   }
 
   shouldOpenChildMenu(title: string): void {
