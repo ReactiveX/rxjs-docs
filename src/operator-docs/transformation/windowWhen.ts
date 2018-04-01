@@ -41,33 +41,35 @@ export const windowWhen: OperatorDoc = {
       name:
         'Emit only the first two clicks events in every window of [1-5] random seconds',
       code: `
-          import { interval } from "rxjs/observable/interval";
-          import { mergeAll, windowWhen } from "rxjs/operators";
+            import { fromEvent } from 'rxjs/observable/fromEvent';
+            import { interval } from 'rxjs/observable/interval';
+            import { mergeAll, tap, windowWhen } from 'rxjs/operators';
 
-          const clicks = Rx.Observable.fromEvent(document, 'click');
-          const result = clicks
-            .windowWhen(() => interval(1000 + Math.random() * 4000))
-            .map(win => win.take(2)) // each window has at most 2 emissions
-            .mergeAll(); // flatten the Observable-of-Observables
-          result.subscribe(x => console.log(x));
+            const clicks = fromEvent(document, 'click');
+            const result = clicks.pipe(
+              windowWhen(() => interval(3000)),
+              tap(() => console.log('Window Initated!'))
+            );
+            result.pipe(mergeAll()).subscribe(x => console.log(x));
 
-          /*
-            Example console output
-            [object MouseEvent] {
-              altKey: false,
-              AT_TARGET: 2,
-              bubbles: true,
-              BUBBLING_PHASE: 3,
-              button: 0,
-              buttons: 0,
-              cancelable: true,
-              cancelBubble: false,
-              CAPTURING_PHASE: 1,
-              clientX: 80,
-              clientY: 70,
-              .... //Entire object properties
-              }
-          */
+            /*
+              Example console output
+              'Window Initated!'
+              'Window Initated!'
+              'Window Initated!'
+              'Window Initated!'   //clicked on document
+              [object MouseEvent] {
+                altKey: false,
+                AT_TARGET: 2,
+                bubbles: true,
+                BUBBLING_PHASE: 3,
+                button: 0,
+                buttons: 0,
+                cancelable: true,
+                cancelBubble: false,
+                .... //Entire object properties
+                }
+            */
       `,
       externalLink: {
         platform: 'JSBin',
