@@ -4,7 +4,7 @@ export const sampleTime: OperatorDoc = {
   name: 'sampleTime',
   operatorType: 'filtering',
   signature:
-    'public sampleTime(period: number, scheduler: Scheduler): Observable<T>',
+    'public sampleTime(period: number, scheduler: Scheduler): Observable',
   marbleUrl: 'http://reactivex.io/rxjs/img/sampleTime.png',
   parameters: [
     {
