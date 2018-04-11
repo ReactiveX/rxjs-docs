@@ -1,0 +1,70 @@
+{
+  "MENU": {
+    "HOME": "主页",
+    "INSTALLATION": "安装",
+    "OPERATORS": "操作符",
+    "COMPANIES": "公司",
+    "TEAM": "团队"
+  },
+  "OPERATOR": {
+    "PARAMETER": {
+      "TITLE": "参数",
+      "NAME": "名称",
+      "TYPE": "类型",
+      "ATTRIBUTE": "属性",
+      "DESCRIPTION": "描述"
+    },
+    "ADDITIONAL_RESOURCES": {
+      "TITLE": "其他资源",
+      "SOURCE": "源码",
+      "SPECS": "测试代码"
+    },
+    "EXAMPLES": {
+      "TITLE": "示例"
+    },
+    "RELATED_OPERATORS": {
+      "TITLE": "相关操作符"
+    },
+    "WALKTHROUGH": {
+      "TITLE": "详解"
+    },
+    "NO_TRANSLATION": "翻译仍在进行中。请参阅英文描述。"    
+  },
+  "HOME": {
+    "TITLE": "JavaScript 的响应式编程库",
+    "GETSTARTED": "开始使用",
+    "DESCRIPTION": "RxJS 是使用 Observables 的响应式编程库，它使编写异步或基于回调的代码更加容易。这个项目是 Reactive-Extensions/RxJS (RxJS 4) 的重写，具有更好的性能、更好的模块性、更好的可调试调用堆栈，同时保持大部分向后兼容，只有一些破坏性的变更 (breaking changes) 是为了减少外层的 API 。",
+    "INSTALL": {
+      "TITLE": "安装",
+      "DESCRIPTION": "了解如何通过不同的源 (从 <i>npm</i> 到 <i>CDN</i>) 来安装 RxJS"
+    },
+    "LEARN": {
+      "TITLE": "学习",
+      "DESCRIPTION": "阅读 <i>Observables</i>、<i>Observer</i>、<i>Subject</i>，等一系列概念的完整文档。此外，通过查看在线示例及弹珠图来帮助你更好地理解"
+    }
+  },
+  "INSTALLATION": {
+    "TITLE": "安装指南",
+    "VIA": "通过",
+    "INTRO": "下面是安装 RxJS 的几种不同方式",    
+    "IMPORT": "导入整个核心功能集",
+    "PATCHING": "通过打补丁的方式只导入所需要的 (这对于减少 bundling 的体积是十分有用的)",
+    "WITHBIND": "只导入需要的并且使用被提议的<a href=\"#/operators\">绑定操作符</a>:",
+    "NOTE": "注意：这个额外的预发需要编译器支持并且此语法可能会在没有任何通知的情况下完全从 TC39 撤回！要使用的话需要你自己来承担风险",
+    "ERROR": "如果使用 RxJS 时收到这样的报错信息: <code class=\"inline\">error TS2304: Cannot find name 'Promise' 或 error TS2304: Cannot find name 'Iterable'</code>，你可能需要安装额外的类型。",
+    "TYPINGUSERS": "对于使用 <span class=\"accent\">typings</span> 的用户:",
+    "NOTINTERFACE": "如果你没有使用 typings 的话，可以从 <span class=\"accent\">/es6-shim/es6-shim.d.ts.</span> 文件中拷贝定义好的接口。",
+    "ADDTYPE": "在 <code class=\"inline\">tsconfig.json</code> 或 CLI 参数中添加类型定义文件。",
+    "ALLMODULETYPES": "全模块类型",
+    "VIAV3": "要安装这个库需要 npm 3及以上版本，使用下面的命令行",
+    "VIAV2": "如果你使用的还是 npm 2的话，那么在这个库升级至稳定版之前，需要明确地指定库的版本号",
+    "FORCDN": {
+      "PART1": "对于 CDN，可以使用",
+      "PART2": "只需要用当前的版本号来替换下面链接中的 version."
+    },
+    "FORBETA1": "对于 RxJS 5.0.0-beta.1 到 beta.11",
+    "FORBETA12": "对于 RxJS 5.0.0-beta.12 及以上版本",
+    "ADDITIONALRESOURCES": "其他资源",
+    "OPERATORS": "操作符"
+  }
+}

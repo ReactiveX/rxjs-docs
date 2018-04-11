@@ -11,7 +11,7 @@ export class LanguageService {
 
   constructor(private translate: TranslateService) {
     this.fullLangList = languagesList;
-    this.init(['en', 'ru']);
+    this.init(['en', 'ru', 'zh']);
   }
 
   init(languages: string[]): void {
