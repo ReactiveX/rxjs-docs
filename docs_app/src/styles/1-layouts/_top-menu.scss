@@ -24,7 +24,7 @@ mat-toolbar.mat-toolbar {
 
 // HOME PAGE OVERRIDE: TOPNAV TOOLBAR
 aio-shell.page-home mat-toolbar.mat-toolbar {
-  background-color: $blue;
+  background-color: $pink;
 
   @media (min-width: 481px) {
     &:not(.transitioning) {
@@ -133,7 +133,7 @@ aio-top-menu {
       }
 
       &:focus {
-        background-color: $accentblue;
+        background-color: $accentgrey;
         outline: none;
       }
     }

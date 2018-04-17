@@ -43,7 +43,7 @@ aio-toc.embedded {
     top: -8px;
 
     &:hover {
-      color: $accentblue;
+      color: $accentgrey;
     }
   }
 
@@ -74,7 +74,7 @@ aio-toc.embedded {
     }
 
     &:hover:not(.embedded) {
-      color: $accentblue;
+      color: $accentgrey;
     }
   }
 
@@ -84,7 +84,7 @@ aio-toc.embedded {
     position: relative;
 
     &:hover {
-      color: $accentblue;
+      color: $accentgrey;
     }
   }
 
@@ -147,12 +147,12 @@ aio-toc.embedded {
       }
 
       &:hover a {
-        color: $accentblue;
+        color: $accentgrey;
       }
 
       &.active {
         a {
-          color: $blue;
+          color: $pink;
           font-weight: 500;
 
           &:before {
@@ -160,7 +160,7 @@ aio-toc.embedded {
             border-radius: 50%;
             left: -3px;
             top: 12px;
-            background: $blue;
+            background: $pink;
             position: absolute;
             width: 6px;
             height: 6px;

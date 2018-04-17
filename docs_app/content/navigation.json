@@ -11,14 +11,6 @@
     {
       "url": "resources",
       "title": "Resources"
-    },
-    {
-      "url": "events",
-      "title": "Events"
-    },
-    {
-      "url": "https://blog.angular.io/",
-      "title": "Blog"
     }
   ],
 
@@ -33,14 +25,6 @@
         {
           "url": "resources",
           "title": "Resources"
-        },
-        {
-          "url": "events",
-          "title": "Events"
-        },
-        {
-          "url": "https://blog.angular.io/",
-          "title": "Blog"
         }
       ]
     }

@@ -11,7 +11,7 @@ const LOCAL_MARKER_PATH = 'node_modules/_local_.json';
 const PACKAGE_JSON_REGEX = /^[^/]+\/package\.json$/;
 
 const ANGULAR_ROOT_DIR = path.resolve(__dirname, '../../..');
-const ANGULAR_DIST_PACKAGES = path.resolve(ANGULAR_ROOT_DIR, 'dist/packages-dist');
+const ANGULAR_DIST_PACKAGES = path.resolve(ANGULAR_ROOT_DIR, 'dist/package');
 
 /**
  * A tool that can install Angular dependencies for a project from NPM or from the
