@@ -68,12 +68,12 @@ mat-sidenav-container div.mat-sidenav-content {
 
   &:hover {
     background-color: $lightgray;
-    color: $blue;
+    color: $pink;
     text-shadow: 0 0 5px #ffffff;
   }
 
   &:focus {
-    outline: $accentblue auto 2px;
+    outline: $accentgrey auto 2px;
   }
 
   //icons _within_ nav
@@ -86,7 +86,7 @@ mat-sidenav-container div.mat-sidenav-content {
 }
 
 .vertical-menu-item.selected {
-  color: $blue;
+  color: $pink;
 }
 
 button.vertical-menu-item {
