@@ -1,6 +1,6 @@
 {
-  "short_name": "Angular",
-  "name": "Angular",
+  "short_name": "RxJS",
+  "name": "RxJS",
   "icons": [
     {
       "src":"assets/images/favicons/favicon-194x194.png",

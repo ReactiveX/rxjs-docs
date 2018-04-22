@@ -28,7 +28,7 @@ aio-shell.page-home mat-toolbar.mat-toolbar {
 
   @media (min-width: 481px) {
     &:not(.transitioning) {
-      background-color: transparent;
+      background-color: $pink;
       transition: background-color .2s linear;
     }
   }

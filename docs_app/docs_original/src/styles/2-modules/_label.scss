@@ -55,7 +55,7 @@ label.raised, .api-header label {
     }
 
     &.api-type-label {
-        background-color: $accentgrey;
+        background-color: $accentblue;
 
         @each $name, $symbol in $api-symbols {
             &.#{$name} {

@@ -11,7 +11,7 @@ describe('NgPackagesInstaller', () => {
   const absoluteRootDir = path.resolve(rootDir);
   const nodeModulesDir = path.resolve(absoluteRootDir, 'node_modules');
   const packageJsonPath = path.resolve(absoluteRootDir, 'package.json');
-  const packagesDir = path.resolve(path.resolve(__dirname, '../../../dist/package'));
+  const packagesDir = path.resolve(path.resolve(__dirname, '../../../dist/packages-dist'));
   const toolsDir = path.resolve(path.resolve(__dirname, '../../../dist/tools/@angular'));
   let installer;
 
