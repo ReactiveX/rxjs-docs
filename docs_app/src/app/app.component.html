@@ -27,7 +27,6 @@
       <img *ngSwitchDefault src="http://rxjsdocs.com/assets/img/Rx_Trnsprt_Logo-48-48.png" width="37" height="40" title="Home" alt="Home">
     </a>
     <aio-top-menu *ngIf="isSideBySide" [nodes]="topMenuNodes"></aio-top-menu>
-    <aio-search-box class="search-container" #searchBox (onSearch)="doSearch($event)" (onFocus)="doSearch($event)"></aio-search-box>
   </mat-toolbar-row>
 </mat-toolbar>
 
@@ -39,9 +38,6 @@
     <aio-nav-menu *ngIf="!isSideBySide" [nodes]="topMenuNarrowNodes" [currentNode]="currentNodes?.TopBarNarrow" [isWide]="false"></aio-nav-menu>
     <aio-nav-menu [nodes]="sideNavNodes" [currentNode]="currentNodes?.SideNav" [isWide]="isSideBySide"></aio-nav-menu>
 
-    <div class="doc-version">
-      <aio-select (change)="onDocVersionChange($event.index)" [options]="docVersions" [selected]="currentDocVersion"></aio-select>
-    </div>
   </mat-sidenav>
 
   <section class="sidenav-content" [id]="pageId" role="content">
