@@ -26,12 +26,12 @@ describe('angular-api-package: computeApiBreadCrumbs processor', () => {
 
     expect(docs[0].breadCrumbs).toEqual([
       { text: 'API', path: '/api' },
-      { text: '@angular/moduleOne', path: 'module-1' },
+      { text: 'rxjs/moduleOne', path: 'module-1' },
       { text: 'ClassA', path: 'module-1/class-a' },
     ]);
     expect(docs[1].breadCrumbs).toEqual([
       { text: 'API', path: '/api' },
-      { text: '@angular/moduleTwo', path: 'module-2' },
+      { text: 'rxjs/moduleTwo', path: 'module-2' },
       { text: 'InterfaceB', path: 'module-2/interface-b' },
     ]);
     expect(docs[2].breadCrumbs).toBeUndefined();

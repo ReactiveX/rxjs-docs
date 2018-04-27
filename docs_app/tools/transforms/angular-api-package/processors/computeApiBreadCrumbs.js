@@ -8,7 +8,7 @@ module.exports = function computeApiBreadCrumbs(EXPORT_DOC_TYPES) {
         if (EXPORT_DOC_TYPES.indexOf(doc.docType) !== -1) {
           doc.breadCrumbs = [
             { text: 'API', path: '/api' },
-            { text: '@angular/' + doc.moduleDoc.id, path: doc.moduleDoc.path },
+            { text: 'rxjs/' + doc.moduleDoc.id, path: doc.moduleDoc.path },
             { text: doc.name, path: doc.path }
           ];
         }
