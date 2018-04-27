@@ -98,7 +98,7 @@ export class TeamService {
     {
       name: 'Jen Luker',
       role: 'Developer, A11y',
-      githubUrl: 'https://github.com/knittingcodemonkey',
+      githubUrl: 'https://github.com/knitcodemonkey',
       avatar: 'https://avatars0.githubusercontent.com/u/1584489',
       twitterUrl: 'https://twitter.com/knitcodemonkey',
       webpageUrl: 'http://jenluker.com'
