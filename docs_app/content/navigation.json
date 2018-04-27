@@ -6,17 +6,20 @@
     }
   ],
 
-  "TopBarNarrow": [
-  ],
+  "TopBarNarrow": [],
 
   "SideNav": [
     {
       "url": "api",
       "title": "Docs",
       "tooltip": "RxJs Documentation"
+    },
+    {
+      "url": "guide/installation",
+      "title": "Installation",
+      "tooltip": "Installation"
     }
   ],
 
-  "docVersions": [
-  ]
+  "docVersions": []
 }
