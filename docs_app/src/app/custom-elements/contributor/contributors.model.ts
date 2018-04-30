@@ -10,6 +10,7 @@ export class Contributor {
   picture?: string;
   website?: string;
   twitter?: string;
+  github?: string;
   bio?: string;
   isFlipped? = false;
 }
