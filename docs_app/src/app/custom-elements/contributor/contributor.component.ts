@@ -8,17 +8,21 @@ import { CONTENT_URL_PREFIX } from 'app/documents/document.service';
   template: `
     <div [ngClass]="{ 'flipped': person.isFlipped }" class="contributor-card">
 
-        <div class="card-front" (click)="flipCard(person)">
+        <div class="card-front">
             <h3>{{person.name}}</h3>
 
-            <div class="contributor-image" [style.background-image]="'url('+pictureBase+(person.picture || noPicture)+')'">
+            <div class="contributor-image" [style.background-image]="'url('+(person.picture || noPicture)+')'">
                 <div class="contributor-info">
                     <a *ngIf="person.bio" mat-button>
                         View Bio
                     </a>
                     <a *ngIf="person.twitter" mat-button class="icon"
-                        href="https://twitter.com/{{person.twitter}}" target="_blank" (click)="$event.stopPropagation()">
+                        href="{{person.twitter}}" target="_blank" (click)="$event.stopPropagation()">
                         <span class="fa fa-twitter fa-2x"></span>
+                    </a>
+                    <a *ngIf="person.github" mat-button class="icon"
+                        href="{{person.github}}" target="_blank" (click)="$event.stopPropagation()">
+                        <span class="fa fa-github fa-2x"></span>
                     </a>
                     <a *ngIf="person.website" mat-button class="icon"
                         href="{{person.website}}" target="_blank" (click)="$event.stopPropagation()">
@@ -33,7 +37,7 @@ import { CONTENT_URL_PREFIX } from 'app/documents/document.service';
             <p class="contributor-bio">{{person.bio}}</p>
         </div>
     </div>
-  `
+  `,
 })
 export class ContributorComponent {
   @Input() person: Contributor;

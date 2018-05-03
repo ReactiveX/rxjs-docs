@@ -8,6 +8,7 @@
       "root": "src",
       "outDir": "dist",
       "assets": [
+        "img",
         "assets",
         "generated",
         "app/search/search-worker.js",
@@ -25,11 +26,8 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "aio",
       "serviceWorker": false,
-      "styles": [
-        "styles.scss"
-      ],
-      "scripts": [
-      ],
+      "styles": ["styles.scss"],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
