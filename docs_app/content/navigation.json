@@ -1,8 +1,12 @@
 {
   "TopBar": [
     {
+      "url": "guide/overview",
+      "title": "Overview"
+    },
+    {
       "url": "api",
-      "title": "Docs"
+      "title": "Reference"
     },
     {
       "url": "team",
@@ -14,14 +18,19 @@
 
   "SideNav": [
     {
-      "url": "api",
-      "title": "Docs",
-      "tooltip": "RxJs Documentation"
+      "url": "guide/overview",
+      "title": "Overview",
+      "tooltip": "RxJs Overview"
     },
     {
       "url": "guide/installation",
       "title": "Installation",
       "tooltip": "Installation"
+    },
+    {
+      "url": "api",
+      "title": "Reference",
+      "tooltip": "RxJs Reference"
     }
   ],
 
