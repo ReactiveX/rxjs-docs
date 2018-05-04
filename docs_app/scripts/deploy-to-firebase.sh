@@ -57,20 +57,20 @@ fi
 
 case $deployEnv in
   next)
-    readonly projectId=aio-staging
-    readonly deployedUrl=https://next.angular.io/
+    readonly projectId=beta-rxjsdocs
+    readonly deployedUrl=https://beta-rxjsdocs.firebaseapp.com/
     readonly firebaseToken=$FIREBASE_TOKEN
     ;;
   stable)
-    readonly projectId=angular-io
-    readonly deployedUrl=https://angular.io/
+    readonly projectId=beta-rxjsdocs
+    readonly deployedUrl=https://beta-rxjsdocs.firebaseapp.com/
     readonly firebaseToken=$FIREBASE_TOKEN
     ;;
-  archive)
-    readonly projectId=angular-io-${majorVersion}
-    readonly deployedUrl=https://v${majorVersion}.angular.io/
-    readonly firebaseToken=$FIREBASE_TOKEN
-    ;;
+  # archive)
+  #   readonly projectId=angular-io-${majorVersion}
+  #   readonly deployedUrl=https://v${majorVersion}.angular.io/
+  #   readonly firebaseToken=$FIREBASE_TOKEN
+  #   ;;
 esac
 
 echo "Git branch        : $TRAVIS_BRANCH"
