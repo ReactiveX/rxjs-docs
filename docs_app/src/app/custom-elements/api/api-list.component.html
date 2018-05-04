@@ -7,11 +7,11 @@
               label="Type:">
   </aio-select>
 
-  <aio-select (change)="setStatus($event.option)"
+  <!-- <aio-select (change)="setStatus($event.option)"
               [options]="statuses"
               [selected]="status"
               label="Status:">
-  </aio-select>
+  </aio-select> -->
 
   <div class="form-search">
     <input #filter placeholder="Filter" (input)="setQuery($event.target.value)">

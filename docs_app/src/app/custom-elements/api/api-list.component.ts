@@ -43,21 +43,18 @@ export class ApiListComponent implements OnInit {
     { value: 'all', title: 'All' },
     { value: 'class', title: 'Class' },
     { value: 'const', title: 'Const'},
-    { value: 'decorator', title: 'Decorator' },
-    { value: 'directive', title: 'Directive' },
     { value: 'enum', title: 'Enum' },
     { value: 'function', title: 'Function' },
     { value: 'interface', title: 'Interface' },
-    { value: 'pipe', title: 'Pipe'},
     { value: 'type-alias', title: 'Type Alias' }
   ];
 
   statuses: Option[] = [
-    { value: 'all', title: 'All' },
-    { value: 'stable', title: 'Stable' },
-    { value: 'deprecated', title: 'Deprecated' },
-    { value: 'experimental', title: 'Experimental' },
-    { value: 'security-risk', title: 'Security Risk' }
+    // { value: 'all', title: 'All' },
+    // { value: 'stable', title: 'Stable' },
+    // { value: 'deprecated', title: 'Deprecated' },
+    // { value: 'experimental', title: 'Experimental' },
+    // { value: 'security-risk', title: 'Security Risk' }
   ];
 
   @ViewChild('filter') queryEl: ElementRef;
@@ -149,7 +146,7 @@ export class ApiListComponent implements OnInit {
 
     this.searchCriteria = {
       query: q,
-      status: this.status.value,
+      status: this.status ? this.status.value : 'all',
       type: this.type.value
     };
 
