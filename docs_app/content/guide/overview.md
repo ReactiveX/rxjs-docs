@@ -49,7 +49,7 @@ Using RxJS you isolate the state.
 const { fromEvent } = rxjs;
 const { scan } = rxjs.operators;
 
-cosnt button = document.querySelector('button');
+const button = document.querySelector('button');
 fromEvent(button, 'click').pipe(
   scan(count => count + 1, 0)
 )
