@@ -14,7 +14,7 @@ import {
 } from '../../../../operator-docs/operator.model';
 import { OperatorParameters } from '../../../../operator-docs';
 import { OperatorsService } from '../../../core/services/operators.service';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-operator',

@@ -15,8 +15,7 @@ import {
 } from '@angular/animations';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material';
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
+import { Subject, Observable } from 'rxjs';
 import { filter, takeUntil, map } from 'rxjs/operators';
 
 import { OperatorDoc } from '../../operator-docs';
