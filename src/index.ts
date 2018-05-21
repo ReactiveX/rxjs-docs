@@ -1,6 +1,7 @@
 /* Observable */
 export { Observable } from './internal/Observable';
 export { ConnectableObservable } from './internal/observable/ConnectableObservable';
+export { GroupedObservable } from './internal/operators/groupBy';
 export { Operator } from './internal/Operator';
 export { observable } from './internal/symbol/observable';
 
@@ -16,6 +17,7 @@ export { async as asyncScheduler } from './internal/scheduler/async';
 export { queue as queueScheduler } from './internal/scheduler/queue';
 export { animationFrame as animationFrameScheduler } from './internal/scheduler/animationFrame';
 export { VirtualTimeScheduler, VirtualAction } from './internal/scheduler/VirtualTimeScheduler';
+export { Scheduler } from './internal/Scheduler';
 
 /* Subscription */
 export { Subscription } from './internal/Subscription';
@@ -28,6 +30,7 @@ export { Notification } from './internal/Notification';
 export { pipe } from './internal/util/pipe';
 export { noop } from './internal/util/noop';
 export { identity } from './internal/util/identity';
+export { isObservable } from './internal/util/isObservable';
 
 /* Error types */
 export { ArgumentOutOfRangeError } from './internal/util/ArgumentOutOfRangeError';

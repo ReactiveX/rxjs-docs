@@ -1,6 +1,6 @@
 {
   "name": "@reactivex/rxjs",
-  "version": "6.0.0-rc.0",
+  "version": "6.1.0",
   "description": "Reactive Extensions for modern JavaScript",
   "main": "index.js",
   "sideEffects": false,
@@ -23,65 +23,32 @@
     "extension": [
       ".ts"
     ],
-    "require": [
-      "ts-node/register"
-    ],
     "reporter": [
       "html"
     ],
     "all": true
   },
   "lint-staged": {
-    "*.@(js),!docs_app": [
+    "*.@(js)": [
       "eslint --fix",
       "git add"
     ],
-    "*.@(ts),!docs_app": [
+    "*.@(ts)": [
       "tslint --fix",
       "git add"
     ]
   },
-  "scripts-info": {
-    "info": "List available script",
-    "build_all": "Build all packages (ES6, CJS, UMD) and generate packages",
-    "build_cjs": "Build CJS package with clean up existing build",
-    "build_esm5": "Build ESM/ES5 package with clean up existing build",
-    "build_esm2015": "Build ESM/ES2015 package with clean up existing build",
-    "build_closure_core": "Minify Global core build using closure compiler",
-    "build_global": "Build Global package, then minify build",
-    "build_perf": "Build CJS & Global build, run macro performance test",
-    "build_docs": "Build ESM2015 & global package, create documentation using it",
-    "clean_dist_cjs": "Clean up existing CJS package output",
-    "clean_dist_esm5": "Clean up existing ESM/ES5 package output",
-    "clean_dist_esm2015": "Clean up existing ESM/ES2015 package output",
-    "clean_dist_global": "Clean up existing Global package output",
-    "commit": "Run git commit wizard",
-    "compile_dist_cjs": "Compile codebase into CJS module",
-    "compile_module_esm5": "Compile codebase into ESM/ES5",
-    "compile_dist_esm2015": "Compile codebase into ESM/ES2015",
-    "lint_perf": "Run lint against performance test suite",
-    "lint_spec": "Run lint against test spec",
-    "lint_src": "Run lint against source",
-    "lint": "Run lint against everything",
-    "perf": "Run macro performance benchmark",
-    "perf_micro": "Run micro performance benchmark",
-    "test_browser": "Execute mocha test runner on browser against existing test spec build",
-    "test": "Execute mocha test runner",
-    "test:cover": "Execute test coverage",
-    "tests2png": "Generate marble diagram image from test spec",
-    "watch": "Watch codebase, trigger compile when source code changes"
-  },
   "scripts": {
     "precommit": "lint-staged",
     "commitmsg": "validate-commit-msg",
-    "info": "npm-scripts-info",
-    "build_all": "npm-run-all compat_build_all clean_dist copy_sources build_cjs build_esm5 build_esm2015 build_esm5_for_rollup build_umd build_legacy_reexport generate_packages copy_for_tests",
+    "build_all": "npm-run-all compat_build_all clean_dist copy_sources build_cjs build_esm5 build_esm2015 build_esm5_for_rollup build_umd build_legacy_reexport build_migrations generate_packages copy_for_tests",
     "build_cjs": "npm-run-all clean_dist_cjs compile_dist_cjs",
     "build_esm5": "npm-run-all clean_dist_esm5 compile_dist_esm5",
     "build_esm5_for_rollup": "npm-run-all clean_dist_esm5_for_rollup compile_dist_esm5_for_rollup && mkdirp dist/esm5_for_rollup/node_modules && shx cp -r ./dist-compat/package ./dist/esm5_for_rollup/node_modules/rxjs-compat",
     "build_esm2015": "npm-run-all clean_dist_esm2015 compile_dist_esm2015",
     "build_esm2015_for_docs": "npm-run-all clean_dist_esm2015 compile_dist_esm2015_for_docs",
     "build_legacy_reexport": "npm-run-all compile_legacy_reexport",
+    "build_migrations": "npm-run-all clean_dist_migrations compile_dist_migrations",
     "build_closure_core": "node ./tools/make-closure-core.js",
     "build_global": "npm-run-all clean_dist_global build_esm5_for_rollup && mkdirp ./dist/global && node ./tools/make-umd-bundle.js && npm-run-all build_closure_core clean_dist_esm5_for_rollup",
     "build_umd": "npm-run-all clean_dist_global && mkdirp ./dist/global && node ./tools/make-umd-bundle.js && npm-run-all build_closure_core",
@@ -89,19 +56,21 @@
     "build_docs": "npm-run-all build_global build_esm2015_for_docs build_cjs tests2png decision_tree_widget && esdoc -c esdoc.json && npm-run-all clean_dist_esm2015",
     "build_spec": "npm-run-all build_cjs generate_packages copy_for_tests",
     "build_spec_full": "npm-run-all compat_build_cjs compile_legacy_reexport compat_generate_packages build_spec",
-    "build_spec_browser": "webpack --config spec/support/webpack.mocha.config.js",
+    "build:spec:browser": "echo \"Browser test is not working currently\" && exit -1 && webpack --config spec/support/webpack.mocha.config.js",
     "clean_dist": "shx rm -rf ./dist",
     "clean_dist_cjs": "shx rm -rf ./dist/cjs",
     "clean_dist_esm5": "shx rm -rf ./dist/esm5",
     "clean_dist_esm5_for_rollup": "shx rm -rf ./dist/esm5_for_rollup",
     "clean_dist_esm2015": "shx rm -rf ./dist/esm2015",
     "clean_dist_global": "shx rm -rf ./dist/global",
+    "clean_dist_migrations": "shx rm -rf ./dist/migrations",
     "commit": "git-cz",
     "compile_dist_cjs": "tsc -p ./tsconfig/tsconfig.cjs.json",
     "compile_dist_esm5": "tsc -p ./tsconfig/tsconfig.esm5.json",
     "compile_dist_esm2015": "tsc -p ./tsconfig/tsconfig.esm2015.json",
     "compile_dist_esm2015_for_docs": "tsc ./dist/src/internal/Rx.ts ./dist/src/add/observable/of.ts ./dist/src/MiscJSDoc.ts -m es2015   --sourceMap --outDir ./dist/es6 --target es2015 -d --diagnostics --pretty --noImplicitAny --noImplicitReturns --noImplicitThis --suppressImplicitAnyIndexErrors --moduleResolution node",
     "compile_dist_esm5_for_rollup": "tsc -p ./tsconfig/tsconfig.esm5.rollup.json",
+    "compile_dist_migrations": "tsc -p ./tsconfig/tsconfig.migrations.json",
     "compile_legacy_reexport": "tsc -p ./tsconfig/tsconfig.legacy-reexport.json",
     "copy_sources": "mkdirp dist && shx cp -r ./src/ ./dist/src",
     "copy_for_tests": "shx rm -rf ./spec-build && shx cp -r ./spec/ ./spec-build/ && mkdirp ./spec-build/node_modules && shx cp -r ./dist/package/ ./spec-build/node_modules/rxjs && shx cp -r ./dist-compat/package/ ./spec-build/node_modules/rxjs-compat",
@@ -112,17 +81,16 @@
     "lint_spec": "tslint -c tslint.json \"spec/**/*.ts\"",
     "lint_src": "tslint -c tslint.json \"src/**/*.ts\"",
     "lint": "npm-run-all --parallel lint_*",
-    "perf": "protractor protractor.conf.js",
-    "perf_micro": "node ./perf/micro/index.js",
+    "perf:protractor": "echo \"Protractor is not working currently\" && exit -1 && protractor protractor.conf.js",
+    "perf:micro": "node ./perf/micro/index.js",
     "prepublish": "shx rm -rf ./typings && npm run build_all",
     "publish_docs": "./publish_docs.sh",
-    "test_browser": "npm-run-all build_spec_browser && opn spec/support/mocha-browser-runner.html",
-    "test": "mocha --require ts-node/register --opts spec-build/support/coverage.opts \"spec-build/**/*-spec.ts\"",
-    "test:cover": "cross-env TS_NODE_FAST=true nyc npm test",
-    "test:circular": "dependency-cruise --validate .dependency-cruiser.json -x \"^node_modules\" src",
+    "test": "cross-env TS_NODE_PROJECT=spec/tsconfig.json mocha --opts spec/support/default.opts \"spec/**/*-spec.ts\"",
+    "test:browser": "echo \"Browser test is not working currently\" && exit -1 && npm-run-all build:spec:browser && opn spec/support/mocha-browser-runner.html",
+    "test:cover": "nyc npm test",
+    "test:circular": "dependency-cruise --validate .dependency-cruiser.json -x \"^node_modules\" dist/esm5",
     "test:systemjs": "node integration/systemjs/systemjs-compatibility-spec.js",
-    "tests2png": "mkdirp tmp/docs/img && cross-env TS_NODE_FAST=true mocha --compilers ts:ts-node/register --opts spec/support/tests2png.opts \"spec/**/*-spec.ts\"",
-    "watch": "watch \"echo triggering build && npm run build_spec && npm run test && echo build completed\" src -d -u -w=15",
+    "tests2png": "mkdirp tmp/docs/img && mocha --opts spec/support/tests2png.opts \"spec/**/*-spec.ts\"",
     "compat_build_all": "npm-run-all compat_clean_dist compat_build_cjs compat_build_esm5 compat_build_esm2015 compat_generate_packages",
     "compat_build_cjs": "npm-run-all compat_clean_dist_cjs compat_compile_dist_cjs",
     "compat_build_esm5": "npm-run-all compat_clean_dist_esm5 compat_compile_dist_esm5",
@@ -190,12 +158,14 @@
   },
   "devDependencies": {
     "@angular-devkit/build-optimizer": "0.4.6",
+    "@angular-devkit/schematics": "^0.5.4",
     "@types/chai": "4.1.2",
     "@types/lodash": "4.14.102",
     "@types/mocha": "2.2.48",
     "@types/node": "9.4.5",
     "@types/sinon": "4.1.3",
     "@types/sinon-chai": "2.7.29",
+    "@types/source-map": "^0.5.2",
     "babel-polyfill": "6.26.0",
     "benchmark": "2.1.0",
     "benchpress": "2.0.0-beta.1",
@@ -221,7 +191,7 @@
     "http-server": "0.11.1",
     "husky": "0.14.3",
     "klaw-sync": "3.0.2",
-    "lint-staged": "3.2.5",
+    "lint-staged": "7.1.1",
     "lodash": "4.17.5",
     "markdown-doctest": "0.9.1",
     "minimist": "1.2.0",
@@ -229,7 +199,6 @@
     "mocha": "5.0.0",
     "mocha-in-sauce": "0.0.1",
     "npm-run-all": "4.1.2",
-    "npm-scripts-info": "0.3.6",
     "nyc": "11.4.1",
     "opn-cli": "3.1.0",
     "platform": "1.3.5",
@@ -246,17 +215,20 @@
     "source-map-support": "0.5.3",
     "symbol-observable": "1.0.1",
     "systemjs": "^0.21.0",
-    "ts-node": "4.1.0",
+    "ts-node": "5.0.1",
+    "tsconfig-paths": "3.2.0",
     "tslint": "5.9.1",
     "tslint-no-unused-expression-chai": "0.0.3",
-    "typescript": "latest",
+    "typescript": "~2.8.1",
     "validate-commit-msg": "2.14.0",
-    "watch": "1.0.2",
     "webpack": "1.13.1",
     "xmlhttprequest": "1.8.0"
   },
   "engines": {
     "npm": ">=2.0.0"
   },
-  "typings": "./dist/package/Rx.d.ts"
+  "typings": "./dist/package/Rx.d.ts",
+  "ng-update": {
+    "migrations": "./migrations/collection.json"
+  }
 }

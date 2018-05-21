@@ -131,6 +131,7 @@ export class AjaxObservable<T> extends Observable<T> {
    * @static true
    * @name ajax
    * @owner Observable
+   * @nocollapse
   */
   static create: AjaxCreationMethod = (() => {
     const create: any = (urlOrRequest: string | AjaxRequest) => {
@@ -178,7 +179,8 @@ export class AjaxObservable<T> extends Observable<T> {
     this.request = request;
   }
 
-  protected _subscribe(subscriber: Subscriber<T>): TeardownLogic {
+  /** @deprecated This is an internal implementation detail, do not use. */
+  _subscribe(subscriber: Subscriber<T>): TeardownLogic {
     return new AjaxSubscriber(subscriber, this.request);
   }
 }
@@ -488,6 +490,7 @@ function parseXhrResponse(responseType: string, xhr: XMLHttpRequest) {
 export class AjaxTimeoutError extends AjaxError {
   constructor(xhr: XMLHttpRequest, request: AjaxRequest) {
     super('ajax timeout', xhr, request);
+    this.name = 'AjaxTimeoutError';
     (Object as any).setPrototypeOf(this, AjaxTimeoutError.prototype);
   }
 }

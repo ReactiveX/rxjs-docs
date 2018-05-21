@@ -4,6 +4,7 @@ import { Subscription } from './Subscription';
 import { TeardownLogic } from './types';
 import { toSubscriber } from './util/toSubscriber';
 import { iif } from './observable/iif';
+import { throwError } from './observable/throwError';
 import { observable as Symbol_observable } from '../internal/symbol/observable';
 import { OperatorFunction, PartialObserver, Subscribable } from '../internal/types';
 import { pipeFromArray } from './util/pipe';
@@ -17,12 +18,14 @@ import { config } from './config';
  */
 export class Observable<T> implements Subscribable<T> {
 
-  /** @internal */
+  /** Internal implementation detail, do not use directly. */
   public _isScalar: boolean = false;
 
-  protected source: Observable<any>;
+  /** @deprecated This is an internal implementation detail, do not use. */
+  source: Observable<any>;
 
-  protected operator: Operator<any, T>;
+  /** @deprecated This is an internal implementation detail, do not use. */
+  operator: Operator<any, T>;
 
   /**
    * @constructor
@@ -207,7 +210,8 @@ export class Observable<T> implements Subscribable<T> {
     return sink;
   }
 
-  protected _trySubscribe(sink: Subscriber<T>): TeardownLogic {
+  /** @deprecated This is an internal implementation detail, do not use. */
+  _trySubscribe(sink: Subscriber<T>): TeardownLogic {
     try {
       return this._subscribe(sink);
     } catch (err) {
@@ -246,16 +250,24 @@ export class Observable<T> implements Subscribable<T> {
     }) as Promise<void>;
   }
 
-  /** @internal */
-  protected _subscribe(subscriber: Subscriber<any>): TeardownLogic {
+  /** @deprecated This is an internal implementation detail, do not use. */
+  _subscribe(subscriber: Subscriber<any>): TeardownLogic {
     const { source } = this;
     return source && source.subscribe(subscriber);
   }
 
-  // TODO(benlesh): determine if this is still necessary
-  // `if` and `throw` are special snow flakes, the compiler sees them as reserved words
-  /** @nocollapse */
+  // `if` and `throw` are special snow flakes, the compiler sees them as reserved words. Deprecated in
+  // favor of iif and throwError functions.
+  /**
+   * @nocollapse
+   * @deprecated In favor of iif creation function: import { iif } from 'rxjs';
+   */
   static if: typeof iif;
+  /**
+   * @nocollapse
+   * @deprecated In favor of throwError creation function: import { throwError } from 'rxjs';
+   */
+  static throw: typeof throwError;
 
   /**
    * An interop point defined by the es7-observable spec https://github.com/zenparsing/es-observable
