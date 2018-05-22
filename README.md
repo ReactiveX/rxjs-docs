@@ -1,4 +1,4 @@
-cd<img src="doc/asset/Rx_Logo_S.png" alt="RxJS Logo" width="86" height="86"> RxJS: Reactive Extensions For JavaScript
+<img src="doc/asset/Rx_Logo_S.png" alt="RxJS Logo" width="86" height="86"> RxJS: Reactive Extensions For JavaScript
 ======================================
 
 

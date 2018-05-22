@@ -353,7 +353,15 @@ export class AjaxSubscriber<T> extends Subscriber<Event> {
     }
 
     function xhrReadyStateChange(this: XMLHttpRequest, e: Event) {
-      const { subscriber, progressSubscriber, request } = (<any>xhrReadyStateChange);
+      return;
+    }
+    xhr.onreadystatechange = xhrReadyStateChange;
+    (<any>xhrReadyStateChange).subscriber = this;
+    (<any>xhrReadyStateChange).progressSubscriber = progressSubscriber;
+    (<any>xhrReadyStateChange).request = request;
+
+    function xhrLoad(this: XMLHttpRequest, e: Event) {
+      const { subscriber, progressSubscriber, request } = (<any>xhrLoad);
       if (this.readyState === 4) {
         // normalize IE9 bug (http://bugs.jquery.com/ticket/1450)
         let status: number = this.status === 1223 ? 204 : this.status;
@@ -382,10 +390,10 @@ export class AjaxSubscriber<T> extends Subscriber<Event> {
         }
       }
     }
-    xhr.onreadystatechange = xhrReadyStateChange;
-    (<any>xhrReadyStateChange).subscriber = this;
-    (<any>xhrReadyStateChange).progressSubscriber = progressSubscriber;
-    (<any>xhrReadyStateChange).request = request;
+    xhr.onload = xhrLoad;
+    (<any>xhrLoad).subscriber = this;
+    (<any>xhrLoad).progressSubscriber = progressSubscriber;
+    (<any>xhrLoad).request = request;
   }
 
   unsubscribe() {
@@ -424,6 +432,8 @@ export class AjaxResponse {
   }
 }
 
+export type AjaxErrorNames = 'AjaxError' | 'AjaxTimeoutError';
+
 /**
  * A normalized AJAX error.
  *
@@ -447,6 +457,8 @@ export class AjaxError extends Error {
   /** @type {string|ArrayBuffer|Document|object|any} The response data */
   response: any;
 
+  public readonly name: AjaxErrorNames = 'AjaxError';
+
   constructor(message: string, xhr: XMLHttpRequest, request: AjaxRequest) {
     super(message);
     this.message = message;
@@ -456,7 +468,6 @@ export class AjaxError extends Error {
     this.responseType = xhr.responseType || request.responseType;
     this.response = parseXhrResponse(this.responseType, xhr);
 
-    this.name = 'AjaxError';
     (Object as any).setPrototypeOf(this, AjaxError.prototype);
   }
 }
@@ -488,9 +499,11 @@ function parseXhrResponse(responseType: string, xhr: XMLHttpRequest) {
  * @class AjaxTimeoutError
  */
 export class AjaxTimeoutError extends AjaxError {
+
+  public readonly name: AjaxErrorNames = 'AjaxTimeoutError';
+
   constructor(xhr: XMLHttpRequest, request: AjaxRequest) {
     super('ajax timeout', xhr, request);
-    this.name = 'AjaxTimeoutError';
     (Object as any).setPrototypeOf(this, AjaxTimeoutError.prototype);
   }
 }

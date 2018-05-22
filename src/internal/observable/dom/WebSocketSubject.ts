@@ -80,7 +80,6 @@ export class WebSocketSubject<T> extends AnonymousSubject<T> {
       this.source = urlConfigOrSource as Observable<T>;
     } else {
       const config = this._config = { ...DEFAULT_WEBSOCKET_CONFIG };
-      config.WebSocketCtor = WebSocket;
       this._output = new Subject<T>();
       if (typeof urlConfigOrSource === 'string') {
         config.url = urlConfigOrSource;
@@ -91,7 +90,10 @@ export class WebSocketSubject<T> extends AnonymousSubject<T> {
           }
         }
       }
-      if (!config.WebSocketCtor) {
+
+      if (!config.WebSocketCtor && WebSocket) {
+        config.WebSocketCtor = WebSocket;
+      } else if (!config.WebSocketCtor) {
         throw new Error('no WebSocket constructor can be found');
       }
       this.destination = new ReplaySubject();
@@ -115,7 +117,7 @@ export class WebSocketSubject<T> extends AnonymousSubject<T> {
 
   /**
    * Creates an {@link Observable}, that when subscribed to, sends a message,
-   * defined be the `subMsg` function, to the server over the socket to begin a
+   * defined by the `subMsg` function, to the server over the socket to begin a
    * subscription to data over that socket. Once data arrives, the
    * `messageFilter` argument will be used to select the appropriate data for
    * the resulting Observable. When teardown occurs, either due to
