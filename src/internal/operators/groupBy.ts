@@ -5,11 +5,6 @@ import { Operator } from '../Operator';
 import { Subject } from '../Subject';
 import { OperatorFunction } from '../types';
 
-/** Assert that map is present for this operator */
-if (!Map) {
-  throw new Error('Map not found, please polyfill');
-}
-
 /* tslint:disable:max-line-length */
 export function groupBy<T, K>(keySelector: (value: T) => K): OperatorFunction<T, GroupedObservable<K, T>>;
 export function groupBy<T, K>(keySelector: (value: T) => K, elementSelector: void, durationSelector: (grouped: GroupedObservable<K, T>) => Observable<any>): OperatorFunction<T, GroupedObservable<K, T>>;
@@ -239,7 +234,8 @@ class GroupDurationSubscriber<K, T> extends Subscriber<T> {
     this.complete();
   }
 
-  protected _unsubscribe() {
+  /** @deprecated This is an internal implementation detail, do not use. */
+  _unsubscribe() {
     const { parent, key } = this;
     this.key = this.parent = null;
     if (parent) {
@@ -257,13 +253,15 @@ class GroupDurationSubscriber<K, T> extends Subscriber<T> {
  * @class GroupedObservable<K, T>
  */
 export class GroupedObservable<K, T> extends Observable<T> {
+  /** @deprecated Do not construct this type. Internal use only */
   constructor(public key: K,
               private groupSubject: Subject<T>,
               private refCountSubscription?: RefCountSubscription) {
     super();
   }
 
-  protected _subscribe(subscriber: Subscriber<T>) {
+  /** @deprecated This is an internal implementation detail, do not use. */
+  _subscribe(subscriber: Subscriber<T>) {
     const subscription = new Subscription();
     const { refCountSubscription, groupSubject } = this;
     if (refCountSubscription && !refCountSubscription.closed) {

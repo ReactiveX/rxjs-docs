@@ -1,19 +1,22 @@
-import * as Rx from 'rxjs/Rx';
+import { of } from 'rxjs';
+import { delay, repeatWhen, skip, take, tap, mergeMap } from 'rxjs/operators';
+import { TestScheduler } from 'rxjs/testing';
+import * as sinon from 'sinon';
+import { expect } from 'chai';
 import { hot, cold, expectObservable, expectSubscriptions, time } from '../helpers/marble-testing';
 
 declare const asDiagram: Function;
-declare const rxTestScheduler: Rx.TestScheduler;
-const Observable = Rx.Observable;
+declare const rxTestScheduler: TestScheduler;
 
 /** @test {delay} */
-describe('Observable.prototype.delay', () => {
+describe('delay operator', () => {
   asDiagram('delay(20)')('should delay by specified timeframe', () => {
     const e1 =   hot('---a--b--|  ');
     const t =   time(   '--|      ');
     const expected = '-----a--b--|';
     const subs =     '^          !';
 
-    const result = e1.delay(t, rxTestScheduler);
+    const result = e1.pipe(delay(t, rxTestScheduler));
 
     expectObservable(result).toBe(expected);
     expectSubscriptions(e1.subscriptions).toBe(subs);
@@ -26,7 +29,7 @@ describe('Observable.prototype.delay', () => {
     const subs =     '^          !';
 
     const absoluteDelay = new Date(rxTestScheduler.now() + t);
-    const result = e1.delay(absoluteDelay, rxTestScheduler);
+    const result = e1.pipe(delay(absoluteDelay, rxTestScheduler));
 
     expectObservable(result).toBe(expected);
     expectSubscriptions(e1.subscriptions).toBe(subs);
@@ -39,7 +42,7 @@ describe('Observable.prototype.delay', () => {
     const subs =        '^           !';
 
     const absoluteDelay = new Date(rxTestScheduler.now() + t);
-    const result = e1.delay(absoluteDelay, rxTestScheduler);
+    const result = e1.pipe(delay(absoluteDelay, rxTestScheduler));
 
     expectObservable(result).toBe(expected);
     expectSubscriptions(e1.subscriptions).toBe(subs);
@@ -51,7 +54,7 @@ describe('Observable.prototype.delay', () => {
     const expected = '------a---b#';
     const subs =     '^          !';
 
-    const result = e1.delay(t, rxTestScheduler);
+    const result = e1.pipe(delay(t, rxTestScheduler));
 
     expectObservable(result).toBe(expected);
     expectSubscriptions(e1.subscriptions).toBe(subs);
@@ -64,7 +67,7 @@ describe('Observable.prototype.delay', () => {
     const subs =     '^       !';
 
     const absoluteDelay = new Date(rxTestScheduler.now() + t);
-    const result = e1.delay(absoluteDelay, rxTestScheduler);
+    const result = e1.pipe(delay(absoluteDelay, rxTestScheduler));
 
     expectObservable(result).toBe(expected);
     expectSubscriptions(e1.subscriptions).toBe(subs);
@@ -77,7 +80,7 @@ describe('Observable.prototype.delay', () => {
     const e1Sub =       '^           !';
 
     const absoluteDelay = new Date(rxTestScheduler.now() + t);
-    const result = e1.delay(absoluteDelay, rxTestScheduler);
+    const result = e1.pipe(delay(absoluteDelay, rxTestScheduler));
 
     expectObservable(result).toBe(expected);
     expectSubscriptions(e1.subscriptions).toBe(e1Sub);
@@ -89,7 +92,7 @@ describe('Observable.prototype.delay', () => {
     const expected = '-------|';
     const subs =     '^      !';
 
-    const result = e1.delay(t, rxTestScheduler);
+    const result = e1.pipe(delay(t, rxTestScheduler));
 
     expectObservable(result).toBe(expected);
     expectSubscriptions(e1.subscriptions).toBe(subs);
@@ -100,7 +103,7 @@ describe('Observable.prototype.delay', () => {
     const t =   time('---|');
     const expected = '---|';
 
-    const result = e1.delay(t, rxTestScheduler);
+    const result = e1.pipe(delay(t, rxTestScheduler));
 
     expectObservable(result).toBe(expected);
   });
@@ -112,7 +115,7 @@ describe('Observable.prototype.delay', () => {
     const unsub =    '----------------!';
     const subs =     '^               !';
 
-    const result = e1.delay(t, rxTestScheduler);
+    const result = e1.pipe(delay(t, rxTestScheduler));
 
     expectObservable(result, unsub).toBe(expected);
     expectSubscriptions(e1.subscriptions).toBe(subs);
@@ -125,10 +128,11 @@ describe('Observable.prototype.delay', () => {
     const expected = '------a--   ';
     const unsub =    '        !   ';
 
-    const result = e1
-      .mergeMap((x: any) => Observable.of(x))
-      .delay(t, rxTestScheduler)
-      .mergeMap((x: any) => Observable.of(x));
+    const result = e1.pipe(
+      mergeMap((x: any) => of(x)),
+      delay(t, rxTestScheduler),
+      mergeMap((x: any) => of(x))
+    );
 
     expectObservable(result, unsub).toBe(expected);
     expectSubscriptions(e1.subscriptions).toBe(e1subs);
@@ -139,7 +143,36 @@ describe('Observable.prototype.delay', () => {
     const t =   time('---|');
     const expected = '-';
 
-    const result = e1.delay(t, rxTestScheduler);
+    const result = e1.pipe(delay(t, rxTestScheduler));
+
+    expectObservable(result).toBe(expected);
+  });
+
+  it('should unsubscribe scheduled actions after execution', () => {
+    let subscribeSpy: any = null;
+    const counts: number[] = [];
+
+    const e1 =       cold('a|');
+    const expected =      '--a-(a|)';
+    const duration = time('-|');
+    const result = e1.pipe(
+      repeatWhen(notifications => {
+        const delayed = notifications.pipe(delay(duration, rxTestScheduler));
+        subscribeSpy = sinon.spy(delayed['source'], 'subscribe');
+        return delayed;
+      }),
+      skip(1),
+      take(2),
+      tap({
+        next() {
+          const [[subscriber]] = subscribeSpy.args;
+          counts.push(subscriber._subscriptions.length);
+        },
+        complete() {
+          expect(counts).to.deep.equal([1, 1]);
+        }
+      })
+    );
 
     expectObservable(result).toBe(expected);
   });

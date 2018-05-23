@@ -8,6 +8,7 @@
     "outDir": "../dist/legacy-reexport",
     "rootDir": "../legacy-reexport",
     "baseUrl": "../legacy-reexport",
+    "sourceRoot": "../legacy-reexport",
     "paths": {
       "rxjs": ["../dist/typings/index"],
       "rxjs/*": ["../dist/typings/*"],
@@ -15,7 +16,7 @@
       "rxjs/testing": ["../dist/typings/testing/index"],
       "rxjs/ajax": ["../dist/typings/ajax/index"],
       "rxjs/operators": ["../dist/typings/operators/index"],
-      "rxjs/websocket": ["../dist/typings/websocket/index"],
+      "rxjs/webSocket": ["../dist/typings/webSocket/index"],
       "rxjs-compat": ["../dist-compat/typings/compat/Rx"],
       "rxjs-compat/*": ["../dist-compat/typings/compat/*"]
     }
