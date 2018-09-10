@@ -1,5 +1,7 @@
 [![Build Status](https://travis-ci.org/ReactiveX/rxjs-docs.svg?branch=master)](https://travis-ci.org/ReactiveX/rxjs-docs)
 
+# THIS REPOSITORY IS DEPRECATED. THE RXJS DOCS ARE DEVELOPED AT THE [RXJS REPO](https://github.com/ReactiveX/rxjs) 
+
 # [rxjs-docs](http://rxjsdocs.com/)
 The home for new work on the new RxJS docs (RxJS v5 and up).
 Website (currently beta) can be found [here](http://rxjsdocs.com/). 
