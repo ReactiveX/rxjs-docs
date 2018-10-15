@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const delay: OperatorDoc = {
   name: 'delay',
   operatorType: 'utility',
+  returnValue: 'Observable',
   signature:
     'public delay(delay: number | Date, scheduler: Scheduler): Observable',
   parameters: [

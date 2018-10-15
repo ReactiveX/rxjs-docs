@@ -2,5 +2,13 @@
   {{ operatorName }}
 </mat-toolbar>
 <mat-toolbar class="signature">
-  {{ operatorSignature }}
+  <span class="operator">{{ operatorName }}</span>(
+    <span *ngFor="let parameter of operatorParameters; let f=first">
+      <span *ngIf="!f">, </span>
+      <span class="argument" [matTooltip]="parameter | argument" [matTooltipClass]="'parameter-description'">{{parameter.name}}</span>:
+      <span class="type">{{parameter.type}}</span>
+    </span>
+  )
+  <span *ngIf="returnValue">:&nbsp;</span>
+  <span class="type" *ngIf="returnValue"> {{returnValue}}</span>
 </mat-toolbar>

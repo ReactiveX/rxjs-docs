@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const throttleTime: OperatorDoc = {
   name: 'throttleTime',
   operatorType: 'filtering',
+  returnValue: 'Observable<T>',
   signature:
     'public throttleTime(duration: number, scheduler: Scheduler): Observable<T>',
   parameters: [

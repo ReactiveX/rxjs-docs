@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const takeWhile: OperatorDoc = {
   name: 'takeWhile',
   operatorType: 'filtering',
+  returnValue: 'Observable',
   signature:
     'public takeWhile(predicate: function(value: T, index: number): boolean): Observable',
   parameters: [

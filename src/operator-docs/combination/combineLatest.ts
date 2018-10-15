@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const combineLatest: OperatorDoc = {
   name: 'combineLatest',
   operatorType: 'combination',
+  returnValue: 'Observable',
   signature:
     'public combineLatest(observables: ...Observable, project: function): Observable',
   useInteractiveMarbles: true,

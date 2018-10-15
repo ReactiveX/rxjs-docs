@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const takeUntil: OperatorDoc = {
   name: 'takeUntil',
   operatorType: 'filtering',
+  returnValue: 'Observable<T>',
   signature: 'public takeUntil(notifier: Observable): Observable<T>',
   useInteractiveMarbles: true,
   parameters: [

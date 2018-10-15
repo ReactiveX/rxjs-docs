@@ -17,6 +17,7 @@ import { WalkthroughComponent } from './components/walkthrough/walkthrough.compo
 import { HighlightJsDirective } from './directives/highlight-js.directive';
 import { SafeUrlPipe } from './pipes/safe-url.pipe';
 import { MaterialModule } from '../material/material.module';
+import { ArgumentPipe } from './pipes/argument.pipe';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MaterialModule } from '../material/material.module';
     WalkthroughComponent,
     MarbleDiagramComponent,
     HighlightJsDirective,
-    SafeUrlPipe
+    SafeUrlPipe,
+    ArgumentPipe
   ],
   imports: [
     CommonModule,

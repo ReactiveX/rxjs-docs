@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const mergeMap: OperatorDoc = {
   name: 'mergeMap',
   operatorType: 'transformation',
+  returnValue: 'Observable',
   signature:
     'public mergeMap(project: Function, resultSelector?: Function, concurrent?: number): Observable',
   useInteractiveMarbles: true,

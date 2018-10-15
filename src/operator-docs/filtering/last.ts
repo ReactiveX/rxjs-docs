@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const last: OperatorDoc = {
   name: 'last',
   operatorType: 'filtering',
+  returnValue: 'Observable',
   signature: 'public last(predicate: function): Observable',
   useInteractiveMarbles: true,
   parameters: [

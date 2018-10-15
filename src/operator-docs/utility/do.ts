@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const doOperator: OperatorDoc = {
   name: 'do',
   operatorType: 'utility',
+  returnValue: 'Observable',
   signature:
     'public do(nextOrObserver: Observer | function, error: function, complete: function): Observable',
   parameters: [

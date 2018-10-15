@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const concat: OperatorDoc = {
   name: 'concat',
   operatorType: 'combination',
+  returnValue: 'Observable',
   signature:
     'public static concat(input1: ObservableInput, input2: ObservableInput, scheduler: Scheduler): Observable',
   parameters: [

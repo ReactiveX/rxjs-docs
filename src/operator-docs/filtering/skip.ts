@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const skip: OperatorDoc = {
   name: 'skip',
   operatorType: 'filtering',
+  returnValue: 'Observable',
   signature: 'public skip(count: Number): Observable',
   parameters: [
     {

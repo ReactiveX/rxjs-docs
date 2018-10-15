@@ -6,6 +6,7 @@ import { OperatorDoc } from '../operator.model';
 export const distinctUntilChanged: OperatorDoc = {
   name: 'distinctUntilChanged',
   operatorType: 'filtering',
+  returnValue: 'Observable',
   signature: 'public distinctUntilChanged(compare: function): Observable',
   useInteractiveMarbles: true,
   parameters: [

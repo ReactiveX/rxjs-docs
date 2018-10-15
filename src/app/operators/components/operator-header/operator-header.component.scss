@@ -6,10 +6,26 @@
 
 .signature {
   margin-bottom: 24px;
+  .operator{
+    color: #F77669;
+  }
+  .argument{
+    color: #FFFFFF;
+  }
+  .type{
+    color: #80cbc4;
+  }
 }
+
+.parameter-description{
+  color: red;
+}
+
 
 mat-toolbar {
   background: $operator-active !important;
   color: rgb(255, 255, 255);
   font-weight: normal;
 }
+
+

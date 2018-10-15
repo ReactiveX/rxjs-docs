@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const letOperator: OperatorDoc = {
   name: 'let',
   operatorType: 'utility',
+  returnValue: 'Observable',
   signature: 'public let(fun: function): Observable,',
   parameters: [
     {

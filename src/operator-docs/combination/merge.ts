@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const merge: OperatorDoc = {
   name: 'merge',
   operatorType: 'combination',
+  returnValue: 'Observable',
   signature:
     'public merge(other: ObservableInput, concurrent: number, scheduler: Scheduler): Observable',
   parameters: [

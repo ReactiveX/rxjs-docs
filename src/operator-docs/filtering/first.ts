@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const first: OperatorDoc = {
   name: 'first',
   operatorType: 'filtering',
+  returnValue: 'Observable<T | R>',
   signature: `public first(predicate: function(value: T, index: number, source: Observable<T>):
    boolean, resultSelector: function(value: T, index: number): R, defaultValue: R): Observable<T | R>`,
   parameters: [

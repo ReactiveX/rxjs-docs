@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const partition: OperatorDoc = {
   name: 'partition',
   operatorType: 'transformation',
+  returnValue: '[Observable<T>, Observable<T>]',
   signature:
     'public partition(predicate: function(value: T, index: number): boolean, thisArg: any): [Observable<T>, Observable<T>]',
   marbleUrl: 'http://reactivex.io/rxjs/img/partition.png',

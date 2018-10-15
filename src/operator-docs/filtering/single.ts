@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const single: OperatorDoc = {
   name: 'single',
   operatorType: 'filtering',
+  returnValue: 'Observable<T>',
   signature: 'public single(predicate: Function): Observable<T>',
   parameters: [
     {

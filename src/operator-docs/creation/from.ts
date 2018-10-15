@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const from: OperatorDoc = {
   name: 'from',
   operatorType: 'creation',
+  returnValue: 'Observable',
   signature: `from(ish: ArrayLike | ObservableInput, scheduler: Scheduler): Observable`,
   parameters: [
     {

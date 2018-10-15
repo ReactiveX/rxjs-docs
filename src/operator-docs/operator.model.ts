@@ -44,6 +44,7 @@ export interface MenuOperator {
 
 export interface OperatorDoc {
   readonly name?: string;
+  readonly returnValue?: string;
   readonly operatorType?: OperatorType;
   readonly signature?: string;
   readonly useInteractiveMarbles?: boolean;

@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const groupBy: OperatorDoc = {
   name: 'groupBy',
   operatorType: 'transformation',
+  returnValue: 'OperatorFunction<T, GroupedObservable<K, R>>',
   signature: `
     public groupBy(keySelector: (value: T) => K,
                    elementSelector?: ((value: T) => R) | void,

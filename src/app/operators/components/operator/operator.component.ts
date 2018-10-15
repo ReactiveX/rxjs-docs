@@ -117,6 +117,10 @@ export class OperatorComponent implements OnInit, OnDestroy {
     return this.operator.name;
   }
 
+  get returnValue() {
+    return this.operator.returnValue;
+  }
+
   get signature(): string {
     return this.operator.signature || 'Signature Placeholder';
   }

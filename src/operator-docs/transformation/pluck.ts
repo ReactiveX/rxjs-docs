@@ -3,6 +3,7 @@ import { OperatorDoc } from '../operator.model';
 export const pluck: OperatorDoc = {
   name: 'pluck',
   operatorType: 'transformation',
+  returnValue: 'Observable',
   signature: 'public pluck(properties: ...string): Observable',
   marbleUrl: 'http://reactivex.io/rxjs/img/pluck.png',
   parameters: [
