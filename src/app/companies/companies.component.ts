@@ -1,6 +1,6 @@
 import { COMPANIES_LIST } from './companies-list';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material';
 
 import { CompanyService } from './company.service';
