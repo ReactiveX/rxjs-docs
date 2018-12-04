@@ -6,6 +6,7 @@ import { first } from './first';
 import { ignoreElements } from './ignoreElements';
 import { last } from './last';
 import { sample } from './sample';
+import { sampleTime } from './sampleTime';
 import { single } from './single';
 import { skip } from './skip';
 import { skipUntil } from './skipUntil';
@@ -25,6 +26,7 @@ export const FILTERING_OPERATORS = [
   ignoreElements,
   last,
   sample,
+  sampleTime,
   single,
   skip,
   skipUntil,

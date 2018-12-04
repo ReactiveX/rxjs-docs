@@ -19,19 +19,22 @@ export const sample: OperatorDoc = {
     extras: [
       {
         type: 'Tip',
-        text: `It's like sampleTime, but samples whenever the notifier Observable emits something.`
+        text: `
+          It's like <a href="#/operators/sampleTime" class="markdown-code">sampleTime</a>,
+          but samples whenever the notifier Observable emits something.
+        `
       }
     ]
   },
   walkthrough: {
     description: `
       <p>
-       Whenever the notifier Observable emits a value or completes,
+       Whenever the <span class="markdown-code">notifier</span> Observable emits a value or completes,
        sample looks at the source Observable and emits whichever value it has most recently emitted since the previous sampling,
        unless the source has not emitted anything since the previous sampling.
       </p>
       <p>
-       The notifier is subscribed to as soon as the output Observable is subscribed.
+       The <span class="markdown-code">notifier</span> is subscribed to as soon as the output Observable is subscribed.
       </p>
     `
   },

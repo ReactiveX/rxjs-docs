@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import {
   MatCardModule,
   MatButtonModule,
-  MatIconModule,
+  MatIconModule
 } from '@angular/material';
 
 import { TeamRoutingModule } from './team-routing.module';
