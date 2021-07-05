@@ -8,4 +8,8 @@ export class AppPage {
   getPageTitle() {
     return element(by.css('span.title')).getText();
   }
+
+  getPageTitleReference() {
+    return element(by.css('span.title'));
+  }
 }
